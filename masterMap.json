@@ -1,0 +1,82 @@
+{
+  "pins": {
+    "temperature": {
+      "temperaturePin1": "temp_pin1",
+      "temperaturePin2": "temp_pin2",
+      "temperaturePin4": "temp_pin4"
+    },
+    "current": {
+      "currentPin1": "curr_pin1",
+      "currentPin2": "curr_pin2",
+      "currentPin4": "curr_pin4"
+    },
+    "voltage": {
+      "voltagePin1": "volt_pin1",
+      "voltagePin2": "volt_pin2",
+      "voltagePin4": "volt_pin4"
+    },
+	"value": {
+      "meanTemperature": "temp_avg",
+      "meanVoltageL":   "voltL_avg",
+      "meanVoltageL2":  "voltL2_avg",
+      "sumCurrentL":    "currL_sum",
+      "sumCurrentL2":   "currL2_sum"
+    },
+	"processdata": {
+	  "cqValue": "cq",
+      "iqValue": "iq"
+    },
+	"configuration": {
+	  "overCurrentPin1":   "overCurr_pin1",
+      "underCurrentPin1":  "underCurr_pin1",
+      "overCurrentPin2":   "overCurr_pin2",
+      "underCurrentPin2":  "underCurr_pin2",
+      "overCurrentPin4":   "overCurr_pin4",
+      "underCurrentPin4":  "underCurr_pin4",
+      "ipAddress":         "ip_address",
+      "subnetMask":        "subnet_mask",
+      "standardGateway":   "gateway",
+      "clientMode":        "mqtt_client_mode"
+	},
+	"events": {
+      "eventCode":         "evt_code",
+      "severity":          "evt_severity",
+      "timestamp":         "evt_time"
+	},
+    "statistics_current": {
+      "maxCurrentPin1": "currMax_pin1",
+      "minCurrentPin1": "currMin_pin1",
+      "maxCurrentPin2": "currMax_pin2",
+      "minCurrentPin2": "currMin_pin2",
+      "maxCurrentPin4": "currMax_pin4",
+      "minCurrentPin4": "currMin_pin4"
+    },
+    "statistics_voltage": {
+      "maxVoltagePin1": "voltMax_pin1",
+      "minVoltagePin1": "voltMin_pin1",
+      "maxVoltagePin2": "voltMax_pin2",
+      "minVoltagePin2": "voltMin_pin2",
+      "maxVoltagePin4": "voltMax_pin4",
+      "minVoltagePin4": "voltMin_pin4"
+    },
+    "statistics_temperature": {
+      "maxTemperaturePin1": "tempMax_pin1",
+      "minTemperaturePin1": "tempMin_pin1",
+      "maxTemperaturePin2": "tempMax_pin2",
+      "minTemperaturePin2": "tempMin_pin2",
+      "maxTemperaturePin4": "tempMax_pin4",
+      "minTemperaturePin4": "tempMin_pin4"
+    },
+    "identification": {
+      "vendorName": "vendorName",
+      "productName": "prodName",
+      "productId": "prodID",
+      "serialNumber": "serNum",
+      "hardwareRevision": "hardRev",
+      "firmwareRevision": "firmRev"
+    },
+    "capabilities": {
+      "minimumCycleTime": "minCyc"
+    }
+  }
+}
