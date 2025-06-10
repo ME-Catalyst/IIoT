@@ -1,6 +1,6 @@
 # Influx Data Pipeline v1.0 – Node‑RED Flow
 
-> **Flow file:** `Influx_Data_Pipeline.json`
+> **Flow file:** `Influx_Data_Pipeline_v1.0.json`
 > **Last reviewed:** 2025‑06‑10
 
 This flow ingests IO‑Link gateway data through two independent paths (HTTP polling & MQTT subscribe), enriches it with metadata, writes structured points to InfluxDB 2.x, and archives full frames for audit/debug.  It is designed for **industrial edge deployments** where on‑prem Node‑RED acts as a lightweight collector in a Mosquitto / Influx / Grafana stack.
