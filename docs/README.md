@@ -151,3 +151,10 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 * **Multiple gateways** – MQTT pipeline auto‑scales; for HTTP polling, simply extend the IP list.
 * **Kubernetes / Docker** – Mount `Config` and `Logs` directories as volumes; pass sensitive tokens via secrets.
 * **High availability** – Consider externalising `errorMap` and `masterMap` into a central git repo or REST endpoint that the flow fetches on start.
+
+---
+
+## License
+
+This project is licensed under the [Apache-2.0](../LICENSE) license.
+
