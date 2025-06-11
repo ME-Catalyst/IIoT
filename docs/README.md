@@ -158,3 +158,5 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 
 This project is licensed under the [Apache-2.0](../LICENSE) license.
 
+This repository is managed with the help of AI support and the Codex environment.
+
