@@ -1,0 +1,673 @@
+[
+    {
+        "id": "cf2c675f8061347b",
+        "type": "tab",
+        "label": "Influx_Data_Pipeline",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "30ecd298364bec85",
+        "type": "group",
+        "z": "cf2c675f8061347b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "55a97baa1df66b2d",
+            "8c7c9f588c43b1cc",
+            "c462826f6ba56b05",
+            "0b8152f986cc3aee",
+            "04eaeab3954ed85b",
+            "763043855486292d",
+            "bfaa229223513b0a",
+            "59e62df7a97e7b99",
+            "bac9bff0b3db2201",
+            "70bd7f501ff21c2e",
+            "fbaa70a4967d309c"
+        ],
+        "x": 54,
+        "y": 339,
+        "w": 1012,
+        "h": 242
+    },
+    {
+        "id": "6bd2050295ba993d",
+        "type": "group",
+        "z": "cf2c675f8061347b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "726e078392dc6661",
+            "45fe23c1743f8061",
+            "0273fa386257d86f",
+            "6d31ed85854d0d21",
+            "adee3a7bbf45528f",
+            "2ac727f19d830d9e",
+            "a1e4d46b89c87873",
+            "07adc65d2bd0b02c",
+            "11ebcffa73edc5f3",
+            "6847264a602b6e98",
+            "7c2ef90f313296d1",
+            "1f126e3277e35201",
+            "injectLoad",
+            "readFile",
+            "parseJSON",
+            "storeGlobal"
+        ],
+        "x": 54,
+        "y": 59,
+        "w": 1872,
+        "h": 242
+    },
+    {
+        "id": "726e078392dc6661",
+        "type": "inject",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "poll every 30s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "45fe23c1743f8061"
+            ]
+        ]
+    },
+    {
+        "id": "45fe23c1743f8061",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "generate IPs",
+        "func": "// Function to generate IP addresses based on last octet ranges within a fixed subnet\n// ============================================================================\n// Overview:\n// This Node-RED function node builds a list of IP address messages based on defined\n// host or range entries. Each entry in `ranges` represents either a single host or a\n// consecutive range of hosts within a base subnet. Messages are returned with both\n// `msg.payload` and `msg.ip` set to the IP string.\n// ----------------------------------------------------------------------------\n// Modifiable Fields:\n// 1. `ranges` array: Define which IP addresses or ranges to generate.\n//    - Use `host` for a single IP.\n//    - Use `start` and `end` for a continuous range.\n//    - Each entry needs a `base` subnet (e.g., '192.168.1').\n// 2. Function behavior: You could adjust payload structure or add additional fields.\n// ----------------------------------------------------------------------------\n\n// 1. Define your IP ranges or single hosts:\n//    - Example single host: { base: '10.0.0', host: 5 }\n//    - Example range:       { base: '10.0.1', start: 10, end: 15 }\nconst ranges = [\n    { base: '192.168.1', start: 6, end: 7 }, // Generates .6 and .7\n    { base: '192.168.1', host: 10 }         // Generates .10 only\n];\n\n// 2. Prepare an array to collect each generated msg object:\nlet ips = [];  // Will store messages: { payload: 'x.x.x.x', ip: 'x.x.x.x' }\n\n// 3. Iterate over each range definition:\nfor (const range of ranges) {\n    // 3a. Check if `host` property exists (single IP scenario):\n    if (range.host !== undefined) {\n        // Construct the IP string by appending the host octet to the base subnet:\n        const ip = `${range.base}.${range.host}`;\n        // Push a message object with both payload and ip fields:\n        ips.push({ payload: ip, ip });\n    }\n    // 3b. Otherwise, check for `start` and `end` to cover a sequence of hosts:\n    else if (range.start !== undefined && range.end !== undefined) {\n        // Loop from the start octet up to and including the end octet:\n        for (let i = range.start; i <= range.end; i++) {\n            const ip = `${range.base}.${i}`;\n            ips.push({ payload: ip, ip });\n        }\n    }\n    // 3c. You could add an `else` block here to handle invalid entries or throw errors.\n}\n\n// 4. Return the list of messages as a single output array:\n//    Node-RED will send one message per array element in `ips`.\nreturn [ips];\n\n// ----------------------------------------------------------------------------\n// How to Modify:\n// - To add a new single IP, append: { base: '192.168.2', host: 20 }\n// - To add a new range, append: { base: '10.0.0', start: 1, end: 5 }\n// - To change payload format, edit the object inside `ips.push({...})`.\n// - For additional metadata (e.g., port or timestamp), add new properties to each msg.\n\n// Example: Adding metadata\n// ips.push({ payload: ip, ip, timestamp: new Date().toISOString() });\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "0273fa386257d86f"
+            ]
+        ]
+    },
+    {
+        "id": "0273fa386257d86f",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "build HTTP URL",
+        "func": "// Function to build the HTTP URL used for polling the device\n// Each device is expected to host an IOLink gateway at a known path\n// Default path used here: '/iolink/v1/gateway/events'\n\n// --- Default behavior ---\n// msg.payload should contain the IP address (e.g., '192.168.1.6')\n// This builds a URL like: http://192.168.1.6/iolink/v1/gateway/events\n\n// --- Modify this behavior ---\n// To change the endpoint path (for example, to '/status' or '/custom/path'):\n// Replace the value of `basePath` below with your desired path.\n// To use HTTPS instead of HTTP, change the protocol string accordingly.\n// To include a port, append it to the IP like `${msg.payload}:8080`.\n\nconst basePath = '/iolink/v1/gateway/events'; // default polling path\nconst protocol = 'http'; // change to 'https' if needed\n\n// Construct the full URL using the IP and path\nmsg.url = `${protocol}://${msg.payload}${basePath}`;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 160,
+        "wires": [
+            [
+                "6d31ed85854d0d21"
+            ]
+        ]
+    },
+    {
+        "id": "6d31ed85854d0d21",
+        "type": "http request",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "GET gateway events",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": true,
+        "headers": [],
+        "x": 780,
+        "y": 160,
+        "wires": [
+            [
+                "adee3a7bbf45528f",
+                "7c2ef90f313296d1"
+            ]
+        ]
+    },
+    {
+        "id": "adee3a7bbf45528f",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "tag IP to payload / error handling",
+        "func": "// Attach the IP address to the message\n// Check if HTTP returned an error\nif (msg.statusCode >= 400 || !msg.payload) {\n    node.warn(`Error from ${msg.ip || msg.payload}: ${msg.statusCode}`);\n    return null; // Skip this result\n}\n\nmsg.ip = msg.ip || msg.payload.ip || null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1050,
+        "y": 160,
+        "wires": [
+            [
+                "2ac727f19d830d9e"
+            ]
+        ]
+    },
+    {
+        "id": "2ac727f19d830d9e",
+        "type": "split",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "split events array",
+        "splt": "",
+        "spltType": "str",
+        "arraySplt": "1",
+        "stream": false,
+        "addname": "",
+        "x": 1310,
+        "y": 160,
+        "wires": [
+            [
+                "a1e4d46b89c87873"
+            ]
+        ]
+    },
+    {
+        "id": "a1e4d46b89c87873",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "decode & tidy",
+        "func": "let map = global.get('errorMap') || {};\nconst ev = msg.payload;\n\nif (!ev || !ev.origin || !ev.message) return null;\n\nconst master = Number(ev.origin.masterNumber);\nconst port   = Number(ev.origin.portNumber);\nconst code   = Number(ev.message.code);\nconst hexCode = '0x' + code.toString(16).toUpperCase();\n\n// Corrected mode extraction\nlet rawMode = (ev.message.mode || '').toUpperCase();\nlet eventState = rawMode === 'APPEARS' ? 'active' : (rawMode === 'DISAPPEARS' ? 'cleared' : 'unknown');\n\nmsg.topic = `impact67/master/${master}/port/${port}`;\nmsg.timestamp = Date.now();\n\n// Try to get error description from either decimal or hex key\nlet description = map[code] || map[hexCode] || 'Unknown code';\n\nmsg.payload = {\n  severity: ev.severity,\n  mode: rawMode,                 // Correctly extracted mode\n  eventState: eventState,        // Normalized mode\n  errorCode: code,               // Numeric, for Influx compatibility\n  errorCodeHex: hexCode,         // Hex string, optional for logging/UI\n  errorDescription: description, // Mapped from either format\n  master,\n  port,\n  isoTime: new Date(msg.timestamp).toISOString(),\n  ip: msg.ip || 'unknown'\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1520,
+        "y": 160,
+        "wires": [
+            [
+                "07adc65d2bd0b02c",
+                "1f126e3277e35201"
+            ]
+        ]
+    },
+    {
+        "id": "07adc65d2bd0b02c",
+        "type": "influxdb out",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "influxdb": "28500336b4ee8595",
+        "name": "write to Influx (gateway_events)",
+        "measurement": "gateway_events",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "ORG",
+        "bucket": "iot_events",
+        "x": 1770,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "11ebcffa73edc5f3",
+        "type": "file",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "E:\\NodeRed\\Logs\\events_debug.txt",
+        "filename": "E:\\NodeRed\\Logs\\events_debug.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 820,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6847264a602b6e98",
+        "type": "file",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "E:\\NodeRed\\Logs\\events_influx.txt",
+        "filename": "E:\\NodeRed\\Logs\\events_influx.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1580,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "55a97baa1df66b2d",
+        "type": "inject",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "name": "Load masterMap.json on start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.5,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 230,
+        "y": 380,
+        "wires": [
+            [
+                "8c7c9f588c43b1cc"
+            ]
+        ]
+    },
+    {
+        "id": "8c7c9f588c43b1cc",
+        "type": "file in",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "name": "Read config JSON",
+        "filename": "E:\\NodeRed\\Config\\masterMap.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "c462826f6ba56b05"
+            ]
+        ]
+    },
+    {
+        "id": "c462826f6ba56b05",
+        "type": "json",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "name": "parse",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 670,
+        "y": 380,
+        "wires": [
+            [
+                "0b8152f986cc3aee"
+            ]
+        ]
+    },
+    {
+        "id": "0b8152f986cc3aee",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "name": "save cfg -> flow",
+        "func": "flow.set(\"cfg\", msg.payload);\nreturn null;",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "04eaeab3954ed85b",
+        "type": "mqtt in",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "name": "All IO-Link topics",
+        "topic": "+/iolink/v1/#",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "mqtt-broker-local",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 440,
+        "wires": [
+            [
+                "763043855486292d",
+                "fbaa70a4967d309c"
+            ]
+        ]
+    },
+    {
+        "id": "763043855486292d",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "name": "IO-Link router",
+        "func": "/**\n * IO-Link router – v10 (2025-06-09)\n * • Supports classic ports/* & devices/masterNportM topics\n * • Flattens getData & setData\n * • Now handles:\n *     – diagnostics, statistics, processdata, identification, capabilities\n *     – configuration (port & gateway)\n *     – events (one message per event)\n * • Output contract:\n *     0 ➜ Influx points\n *     1 ➜ accepted raw frame\n *     2 ➜ discarded frame (+ msg.reason & msg.routerTime)\n */\n\nconst cfg = flow.get(\"cfg\");\n// 1. Load and validate configuration from flow context\n//    • `cfg` must exist and contain your alias mappings\n//    • If not loaded, route frame to output 2 with reason and timestamp\nif (!cfg) {\n  msg.reason     = \"cfg not loaded yet\";\n  msg.routerTime = new Date().toISOString();\n  // Outputs: [InfluxPoints, AcceptedRaw, Discarded]\n  return [null, null, msg];\n}\n// 2. Ensure incoming payload is an object\nif (typeof msg.payload !== \"object\" || msg.payload === null) {\n  msg.reason     = \"payload not an object\";\n  msg.routerTime = new Date().toISOString();\n  return [null, null, msg];\n}\n\n// ── Topic parsing ───────────────────────────────────────────────\n// Split the MQTT topic into parts for downstream logic\nconst parts = msg.topic.split(\"/\");    // e.g. [\"A01R03\",\"iolink\",\"v1\",...]\nconst head  = parts[0];                  // Device identifier, e.g. \"A01R03\"\n\n// 3. Determine portTag (x0–x7 or xM for gateway-level)\n//    • If topic path includes \"ports/N\", portTag = x(N-1)\n//    • Else if path includes \"devices/masterNportN\", extract similarly\nlet portTag = \"xM\";\nif (parts.includes(\"ports\")) {\n  const idx  = parts.indexOf(\"ports\");\n  const pNum = Number(parts[idx + 1]);\n  if (!isNaN(pNum) && pNum >= 1 && pNum <= 8) {\n    portTag = `x${pNum - 1}`;\n  }\n} else {\n  const devIdx = parts.indexOf(\"devices\");\n  if (devIdx !== -1) {\n    const m = /port(\\d+)/i.exec(parts[devIdx + 1]);\n    if (m) {\n      const p = Number(m[1]);\n      if (p >= 1 && p <= 8) portTag = `x${p - 1}`;\n    }\n  }\n}\n\n// 4. Section + metric detection\n//    Identify what kind of data this topic is routing:\n//    – processdata, statistics, diagnostics, configuration, events,\n//      identification, or capabilities\nlet section = \"\", metric = \"\";\nif (parts.includes(\"processdata\")) {\n  section = \"processdata\";\n  metric  = parts[parts.indexOf(\"processdata\") + 1] || \"\";\n} else if (parts.includes(\"statistics\")) {\n  section = \"statistics\";\n  metric  = parts[parts.indexOf(\"statistics\") + 1] || \"\";\n} else if (parts.includes(\"diagnostics\")) {\n  section = \"diagnostics\";\n  metric  = parts[parts.indexOf(\"diagnostics\") + 1] || \"\";\n} else if (parts.includes(\"configuration\")) {\n  section = \"configuration\";\n  // metrics not used for configuration\n} else if (parts.includes(\"events\")) {\n  section = \"events\";\n} else if (parts.includes(\"identification\")) {\n  section = \"identification\";\n} else if (parts.includes(\"capabilities\")) {\n  section = \"capabilities\";\n} else {\n  // Unknown section → discard with reason\n  msg.reason     = \"section not recognised\";\n  msg.routerTime = new Date().toISOString();\n  return [null, null, msg];\n}\n\n// 5. Construct alias map key based on section and metric\n//    • For statistics: use \"statistics_<field>\"\n//    • For diagnostics: use the field name directly\n//    • For processdata: key is \"processdata\"\n//    • Else: key = section\nconst mapKey =\n  section === \"statistics\"   ? `statistics_${metric}` :\n  section === \"diagnostics\"  ? metric                         :\n  section === \"processdata\"  ? \"processdata\"               :\n  section;\nconst aliasMap = cfg.pins?.[mapKey];\n// 5a. If mapping missing → discard\nif (!aliasMap) {\n  msg.reason     = `no mapping for '${mapKey}'`;\n  msg.routerTime = new Date().toISOString();\n  return [null, null, msg];\n}\n\n// 6. Special handling for events arrays\n//    • For \"events\": msg.payload should be an array of event objects\n//    • Send one point per event on output 0 with custom measurement, tags, and timestamp\nif (section === \"events\" && Array.isArray(msg.payload)) {\n  msg.payload.forEach(evt => {\n    node.send([{\n      payload:     evt.eventCode,\n      measurement: `${head}_${portTag}_${aliasMap.eventCode}`,\n      tags:        { severity: evt.severity },\n      timestamp:   new Date(evt.timestamp).getTime()\n    }]);\n  });\n  // End processing after events; no further messages\n  return [null, null, null];\n}\n\n// 7. Flatten nested getData & setData properties\n//    • If payload contains getData or setData objects, merge their fields into top-level payload\nif (msg.payload.getData && typeof msg.payload.getData === \"object\") {\n  Object.assign(msg.payload, msg.payload.getData);\n}\nif (msg.payload.setData && typeof msg.payload.setData === \"object\") {\n  Object.assign(msg.payload, msg.payload.setData);\n}\n\n// 8. Emit Influx points for each mapped key in aliasMap\n//    • Supports nested keys with dot notation (e.g., \"a.b.c\")\n//    • Sends one msg on output 0 per field found\nObject.entries(aliasMap).forEach(([jsonKey, alias]) => {\n  const value = jsonKey.split('.')\n    .reduce((o, k) => (o !== undefined ? o[k] : undefined), msg.payload);\n  if (value !== undefined && value !== null) {\n    node.send([{\n      payload:     value,\n      measurement: `${head}_${portTag}_${alias}`\n    }]);\n  }\n});\n\n// 9. Final step: route original raw frame to output 1 (accepted)\nreturn [null, msg, null];\n\n/**\n * How to customize:\n * - Update your `cfg.pins` object in flow context with new alias mappings.\n * - Add or modify sections by changing the `if (parts.includes(...))` blocks.\n * - Adjust event handling tag or timestamp fields under the events block.\n * - To capture raw payload on a different output, modify the final return array.\n */",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 440,
+        "wires": [
+            [
+                "bfaa229223513b0a"
+            ],
+            [
+                "bac9bff0b3db2201"
+            ]
+        ]
+    },
+    {
+        "id": "bfaa229223513b0a",
+        "type": "influxdb out",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "influxdb": "28500336b4ee8595",
+        "name": "Write Influx",
+        "measurement": "",
+        "precision": "ms",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "ORG",
+        "bucket": "A01",
+        "x": 830,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "59e62df7a97e7b99",
+        "type": "file",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "name": "E:\\NodeRed\\Logs\\iterative_MQTT_debug_input.json",
+        "filename": "E:\\NodeRed\\Logs\\iterative_MQTT_debug_input.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 300,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bac9bff0b3db2201",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "name": "Serialize Full Message",
+        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 500,
+        "wires": [
+            [
+                "70bd7f501ff21c2e"
+            ]
+        ]
+    },
+    {
+        "id": "70bd7f501ff21c2e",
+        "type": "file",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "name": "E:\\NodeRed\\Logs\\iterative_MQTT_debug_output.json",
+        "filename": "E:\\NodeRed\\Logs\\iterative_MQTT_debug_output.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 840,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fbaa70a4967d309c",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "30ecd298364bec85",
+        "name": "Serialize Full Message",
+        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 500,
+        "wires": [
+            [
+                "59e62df7a97e7b99"
+            ]
+        ]
+    },
+    {
+        "id": "7c2ef90f313296d1",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "Serialize Full Message",
+        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 220,
+        "wires": [
+            [
+                "11ebcffa73edc5f3"
+            ]
+        ]
+    },
+    {
+        "id": "1f126e3277e35201",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "Serialize Full Message",
+        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 220,
+        "wires": [
+            [
+                "6847264a602b6e98"
+            ]
+        ]
+    },
+    {
+        "id": "injectLoad",
+        "type": "inject",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "Load errorCodes.json",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 200,
+        "y": 100,
+        "wires": [
+            [
+                "readFile"
+            ]
+        ]
+    },
+    {
+        "id": "readFile",
+        "type": "file in",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "Read errorCodes.json",
+        "filename": "E:\\NodeRed\\Config\\errorCodes.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 440,
+        "y": 100,
+        "wires": [
+            [
+                "parseJSON"
+            ]
+        ]
+    },
+    {
+        "id": "parseJSON",
+        "type": "json",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "Parse to Object",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 660,
+        "y": 100,
+        "wires": [
+            [
+                "storeGlobal"
+            ]
+        ]
+    },
+    {
+        "id": "storeGlobal",
+        "type": "function",
+        "z": "cf2c675f8061347b",
+        "g": "6bd2050295ba993d",
+        "name": "Store in global.errorMap",
+        "func": "// Put the parsed object into global context:\nif (typeof global.set === 'function') {\n  global.set('errorMap', msg.payload);\n} else {\n  // older Node-RED version:\n  context.global.errorMap = msg.payload;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 880,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28500336b4ee8595",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "InfluxDB",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "mqtt-broker-local",
+        "type": "mqtt-broker",
+        "name": "Local MQTT",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
