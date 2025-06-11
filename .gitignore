@@ -1,0 +1,12 @@
+# Node-RED runtime
+flows_cred.json
+*.backup
+*.tmp
+*.log
+
+# Node.js
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
