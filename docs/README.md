@@ -1,23 +1,30 @@
-# Influx Data Pipeline v1.0 – Node‑RED Flow
+# Influx Data Pipeline v1.2 – Node‑RED Flow
 
-> **Flow file:** `Influx_Data_Pipeline_v1.0.json`
+> **Flow file:** `Influx_Data_Pipeline_v1.2.json`
 > **Last reviewed:** 2025‑06‑10
 
 This flow ingests IO‑Link gateway data through two independent paths (HTTP polling & MQTT subscribe), enriches it with metadata, writes structured points to InfluxDB 2.x, and archives full frames for audit/debug.  It is designed for **industrial edge deployments** where on‑prem Node‑RED acts as a lightweight collector in a Mosquitto / Influx / Grafana stack.
+
+> ℹ️ **What’s new in v1.2**
+>
+> * Added an identification poll that writes gateway make/model metadata into a new Influx bucket `gateway_identification`—create the bucket (or disable the writer) before upgrading from v1.0.
+> * Upgraded the HTTP error-event parser (Function v8) to emit normalised port names (`x0`–`x7`), event state (`event_start`/`event_stop`), and raw device timestamps; dashboards that key off the old port strings must be updated.
+> * Replaced the ad-hoc debug dumps with structured log files (`MQTT_raw_*`, `MQTT_discard_*`, `01_GET_*`, etc.) driven by a new “Log Reset” inject plus wildcard MQTT taps (`#`, `$SYS/#`). Confirm the Node-RED service account can overwrite the new file set.
+
 
 ---
 
 ## 1. Quick‑start
 
-| Step                                                              | Action                                                                                                                      |
-| ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **1**                                                             | Install **Node‑RED ≥ 3.1** and the palette modules:<br/>`node-red-contrib-influxdb` *(Influx 2.x writer)*                   |
-| **2**                                                             | Copy the supporting config files:                                                                                           |
-| `E:\NodeRed\Config\masterMap.json` – IO‑Link alias map            |                                                                                                                             |
-| `E:\NodeRed\Config\errorCodes.json` – event/error code dictionary |                                                                                                                             |
-| **3**                                                             | Import the flow JSON into the Node‑RED editor (`Menu → Import → Clipboard`).                                                |
-| **4**                                                             | Double‑click the **InfluxDB** and **Local MQTT** config nodes and enter credentials/hostnames for your environment.         |
-| **5**                                                             | Click **Deploy**.  The flow loads its maps, starts polling every 30 s, and begins writing points to the configured buckets. |
+| Step | Action |
+| --- | --- |
+| **1** | Install **Node‑RED ≥ 3.1** and the palette modules:<br/>`node-red-contrib-influxdb` *(Influx 2.x writer)*. |
+| **2** | Copy the supporting config files:<br/>`E:\NodeRed\Config\masterMap.json` (IO‑Link alias map)<br/>`E:\NodeRed\Config\errorCodes.json` (event/error dictionary). |
+| **3** | Import the flow JSON into the Node‑RED editor (`Menu → Import → Clipboard`). |
+| **4** | Provision InfluxDB targets: ensure buckets **A01**, **iot_events**, and new **gateway_identification** exist and the token assigned to the `InfluxDB` node can write to all three. |
+| **5** | Double‑click the **InfluxDB** and **Local MQTT** config nodes to enter credentials/hostnames, then adjust the file node paths if your log directory is not `E:\NodeRed\Logs`. |
+| **6** | Click **Deploy**. On startup the config injects load the maps, the identification poll seeds `gateway_identification`, and the **Log Reset** inject truncates the structured debug files. |
+
 
 ---
 
@@ -58,59 +65,70 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 ```
 
 * **Config Loader Group** – Loads `errorCodes.json` into global context and `masterMap.json` into flow context (`cfg`) on startup.
-* **HTTP Poll Pipeline** – Generates IP targets, builds URLs, polls each gateway every 30 seconds, and decodes event arrays.
+* **HTTP Poll Pipeline** – Generates IP targets, polls `/iolink/v1/gateway/events` every 60 s (default), and runs the v8 event parser that normalises port IDs (`x0`–`x7`), state transitions, and timestamps before handing off to Influx.
+* **Gateway identification poll** – On deploy, calls `/iolink/v1/gateway/identification` for each host and persists make/model metadata via the `All messages to Influx` function.
 * **MQTT Ingest Pipeline** – Subscribes to all IO‑Link frames, resolves aliases via `cfg.pins`, and flattens data for storage.
-* **InfluxDB Out** – Two writers:
+* **InfluxDB Out** – Three writers:
 
   * `Write Influx` → bucket **A01** (process / diagnostics / statistics / etc.)
-  * `write to Influx (gateway_events)` → bucket **iot\_events** (event log)
-* **File Logs** – Raw JSON for before/after routing, plus polling diagnostics, written under `E:\NodeRed\Logs`.
+  * `write to Influx (gateway_events)` → bucket **iot_events** (event log)
+  * `Influx - gateway_identification` → bucket **gateway_identification** (gateway inventory)
+* **File Logs & bus taps** – Structured JSON dumps for HTTP and MQTT paths (`01_GET_*.json`, `MQTT_raw_*.json`, wildcard topics `#`/`$SYS/#`) plus a **Log Reset** inject that truncates them on deploy.
+
 
 ---
 
-## 3. Flow tour (node‑by‑node)
+## 3. Flow tour (node-by-node)
 
 ### 3.1 Configuration loaders
 
-| Node                                    | Purpose                                                     |
-| --------------------------------------- | ----------------------------------------------------------- |
-| **Load errorCodes.json** (inject)       | Fires once at boot.                                         |
-| **Read errorCodes.json** (file in)      | Reads the dictionary; output is UTF‑8 string.               |
-| **Parse to Object** (json)              | Converts to JS object.                                      |
-| **Store in global.errorMap** (function) | Saves to global context for later lookup.                   |
-| **Load masterMap.json** (inject)        | Similar pattern for gateway pin/metric alias map.           |
+| Node | Purpose |
+| --- | --- |
+| **Load errorCodes.json** (inject) | Fires once at boot. |
+| **Read errorCodes.json** (file in) | Reads the dictionary; output is UTF‑8 string. |
+| **Parse to Object** (json) | Converts to JS object. |
+| **Store in global.errorMap** (function) | Saves to global context for later lookup. |
+| **Load masterMap.json** (inject) | Similar pattern for gateway pin/metric alias map. |
 | **Read config JSON → parse → save cfg** | Stores to `flow.cfg` so the router can apply field aliases. |
 
-### 3.2 HTTP polling group (`6bd20502…`)
+### 3.2 HTTP event polling (`6bd20502…`)
 
-1. **poll every 30 s** *(inject)* – Interval timer (editable).<br>
-2. **generate IPs** – Returns one msg per IP as `{ payload:"192.168.1.6", ip:"192.168.1.6" }`. Edit the `ranges` array here to match your LAN.
-3. **build HTTP URL** – Appends `/iolink/v1/gateway/events` and stores in `msg.url`.
-4. **GET gateway events** *(http request)* – Parses JSON response (via `ret:obj`).  On error, `statusCode` is set and downstream logic drops the message.
-5. **tag IP / error handling** – Adds `msg.ip`, filters out 4xx/5xx.
+1. **trigger** *(inject)* – Fires 5 s after deploy then every 60 s (editable).<br>
+2. **generate IPs** – Returns one msg per IP as `{ payload:"192.168.1.6", ip:"192.168.1.6" }`. Edit the `ranges` array to match your LAN.
+3. **build HTTP URL** – Appends `/iolink/v1/gateway/events` and stores in `msg.url`.
+4. **GET gateway events** *(http request)* – Parses JSON response (`ret:obj`). On error, `statusCode` is set and downstream logic drops the message.
+5. **tag IP / error handling** – Adds `msg.ip`, filters out 4xx/5xx.
 6. **split events array** – Breaks the returned list so each event is processed separately.
-7. **decode & tidy** – Normalises fields, maps numeric code → description using `global.errorMap`, and prepares the payload for Influx.
-8. **write to Influx (gateway\_events)** – Inserts into **iot\_events** bucket, measurement `gateway_events`.
+7. **Influx data prep** *(function v8)* – Normalises port IDs to `x0`–`x7`, derives `eventState`, enriches with `rawDeviceTimestamp`, and looks up `errorDescription` from `global.errorMap`.
+8. **Influx - gateway_events** – Inserts into **iot_events** bucket, measurement `gateway_events`.
 
-### 3.3 MQTT ingestion group (`30ecd298…`)
+### 3.3 Gateway identification poll (`59c49ae82e…`)
+
+1. **trigger** *(inject)* – Runs once on deploy, then every 10 minutes.
+2. **generate IPs** – Reuses the same IP generator to iterate targets.
+3. **build HTTP URL** – Points at `/iolink/v1/gateway/identification`.
+4. **GET gateway identification** *(http request)* – Retrieves hardware/firmware metadata; failures are dropped.
+5. **All messages to Influx** – Wraps the full payload (serial, vendor, firmware, etc.) into a `device_info` measurement with nanosecond timestamps.
+6. **Influx - gateway_identification** – Writes to the new **gateway_identification** bucket.
+
+### 3.4 MQTT ingestion group (`30ecd298…`)
 
 1. **All IO‑Link topics** *(mqtt in)* – Wildcard subscription `+/iolink/v1/#` with QoS 1.
-2. **IO‑Link router** – Core logic:
-
-   * Detects section (`processdata`, `diagnostics`, `statistics`, `events`, …).
-   * Looks up `aliasMap` from `cfg.pins` and emits one point per mapped field.
-   * Events: writes one point per element with severity tag.
-   * Output 0 → Influx points; Output 1 → accepted raw; Output 2 → discarded.
+2. **IO‑Link router** – Detects section (`processdata`, `diagnostics`, `statistics`, `events`, …), resolves aliases from `cfg.pins`, and emits one point per mapped field. Output 1/2 feed the log groups.
 3. **Write Influx** – Writes to **A01** bucket using dynamic measurement name `${head}_${portTag}_${alias}`.
-4. **Debug file sinks** – Serialise full messages (`JSON.stringify`) and append to
 
-   * `iterative_MQTT_debug_input.json` (pre‑router)
-   * `iterative_MQTT_debug_output.json` (post‑router)
+### 3.5 HTTP request logging (`b985c3ba5e55…`)
 
-### 3.4 Common resources
+* **Log Reset** *(inject)* – Truncates HTTP log files on deploy and every 48 h.
+* **Serialize Full Message** nodes – Capture the pipeline at each stage into `E:\NodeRed\Logs\01_GET_request.json`, `02_GET_reply.json`, `03_GET_tag.json`, `04_GET_split.json`, and `05_GET_influx.json` (plus matching `_v` versions containing verbose payloads).
 
-* **InfluxDB config node** – URL, token, and org must be supplied via the credentials UI or environment variables.
-* **Local MQTT broker** – Uses an anonymous connection by default; set username/password as required.
+### 3.6 MQTT logging & broker taps (`d82d2374faff…`)
+
+* **Log Reset** *(inject)* – Clears MQTT log files on deploy and every 48 h.
+* **Serialize Full Message** nodes – Persist raw MQTT inputs, router outputs, discarded frames, and Influx-ready payloads to `MQTT_raw_input*.json`, `MQTT_raw_frames*.json`, `MQTT_discard_frames*.json`, and `MQTT_Influx*.json`.
+* **mqtt in `#` / `$SYS/#`** – Optional broker-wide taps that mirror all topics into the structured log set for diagnostics.
+
+
 
 ---
 
@@ -128,10 +146,11 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 ## 5. Customisation guide
 
 * **Add devices to polling list** – Edit the `ranges` array in **generate IPs** (supports single host or range).
-* **Change poll interval** – Adjust the `repeat` field (seconds) on **poll every 30 s**.
+* **Change poll interval** – Adjust the `repeat` field (seconds) on the HTTP **trigger** inject node.
 * **Switch to HTTPS** – Update the `protocol` constant in **build HTTP URL** and import/attach a TLS config node.
 * **Edit alias mappings** – Modify `masterMap.json` then redeploy.
-* **Relocate logs** – Change paths in the three **file** nodes (ensure the account running Node‑RED has write permission).
+* **Change identification cadence** – Adjust the `repeat` on the identification **trigger** inject if you need metadata more or less often.
+* **Relocate logs** – Update the file paths on the HTTP `01_GET_*` and MQTT `MQTT_*` nodes (ensure the account running Node‑RED has write permission).
 
 ---
 
