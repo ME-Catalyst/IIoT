@@ -10,7 +10,7 @@ Before importing the flow, ensure the following tooling and services are availab
 - **InfluxDB 2.x** with buckets `A01`, `iot_events`, and `gateway_identification`, plus a token that grants write access to all three buckets.
 - **Mosquitto (or compatible) MQTT broker** accessible from the Node-RED runtime.
 - Access to create or mount directories for the structured HTTP/MQTT debug logs referenced by the flow (default: `E:\\NodeRed\\Logs`).
-- Updated copies of the configuration dictionaries in this repository (`masterMap.json`, `errorCodes.json`).
+- Updated copies of the configuration dictionaries in this repository (`config/masterMap.json`, `config/errorCodes.json`).
 
 ## High-level architecture
 
@@ -30,13 +30,20 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 | --- | --- |
 | `flows/` | Exported Node-RED flow definitions. The flagship flow, [`Influx_Data_Pipeline_v1.2.json`](flows/Influx_Data_Pipeline_v1.2.json), implements the dual HTTP/MQTT ingestion architecture described above. |
 | `docs/` | In-depth documentation, including the [Flow guide](docs/README.md). Future additions such as `CONTRIBUTING.md` and `TESTING.md` will land here to describe collaboration and verification practices. |
-| `masterMap.json` | IO-Link alias map loaded into `flow.cfg` to translate raw gateway fields into human-friendly measurement names. |
-| `errorCodes.json` | Gateway event/error dictionary loaded into `global.errorMap` so the flow can enrich event payloads with descriptive text. |
+| `config/` | Configuration dictionaries consumed by the flow. See `config/masterMap.json` (alias map) and `config/errorCodes.json` (error dictionary). |
 
 ### Configuration dictionaries
 
-- **`masterMap.json`** – Maps IO-Link process, diagnostic, and statistical fields (e.g., `temperaturePin1`, `meanTemperature`) to concise aliases that form Influx measurement names.
-- **`errorCodes.json`** – Enumerates numeric gateway event codes (hex and decimal) alongside human-readable messages used in alerts and dashboards.
+- **`config/masterMap.json`** – Maps IO-Link process, diagnostic, and statistical fields (e.g., `temperaturePin1`, `meanTemperature`) to concise aliases that form Influx measurement names.
+- **`config/errorCodes.json`** – Enumerates numeric gateway event codes (hex and decimal) alongside human-readable messages used in alerts and dashboards.
+
+### Overriding configuration in production
+
+The defaults in `config/` are designed for quick evaluation. For production deployments:
+
+- **Containerised Node-RED** – Mount a read-only volume at `/data/config` (or your chosen target) and update the File In nodes to point at the mounted `masterMap.json` and `errorCodes.json`. Keep the repository copies as templates.
+- **Bare-metal / Windows service** – Place production-ready dictionaries in a secure directory (e.g., `D:\NodeRed\config\`) and adjust the File In node paths accordingly. Maintain the repo’s `config/` directory for version-controlled defaults.
+- **Automated rollouts** – Export `config/masterMap.json` and `config/errorCodes.json` as ConfigMaps or environment-configured files and mount them into the runtime. This allows centralised updates without modifying the flow definition.
 
 Keep both files under version control and redeploy the flow after any updates so the runtime context reflects the latest mappings.
 

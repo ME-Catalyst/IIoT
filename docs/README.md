@@ -19,7 +19,7 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 | Step | Action |
 | --- | --- |
 | **1** | Install **Node‑RED ≥ 3.1** and the palette modules:<br/>`node-red-contrib-influxdb` *(Influx 2.x writer)*. |
-| **2** | Copy the supporting config files:<br/>`E:\NodeRed\Config\masterMap.json` (IO‑Link alias map)<br/>`E:\NodeRed\Config\errorCodes.json` (event/error dictionary). |
+| **2** | Copy the supporting config files:<br/>`config/masterMap.json` (IO‑Link alias map)<br/>`config/errorCodes.json` (event/error dictionary). |
 | **3** | Import the flow JSON into the Node‑RED editor (`Menu → Import → Clipboard`). |
 | **4** | Provision InfluxDB targets: ensure buckets **A01**, **iot_events**, and new **gateway_identification** exist and the token assigned to the `InfluxDB` node can write to all three. |
 | **5** | Double‑click the **InfluxDB** and **Local MQTT** config nodes to enter credentials/hostnames, then adjust the file node paths if your log directory is not `E:\NodeRed\Logs`. |
@@ -32,8 +32,8 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 
 ```text
                 +-------------------+
-                | masterMap.json    |
-                | errorCodes.json   |
+                | config/masterMap.json |
+                | config/errorCodes.json |
                 +---------+---------+
                           |
                           v  (startup inject)
@@ -136,10 +136,16 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 
 | File              | Description                                                                           | Key fields                                                     |
 | ----------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `masterMap.json`  | Maps IO‑Link JSON properties to short aliases used to build Influx measurement names. | `{ "pins": { "statistics_meanTemperature": "temp_mean", … } }` |
-| `errorCodes.json` | Dictionary of gateway event codes to human‑readable descriptions.                     | `{ "0x1830": "Secondary supply voltage overrun." }`            |
+| `config/masterMap.json`  | Maps IO‑Link JSON properties to short aliases used to build Influx measurement names. | `{ "pins": { "statistics_meanTemperature": "temp_mean", … } }` |
+| `config/errorCodes.json` | Dictionary of gateway event codes to human‑readable descriptions.                     | `{ "0x1830": "Secondary supply voltage overrun." }`            |
 
 > **Tip:** Keep these files under version control; the flow loads them at runtime, so changes take effect on next deploy.
+
+### Production overrides
+
+* **Container deployments** – Mount production dictionaries into the runtime (e.g., `/data/config/masterMap.json`) and update the File In node paths to the mounted files.
+* **Windows / bare metal** – Place the JSON files in a secured directory outside the repo (such as `D:\NodeRed\config\`) and point the File In nodes at that path.
+* **Configuration management** – Treat the `config/` directory as the canonical defaults checked into git; push overrides through CM tooling (Ansible, ConfigMaps, etc.) so flows can pick them up on restart.
 
 ---
 
@@ -148,7 +154,7 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 * **Add devices to polling list** – Edit the `ranges` array in **generate IPs** (supports single host or range).
 * **Change poll interval** – Adjust the `repeat` field (seconds) on the HTTP **trigger** inject node.
 * **Switch to HTTPS** – Update the `protocol` constant in **build HTTP URL** and import/attach a TLS config node.
-* **Edit alias mappings** – Modify `masterMap.json` then redeploy.
+* **Edit alias mappings** – Modify `config/masterMap.json` then redeploy.
 * **Change identification cadence** – Adjust the `repeat` on the identification **trigger** inject if you need metadata more or less often.
 * **Relocate logs** – Update the file paths on the HTTP `01_GET_*` and MQTT `MQTT_*` nodes (ensure the account running Node‑RED has write permission).
 
@@ -159,7 +165,7 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 | Symptom                       | Check                                                                                                                                |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | No data in Influx             | • Verify InfluxDB credentials and bucket names.<br/>• Confirm MQTT broker is receiving traffic (`mosquitto_sub -t '+/iolink/v1/#'`). |
-| `cfg not loaded yet` in debug | Ensure `masterMap.json` path is correct and file is valid JSON.                                                                      |
+| `cfg not loaded yet` in debug | Ensure the File In node targets `config/masterMap.json` (or your override) and that the file is valid JSON.                                                                      |
 | HTTP polling returns 4xx/5xx  | Check gateway network reachability and authentication requirements.                                                                  |
 | File nodes throw `EACCES`     | Update Windows folder permissions or run Node‑RED as administrator.                                                                  |
 
@@ -168,7 +174,8 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 ## 7. Deployment & scaling tips
 
 * **Multiple gateways** – MQTT pipeline auto‑scales; for HTTP polling, simply extend the IP list.
-* **Kubernetes / Docker** – Mount `Config` and `Logs` directories as volumes; pass sensitive tokens via secrets.
+* **Kubernetes / Docker** – Mount the `config/` and `logs/` directories as volumes; pass sensitive tokens via secrets.
+* **Custom config mounts** – Override the dictionaries by mounting read-only files and updating the File In node paths (e.g., `/data/config/masterMap.json`).
 * **High availability** – Consider externalising `errorMap` and `masterMap` into a central git repo or REST endpoint that the flow fetches on start.
 
 ---
