@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/masterMap.json",
+  "title": "Master Map Configuration",
+  "description": "Validates the IO-Link alias mapping consumed by the Node-RED flow.",
+  "type": "object",
+  "required": ["pins"],
+  "additionalProperties": false,
+  "properties": {
+    "pins": {
+      "$ref": "#/$defs/pinCategoryMap",
+      "description": "Groups of IO-Link fields (temperature/current/etc.) mapped to their Influx aliases."
+    }
+  },
+  "$defs": {
+    "pinCategoryMap": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/pinAliasMap"
+      },
+      "description": "Each property represents a logical group (temperature, voltage, events, etc.)."
+    },
+    "pinAliasMap": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Alias used when storing the field in Influx."
+      },
+      "description": "Maps device field names to short aliases."
+    }
+  }
+}
