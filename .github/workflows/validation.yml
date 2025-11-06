@@ -1,0 +1,55 @@
+name: CI Validation
+
+on:
+  pull_request:
+
+jobs:
+  validation:
+    name: JSON and Docs Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Ensure JSON and Markdown are formatted
+        run: |
+          npx --yes prettier --check "**/*.{json,md}"
+
+      - name: Validate flow definitions with jq
+        run: |
+          shopt -s nullglob
+          files=(flows/*.json)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No flow definitions found"
+            exit 0
+          fi
+          for file in "${files[@]}"; do
+            echo "Validating $file"
+            jq empty "$file"
+          done
+
+      - name: Validate JSON schemas compile
+        run: |
+          npx --yes ajv-cli compile \
+            -s docs/schemas/masterMap.schema.json
+          npx --yes ajv-cli compile \
+            -s docs/schemas/errorCodes.schema.json
+
+      - name: Validate configuration against schemas
+        run: |
+          npx --yes ajv-cli validate \
+            -s docs/schemas/masterMap.schema.json \
+            -d config/masterMap.json
+          npx --yes ajv-cli validate \
+            -s docs/schemas/errorCodes.schema.json \
+            -d config/errorCodes.json
+
+      - name: Lint documentation
+        run: |
+          npx --yes markdownlint-cli2 README.md docs/**/*.md CONTRIBUTING.md

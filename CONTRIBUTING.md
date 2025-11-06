@@ -34,7 +34,11 @@ Consistent JSON formatting makes diffs easy to review and keeps the automated sc
 
 Before requesting a review, complete the following checks and note the results in your pull request:
 
-1. **Schema validation for configuration dictionaries**
+1. **Formatting checks** – Run Prettier to ensure JSON and Markdown files are consistently formatted. This matches the automated workflow run on pull requests.
+   ```bash
+   npx --yes prettier --check "**/*.{json,md}"
+   ```
+2. **Schema validation for configuration dictionaries**
    ```bash
    npx --yes ajv-cli validate \
      -s docs/schemas/masterMap.schema.json \
@@ -44,10 +48,16 @@ Before requesting a review, complete the following checks and note the results i
      -s docs/schemas/errorCodes.schema.json \
      -d config/errorCodes.json
    ```
-2. **Flow regression smoke test** – Import the updated flow into a local or staging Node-RED runtime and confirm telemetry arrives in InfluxDB, MQTT subscriptions connect, and the HTTP polling nodes succeed.
-3. **Documentation lint** – If you touched Markdown files, run [`npx --yes markdownlint-cli2 README.md docs/**/*.md`](https://github.com/DavidAnson/markdownlint-cli2) or your editor’s Markdown lint integration to catch formatting issues.
-4. **Screenshots & diagrams** – Include an updated screenshot of the Node-RED canvas, Grafana dashboard, or other visual surfaces when UI changes are part of the contribution. Attach architecture diagrams when the topology changes.
-5. **Changelog note (if applicable)** – Add a bullet to the release notes or deployment runbook if the change impacts operators or rollouts.
+3. **Flow JSON lint** – Confirm every file under [`flows/`](flows/) remains valid JSON before exporting it from Node-RED.
+   ```bash
+   for file in flows/*.json; do
+     jq empty "$file"
+   done
+   ```
+4. **Flow regression smoke test** – Import the updated flow into a local or staging Node-RED runtime and confirm telemetry arrives in InfluxDB, MQTT subscriptions connect, and the HTTP polling nodes succeed.
+5. **Documentation lint** – If you touched Markdown files, run [`npx --yes markdownlint-cli2 README.md docs/**/*.md CONTRIBUTING.md`](https://github.com/DavidAnson/markdownlint-cli2) or your editor’s Markdown lint integration to catch formatting issues.
+6. **Screenshots & diagrams** – Include an updated screenshot of the Node-RED canvas, Grafana dashboard, or other visual surfaces when UI changes are part of the contribution. Attach architecture diagrams when the topology changes.
+7. **Changelog note (if applicable)** – Add a bullet to the release notes or deployment runbook if the change impacts operators or rollouts.
 
 ## Pull request expectations
 
