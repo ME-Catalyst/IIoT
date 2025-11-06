@@ -143,9 +143,48 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 
 ### Production overrides
 
-* **Container deployments** – Mount production dictionaries into the runtime (e.g., `/data/config/masterMap.json`) and update the File In node paths to the mounted files.
-* **Windows / bare metal** – Place the JSON files in a secured directory outside the repo (such as `D:\NodeRed\config\`) and point the File In nodes at that path.
+* **Linux edge hosts** – Place the JSON files under a service account directory such as `/opt/nodered/config/` and ensure the account that runs Node-RED can read them (e.g., `chown nodered:nodered /opt/nodered/config && chmod 640`). Update the File In node paths to the Linux location.
+* **Container deployments** – Mount production dictionaries into the runtime (for example, bind `/opt/iot/config/` to `/data/config/` so the nodes reference `/data/config/masterMap.json`). When using Kubernetes, place the files in a `ConfigMap` or persistent volume claim and mount them into the Node-RED pod at the same `/data/config/` path.
+* **Windows / bare metal** – Place the JSON files in a secured directory outside the repo (such as `D:\NodeRed\config\`). Remember that Windows paths are case-insensitive, so match the Node-RED file paths accordingly.
 * **Configuration management** – Treat the `config/` directory as the canonical defaults checked into git; push overrides through CM tooling (Ansible, ConfigMaps, etc.) so flows can pick them up on restart.
+
+### Example mounts and compose snippets
+
+```bash
+# Linux bare metal copy
+sudo install -o nodered -g nodered -m 0640 config/masterMap.json /opt/nodered/config/masterMap.json
+sudo install -o nodered -g nodered -m 0640 config/errorCodes.json /opt/nodered/config/errorCodes.json
+```
+
+```yaml
+# docker-compose.yml
+services:
+  nodered:
+    image: nodered/node-red:3.1
+    user: "1000:1000"           # match host UID/GID that owns /opt/iot/config
+    volumes:
+      - ./config:/workspace/defaults:ro          # ship repo defaults for reference
+      - /opt/iot/config/masterMap.json:/data/config/masterMap.json:ro
+      - /opt/iot/config/errorCodes.json:/data/config/errorCodes.json:ro
+```
+
+```yaml
+# Kubernetes volume mount (Deployment snippet)
+volumeMounts:
+  - name: flow-config
+    mountPath: /data/config
+    readOnly: true
+volumes:
+  - name: flow-config
+    configMap:
+      name: nodered-flow-config
+```
+
+> **Platform notes:**
+>
+> * Linux paths are case-sensitive—ensure the File In nodes use the exact casing (`masterMap.json` ≠ `MasterMap.json`).
+> * When running in containers, match the Node-RED user (`user: "1000:1000"`) to the UID/GID that owns the mounted files, otherwise Node-RED will log permission errors and fall back to defaults.
+> * Windows mounts via Docker Desktop translate to `\wsl$` paths—verify the files are shared and readable; long path segments may need quoting in PowerShell imports.
 
 ---
 
