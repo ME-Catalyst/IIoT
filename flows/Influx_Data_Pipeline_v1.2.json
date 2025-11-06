@@ -1,1737 +1,1528 @@
 [
-    {
-        "id": "cf2c675f8061347b",
-        "type": "tab",
-        "label": "Influx_Data_Pipeline_v1.2",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "30ecd298364bec85",
-        "type": "group",
-        "z": "cf2c675f8061347b",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "55a97baa1df66b2d",
-            "8c7c9f588c43b1cc",
-            "c462826f6ba56b05",
-            "0b8152f986cc3aee",
-            "04eaeab3954ed85b",
-            "763043855486292d",
-            "bfaa229223513b0a",
-            "9d03019ea3347369"
-        ],
-        "x": 54,
-        "y": 839,
-        "w": 1232,
-        "h": 229.5
-    },
-    {
-        "id": "6bd2050295ba993d",
-        "type": "group",
-        "z": "cf2c675f8061347b",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "726e078392dc6661",
-            "45fe23c1743f8061",
-            "0273fa386257d86f",
-            "6d31ed85854d0d21",
-            "adee3a7bbf45528f",
-            "2ac727f19d830d9e",
-            "07adc65d2bd0b02c",
-            "injectLoad",
-            "readFile",
-            "parseJSON",
-            "storeGlobal",
-            "43099c37e53f94c1",
-            "cab45e0aedc11ecb",
-            "23be7c7ce3851001"
-        ],
-        "x": 54,
-        "y": 39,
-        "w": 1832,
-        "h": 222
-    },
-    {
-        "id": "59c49ae82eea4453",
-        "type": "group",
-        "z": "cf2c675f8061347b",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "94c4b64fe48bf7a9",
-            "8eaae0548f6f1ac0",
-            "b9e806b2050cdbc1",
-            "fdce59a9bc71b2ec",
-            "4561984a904805be",
-            "64754fb1bd63425a",
-            "68bd7524f18bb41d"
-        ],
-        "x": 54,
-        "y": 299,
-        "w": 1372,
-        "h": 162
-    },
-    {
-        "id": "d82d2374fafffe60",
-        "type": "group",
-        "z": "cf2c675f8061347b",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "9b8227a1903ea259",
-            "8fa862cf2b5615e5",
-            "b0c120bd5e993542",
-            "71be59b7c2d5a7bb",
-            "1f1c7025f2a3ce1c",
-            "5fbc78e027f42a44",
-            "17bdca1c684de37f",
-            "ed545088864a6cb0",
-            "27d6194124762096",
-            "ea423b52b1e9b387",
-            "37d1b98dd92fd5d8",
-            "64b71e04aa8a1a66",
-            "22361c21b043030f",
-            "f5ac08b67bcbd3f4",
-            "818bedb30d9efcc5",
-            "2cf6872e1b3ad487",
-            "e4624ef9b4a1d94b",
-            "4adb3d0d2a6e026e",
-            "00df87db84b78811",
-            "79356ea0aadc9a91",
-            "70a12dada24e2da5",
-            "78b2a95148c008a2",
-            "ef8a0a0990524f77",
-            "3443c80672c5e636",
-            "2bd8aa8546924e19",
-            "2a62ca5551eb6109",
-            "713a0f9a472d65ca",
-            "13fd02c9973d8e8b",
-            "2766c1795827424a",
-            "e223c50d5c721039"
-        ],
-        "x": 54,
-        "y": 1119,
-        "w": 1372,
-        "h": 602
-    },
-    {
-        "id": "b985c3ba5e5519d9",
-        "type": "group",
-        "z": "cf2c675f8061347b",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "820eca120de9c8dc",
-            "b580f3c166ef8dda",
-            "020cd237371f7f2d",
-            "88d0db573e750331",
-            "d6ed388d600d8ec0",
-            "5228d7f553f62aef",
-            "b773ec8167ad6eac",
-            "eebe93151283d1c7",
-            "7010792667254c11",
-            "98cb5aedb10e2562",
-            "687557aee3e668df",
-            "b7533422c67034ea",
-            "152b94b2cb4c6c3a",
-            "e34aa1f071f6d44f",
-            "e2930e5ebe425c46",
-            "d320d8d3aff09585",
-            "06c17a95883f1b43"
-        ],
-        "x": 54,
-        "y": 499,
-        "w": 1192,
-        "h": 302
-    },
-    {
-        "id": "726e078392dc6661",
-        "type": "inject",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "trigger",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "60",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "5",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "x": 160,
-        "y": 220,
-        "wires": [
-            [
-                "45fe23c1743f8061"
-            ]
-        ]
-    },
-    {
-        "id": "45fe23c1743f8061",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "generate IPs",
-        "func": "// Function to generate IP addresses based on last octet ranges within a fixed subnet\n// ============================================================================\n// Overview:\n// This Node-RED function node builds a list of IP address messages based on defined\n// host or range entries. Each entry in `ranges` represents either a single host or a\n// consecutive range of hosts within a base subnet. Messages are returned with both\n// `msg.payload` and `msg.ip` set to the IP string.\n// ----------------------------------------------------------------------------\n// Modifiable Fields:\n// 1. `ranges` array: Define which IP addresses or ranges to generate.\n//    - Use `host` for a single IP.\n//    - Use `start` and `end` for a continuous range.\n//    - Each entry needs a `base` subnet (e.g., '192.168.1').\n// 2. Function behavior: You could adjust payload structure or add additional fields.\n// ----------------------------------------------------------------------------\n\n// 1. Define your IP ranges or single hosts:\n//    - Example single host: { base: '10.0.0', host: 5 }\n//    - Example range:       { base: '10.0.1', start: 10, end: 15 }\nconst ranges = [\n    { base: '192.168.1', start: 111, end: 130 }\n];\n\n// 2. Prepare an array to collect each generated msg object:\nlet ips = [];  // Will store messages: { payload: 'x.x.x.x', ip: 'x.x.x.x' }\n\n// 3. Iterate over each range definition:\nfor (const range of ranges) {\n    // 3a. Check if `host` property exists (single IP scenario):\n    if (range.host !== undefined) {\n        // Construct the IP string by appending the host octet to the base subnet:\n        const ip = `${range.base}.${range.host}`;\n        // Push a message object with both payload and ip fields:\n        ips.push({ payload: ip, ip });\n    }\n    // 3b. Otherwise, check for `start` and `end` to cover a sequence of hosts:\n    else if (range.start !== undefined && range.end !== undefined) {\n        // Loop from the start octet up to and including the end octet:\n        for (let i = range.start; i <= range.end; i++) {\n            const ip = `${range.base}.${i}`;\n            ips.push({ payload: ip, ip });\n        }\n    }\n    // 3c. You could add an `else` block here to handle invalid entries or throw errors.\n}\n\n// 4. Return the list of messages as a single output array:\n//    Node-RED will send one message per array element in `ips`.\nreturn [ips];\n\n// ----------------------------------------------------------------------------\n// How to Modify:\n// - To add a new single IP, append: { base: '192.168.2', host: 20 }\n// - To add a new range, append: { base: '10.0.0', start: 1, end: 5 }\n// - To change payload format, edit the object inside `ips.push({...})`.\n// - For additional metadata (e.g., port or timestamp), add new properties to each msg.\n\n// Example: Adding metadata\n// ips.push({ payload: ip, ip, timestamp: new Date().toISOString() });\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 220,
-        "wires": [
-            [
-                "0273fa386257d86f"
-            ]
-        ]
-    },
-    {
-        "id": "0273fa386257d86f",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "build HTTP URL",
-        "func": "// Function to build the HTTP URL used for polling the device\n// Each device is expected to host an IOLink gateway at a known path\n// Default path used here: '/iolink/v1/gateway/events'\n\n// --- Default behavior ---\n// msg.payload should contain the IP address (e.g., '192.168.1.6')\n// This builds a URL like: http://192.168.1.6/iolink/v1/gateway/events\n\n// --- Modify this behavior ---\n// To change the endpoint path (for example, to '/status' or '/custom/path'):\n// Replace the value of `basePath` below with your desired path.\n// To use HTTPS instead of HTTP, change the protocol string accordingly.\n// To include a port, append it to the IP like `${msg.payload}:8080`.\n\nconst basePath = '/iolink/v1/gateway/events'; // default polling path\nconst protocol = 'http'; // change to 'https' if needed\n\n// Construct the full URL using the IP and path\nmsg.url = `${protocol}://${msg.payload}${basePath}`;\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 560,
-        "y": 220,
-        "wires": [
-            [
-                "6d31ed85854d0d21",
-                "820eca120de9c8dc"
-            ]
-        ]
-    },
-    {
-        "id": "6d31ed85854d0d21",
-        "type": "http request",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "GET gateway events",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": true,
-        "headers": [],
-        "x": 780,
-        "y": 220,
-        "wires": [
-            [
-                "adee3a7bbf45528f",
-                "5228d7f553f62aef"
-            ]
-        ]
-    },
-    {
-        "id": "adee3a7bbf45528f",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "tag IP to payload / error handling",
-        "func": "// Attach the IP address to the message\n// Check if HTTP returned an error\nif (msg.statusCode >= 400 || !msg.payload) {\n    node.warn(`Error from ${msg.ip || msg.payload}: ${msg.statusCode}`);\n    return null; // Skip this result\n}\n\nmsg.ip = msg.ip || msg.payload.ip || null;\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1050,
-        "y": 220,
-        "wires": [
-            [
-                "2ac727f19d830d9e",
-                "eebe93151283d1c7"
-            ]
-        ]
-    },
-    {
-        "id": "2ac727f19d830d9e",
-        "type": "split",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "split events array",
-        "splt": "",
-        "spltType": "str",
-        "arraySplt": "1",
-        "stream": false,
-        "addname": "",
-        "x": 1310,
-        "y": 220,
-        "wires": [
-            [
-                "43099c37e53f94c1",
-                "98cb5aedb10e2562"
-            ]
-        ]
-    },
-    {
-        "id": "07adc65d2bd0b02c",
-        "type": "influxdb out",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "influxdb": "28500336b4ee8595",
-        "name": "Influx - gateway_events",
-        "measurement": "gateway_events",
-        "precision": "",
-        "retentionPolicy": "",
-        "database": "",
-        "precisionV18FluxV20": "ms",
-        "retentionPolicyV18Flux": "",
-        "org": "ADTA",
-        "bucket": "iot_events",
-        "x": 1750,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "55a97baa1df66b2d",
-        "type": "inject",
-        "z": "cf2c675f8061347b",
-        "g": "30ecd298364bec85",
-        "name": "Load masterMap.json on start",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.1",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "x": 230,
-        "y": 960,
-        "wires": [
-            [
-                "8c7c9f588c43b1cc"
-            ]
-        ]
-    },
-    {
-        "id": "8c7c9f588c43b1cc",
-        "type": "file in",
-        "z": "cf2c675f8061347b",
-        "g": "30ecd298364bec85",
-        "name": "Read config JSON",
-        "filename": "config/masterMap.json",
-        "filenameType": "str",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 490,
-        "y": 960,
-        "wires": [
-            [
-                "c462826f6ba56b05"
-            ]
-        ]
-    },
-    {
-        "id": "c462826f6ba56b05",
-        "type": "json",
-        "z": "cf2c675f8061347b",
-        "g": "30ecd298364bec85",
-        "name": "parse",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 670,
-        "y": 960,
-        "wires": [
-            [
-                "0b8152f986cc3aee"
-            ]
-        ]
-    },
-    {
-        "id": "0b8152f986cc3aee",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "30ecd298364bec85",
-        "name": "save cfg -> flow",
-        "func": "flow.set(\"cfg\", msg.payload);\nreturn null;",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 840,
-        "y": 960,
-        "wires": []
-    },
-    {
-        "id": "04eaeab3954ed85b",
-        "type": "mqtt in",
-        "z": "cf2c675f8061347b",
-        "g": "30ecd298364bec85",
-        "name": "All IO-Link topics",
-        "topic": "+/iolink/v1/#",
-        "qos": "1",
-        "datatype": "json",
-        "broker": "mqtt-broker-local",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 180,
-        "y": 1020,
-        "wires": [
-            [
-                "763043855486292d",
-                "4adb3d0d2a6e026e",
-                "79356ea0aadc9a91"
-            ]
-        ]
-    },
-    {
-        "id": "763043855486292d",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "30ecd298364bec85",
-        "name": "IO-Link router",
-        "func": "/**\n * IO-Link router \u2013 v10 (2025-06-09)\n * \u2022 Supports classic ports/* & devices/masterNportM topics\n * \u2022 Flattens getData & setData\n * \u2022 Now handles:\n *     \u2013 diagnostics, statistics, processdata, identification, capabilities\n *     \u2013 configuration (port & gateway)\n *     \u2013 events (one message per event)\n * \u2022 Output contract:\n *     0 \u279c Influx points\n *     1 \u279c accepted raw frame\n *     2 \u279c discarded frame (+ msg.reason & msg.routerTime)\n */\n\nconst cfg = flow.get(\"cfg\");\n// 1. Load and validate configuration from flow context\n//    \u2022 `cfg` must exist and contain your alias mappings\n//    \u2022 If not loaded, route frame to output 2 with reason and timestamp\nif (!cfg) {\n  msg.reason     = \"cfg not loaded yet\";\n  msg.routerTime = new Date().toISOString();\n  // Outputs: [InfluxPoints, AcceptedRaw, Discarded]\n  return [null, null, msg];\n}\n// 2. Ensure incoming payload is an object\nif (typeof msg.payload !== \"object\" || msg.payload === null) {\n  msg.reason     = \"payload not an object\";\n  msg.routerTime = new Date().toISOString();\n  return [null, null, msg];\n}\n\n// \u2500\u2500 Topic parsing \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n// Split the MQTT topic into parts for downstream logic\nconst parts = msg.topic.split(\"/\");    // e.g. [\"A01R03\",\"iolink\",\"v1\",...]\nconst head  = parts[0];                  // Device identifier, e.g. \"A01R03\"\n\n// 3. Determine portTag (x0\u2013x7 or xM for gateway-level)\n//    \u2022 If topic path includes \"ports/N\", portTag = x(N-1)\n//    \u2022 Else if path includes \"devices/masterNportN\", extract similarly\nlet portTag = \"xM\";\nif (parts.includes(\"ports\")) {\n  const idx  = parts.indexOf(\"ports\");\n  const pNum = Number(parts[idx + 1]);\n  if (!isNaN(pNum) && pNum >= 1 && pNum <= 8) {\n    portTag = `x${pNum - 1}`;\n  }\n} else {\n  const devIdx = parts.indexOf(\"devices\");\n  if (devIdx !== -1) {\n    const m = /port(\\d+)/i.exec(parts[devIdx + 1]);\n    if (m) {\n      const p = Number(m[1]);\n      if (p >= 1 && p <= 8) portTag = `x${p - 1}`;\n    }\n  }\n}\n\n// 4. Section + metric detection\n//    Identify what kind of data this topic is routing:\n//    \u2013 processdata, statistics, diagnostics, configuration, events,\n//      identification, or capabilities\nlet section = \"\", metric = \"\";\nif (parts.includes(\"processdata\")) {\n  section = \"processdata\";\n  metric  = parts[parts.indexOf(\"processdata\") + 1] || \"\";\n} else if (parts.includes(\"statistics\")) {\n  section = \"statistics\";\n  metric  = parts[parts.indexOf(\"statistics\") + 1] || \"\";\n} else if (parts.includes(\"diagnostics\")) {\n  section = \"diagnostics\";\n  metric  = parts[parts.indexOf(\"diagnostics\") + 1] || \"\";\n} else if (parts.includes(\"configuration\")) {\n  section = \"configuration\";\n  // metrics not used for configuration\n} else if (parts.includes(\"events\")) {\n  section = \"events\";\n} else if (parts.includes(\"identification\")) {\n  section = \"identification\";\n} else if (parts.includes(\"capabilities\")) {\n  section = \"capabilities\";\n} else {\n  // Unknown section \u2192 discard with reason\n  msg.reason     = \"section not recognised\";\n  msg.routerTime = new Date().toISOString();\n  return [null, null, msg];\n}\n\n// 5. Construct alias map key based on section and metric\n//    \u2022 For statistics: use \"statistics_<field>\"\n//    \u2022 For diagnostics: use the field name directly\n//    \u2022 For processdata: key is \"processdata\"\n//    \u2022 Else: key = section\nconst mapKey =\n  section === \"statistics\"   ? `statistics_${metric}` :\n  section === \"diagnostics\"  ? metric                         :\n  section === \"processdata\"  ? \"processdata\"               :\n  section;\nconst aliasMap = cfg.pins?.[mapKey];\n// 5a. If mapping missing \u2192 discard\nif (!aliasMap) {\n  msg.reason     = `no mapping for '${mapKey}'`;\n  msg.routerTime = new Date().toISOString();\n  return [null, null, msg];\n}\n\n// 6. Special handling for events arrays\n//    \u2022 For \"events\": msg.payload should be an array of event objects\n//    \u2022 Send one point per event on output 0 with custom measurement, tags, and timestamp\nif (section === \"events\" && Array.isArray(msg.payload)) {\n  msg.payload.forEach(evt => {\n    node.send([{\n      payload:     evt.eventCode,\n      measurement: `${head}_${portTag}_${aliasMap.eventCode}`,\n      tags:        { severity: evt.severity },\n      timestamp:   new Date(evt.timestamp).getTime()\n    }]);\n  });\n  // End processing after events; no further messages\n  return [null, null, null];\n}\n\n// 7. Flatten nested getData & setData properties\n//    \u2022 If payload contains getData or setData objects, merge their fields into top-level payload\nif (msg.payload.getData && typeof msg.payload.getData === \"object\") {\n  Object.assign(msg.payload, msg.payload.getData);\n}\nif (msg.payload.setData && typeof msg.payload.setData === \"object\") {\n  Object.assign(msg.payload, msg.payload.setData);\n}\n\n// 8. Emit Influx points for each mapped key in aliasMap\n//    \u2022 Supports nested keys with dot notation (e.g., \"a.b.c\")\n//    \u2022 Sends one msg on output 0 per field found\nObject.entries(aliasMap).forEach(([jsonKey, alias]) => {\n  const value = jsonKey.split('.')\n    .reduce((o, k) => (o !== undefined ? o[k] : undefined), msg.payload);\n  if (value !== undefined && value !== null) {\n    node.send([{\n      payload:     value,\n      measurement: `${head}_${portTag}_${alias}`\n    }]);\n  }\n});\n\n// 9. Final step: route original raw frame to output 1 (accepted)\nreturn [null, msg, null];\n\n/**\n * How to customize:\n * - Update your `cfg.pins` object in flow context with new alias mappings.\n * - Add or modify sections by changing the `if (parts.includes(...))` blocks.\n * - Adjust event handling tag or timestamp fields under the events block.\n * - To capture raw payload on a different output, modify the final return array.\n */",
-        "outputs": 3,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 480,
-        "y": 1020,
-        "wires": [
-            [
-                "bfaa229223513b0a",
-                "17bdca1c684de37f"
-            ],
-            [
-                "9b8227a1903ea259",
-                "1f1c7025f2a3ce1c",
-                "27d6194124762096"
-            ],
-            [
-                "b0c120bd5e993542",
-                "5fbc78e027f42a44"
-            ]
-        ]
-    },
-    {
-        "id": "bfaa229223513b0a",
-        "type": "influxdb out",
-        "z": "cf2c675f8061347b",
-        "g": "30ecd298364bec85",
-        "influxdb": "28500336b4ee8595",
-        "name": "Influx - A01",
-        "measurement": "",
-        "precision": "ms",
-        "retentionPolicy": "",
-        "database": "database",
-        "precisionV18FluxV20": "ms",
-        "retentionPolicyV18Flux": "",
-        "org": "ADTA",
-        "bucket": "A01",
-        "x": 1190,
-        "y": 1020,
-        "wires": []
-    },
-    {
-        "id": "injectLoad",
-        "type": "inject",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "Load errorCodes.json",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.1",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "x": 200,
-        "y": 160,
-        "wires": [
-            [
-                "readFile"
-            ]
-        ]
-    },
-    {
-        "id": "readFile",
-        "type": "file in",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "Read errorCodes.json",
-        "filename": "config/errorCodes.json",
-        "filenameType": "str",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 440,
-        "y": 160,
-        "wires": [
-            [
-                "parseJSON"
-            ]
-        ]
-    },
-    {
-        "id": "parseJSON",
-        "type": "json",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "Parse to Object",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 660,
-        "y": 160,
-        "wires": [
-            [
-                "storeGlobal"
-            ]
-        ]
-    },
-    {
-        "id": "storeGlobal",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "Store in global.errorMap",
-        "func": "// Put the parsed object into global context:\nif (typeof global.set === 'function') {\n  global.set('errorMap', msg.payload);\n} else {\n  // older Node-RED version:\n  context.global.errorMap = msg.payload;\n}\nreturn null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 880,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "94c4b64fe48bf7a9",
-        "type": "inject",
-        "z": "cf2c675f8061347b",
-        "g": "59c49ae82eea4453",
-        "name": "trigger",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "600",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "60",
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "x": 160,
-        "y": 420,
-        "wires": [
-            [
-                "68bd7524f18bb41d"
-            ]
-        ]
-    },
-    {
-        "id": "8eaae0548f6f1ac0",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "59c49ae82eea4453",
-        "name": "build HTTP URL",
-        "func": "const basePath ='/iolink/v1/gateway/identification';\nmsg.url=`http://${msg.payload}${basePath}`;\n// keep a copy of the IP for downstream nodes\nmsg.gateway=msg.payload;\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 500,
-        "y": 420,
-        "wires": [
-            [
-                "b9e806b2050cdbc1"
-            ]
-        ]
-    },
-    {
-        "id": "b9e806b2050cdbc1",
-        "type": "http request",
-        "z": "cf2c675f8061347b",
-        "g": "59c49ae82eea4453",
-        "name": "GET gateway identification",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": true,
-        "headers": [],
-        "x": 740,
-        "y": 420,
-        "wires": [
-            [
-                "64754fb1bd63425a"
-            ]
-        ]
-    },
-    {
-        "id": "fdce59a9bc71b2ec",
-        "type": "comment",
-        "z": "cf2c675f8061347b",
-        "g": "59c49ae82eea4453",
-        "name": "GET Identification",
-        "info": "",
-        "x": 170,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "4561984a904805be",
-        "type": "influxdb out",
-        "z": "cf2c675f8061347b",
-        "g": "59c49ae82eea4453",
-        "influxdb": "28500336b4ee8595",
-        "name": "Influx - gateway_identification",
-        "measurement": "gateway_identification",
-        "precision": "",
-        "retentionPolicy": "",
-        "database": "",
-        "precisionV18FluxV20": "ns",
-        "retentionPolicyV18Flux": "",
-        "org": "ADTA",
-        "bucket": "gateway_identification",
-        "x": 1270,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "64754fb1bd63425a",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "59c49ae82eea4453",
-        "name": "All messages to Influx",
-        "func": "// Node-RED Function: send entire GET reply to Influx\n\n// pull the entire object off of msg.payload\nconst info = msg.payload;\n\n// build the Influx point, copying every field (plus gateway)\nconst point = {\n    measurement: 'device_info',\n    payload: {\n        macAddress:       info.macAddress,\n        serialNumber:     info.serialNumber,\n        productId:        info.productId,\n        vendorName:       info.vendorName,\n        productName:      info.productName,\n        hardwareRevision: info.hardwareRevision,\n        firmwareRevision: info.firmwareRevision,\n        gateway:          msg.gateway\n    },\n    // timestamp as milliseconds since epoch\n    // timestamp: Date.now()\n    timestamp: Date.now() * 1e6   // ms \u2192 ns\n};\n\n// emit a single message containing the full point\nreturn [ point ];\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1000,
-        "y": 420,
-        "wires": [
-            [
-                "4561984a904805be"
-            ]
-        ]
-    },
-    {
-        "id": "43099c37e53f94c1",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "Influx data prep",
-        "func": "// Retrieve the user-defined map of error codes (numeric and hex) to descriptions.\nlet map = global.get('errorMap') || {};\n\nconst ev = msg.payload;\nif (!ev || !ev.origin || !ev.message) {\n  return null;\n}\n\nconst master = Number(ev.origin.masterNumber);\nconst port = Number(ev.origin.portNumber);\nconst code = Number(ev.message.code);\n\n// convert port number: 1\u20138 \u2192 x0\u2013x7\nconst portConv = 'x' + (port - 1);\n\nconst hexCode = '0x' + code.toString(16).toUpperCase();\n\nconst rawDeviceTimestamp =\n  ev.time !== undefined ? String(ev.time) :\n  ev.timestamp !== undefined ? String(ev.timestamp) :\n  ev.timeStamp !== undefined ? String(ev.timeStamp) :\n  null;\n\nconst rawMode = (ev.message.mode || '').toUpperCase();\nconst eventState =\n  rawMode === 'APPEARS' ? 'event_start' :\n  rawMode === 'DISAPPEARS' ? 'event_stop' :\n  'unknown';\n\n// use converted port in topic\nmsg.topic = `impact67/master/${master}/port/${portConv}`;\nmsg.timestamp = Date.now();\n\nconst description = map[code] || map[hexCode] || 'Unknown code';\n\nmsg.payload = {\n  severity: ev.severity,\n  mode: rawMode,\n  eventState: eventState,\n  errorCode: code,\n  errorCodeHex: hexCode,\n  errorDescription: description,\n  master: master,\n  port: portConv,   // use converted port here\n  isoTime: new Date(msg.timestamp).toISOString(),\n  rawDeviceTimestamp: rawDeviceTimestamp,\n  ip: msg.ip || 'unknown'\n};\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1520,
-        "y": 220,
-        "wires": [
-            [
-                "07adc65d2bd0b02c",
-                "b7533422c67034ea"
-            ]
-        ]
-    },
-    {
-        "id": "cab45e0aedc11ecb",
-        "type": "comment",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "GET Events",
-        "info": "",
-        "x": 150,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "9d03019ea3347369",
-        "type": "comment",
-        "z": "cf2c675f8061347b",
-        "g": "30ecd298364bec85",
-        "name": "MQTT Message Routing",
-        "info": "",
-        "x": 190,
-        "y": 880,
-        "wires": []
-    },
-    {
-        "id": "9b8227a1903ea259",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 1320,
-        "wires": [
-            [
-                "8fa862cf2b5615e5"
-            ]
-        ]
-    },
-    {
-        "id": "8fa862cf2b5615e5",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_raw_frames_v.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_raw_frames_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1210,
-        "y": 1320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b0c120bd5e993542",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 1400,
-        "wires": [
-            [
-                "71be59b7c2d5a7bb"
-            ]
-        ]
-    },
-    {
-        "id": "71be59b7c2d5a7bb",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_discard_frames_v.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_discard_frames_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1220,
-        "y": 1400,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1f1c7025f2a3ce1c",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_raw_frames.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_raw_frames.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1210,
-        "y": 1360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5fbc78e027f42a44",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_discard_frames.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_discard_frames.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1220,
-        "y": 1440,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "17bdca1c684de37f",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 1240,
-        "wires": [
-            [
-                "ed545088864a6cb0"
-            ]
-        ]
-    },
-    {
-        "id": "ed545088864a6cb0",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_Influx_v.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_Influx_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1190,
-        "y": 1240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "27d6194124762096",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_Influx.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_Influx.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1190,
-        "y": 1280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ea423b52b1e9b387",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_raw_frames_v.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_raw_frames_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 470,
-        "y": 1320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "37d1b98dd92fd5d8",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_discard_frames_v.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_discard_frames_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 480,
-        "y": 1400,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "64b71e04aa8a1a66",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_raw_frames.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_raw_frames.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 470,
-        "y": 1360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "22361c21b043030f",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_discard_frames.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_discard_frames.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 480,
-        "y": 1440,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f5ac08b67bcbd3f4",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_Influx_v.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_Influx_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 450,
-        "y": 1240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "818bedb30d9efcc5",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_Influx.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_Influx.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 450,
-        "y": 1280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2cf6872e1b3ad487",
-        "type": "inject",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "Log Reset",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "172800",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.1",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 170,
-        "y": 1260,
-        "wires": [
-            [
-                "70a12dada24e2da5",
-                "78b2a95148c008a2",
-                "f5ac08b67bcbd3f4",
-                "818bedb30d9efcc5",
-                "ea423b52b1e9b387",
-                "64b71e04aa8a1a66",
-                "37d1b98dd92fd5d8",
-                "22361c21b043030f",
-                "ef8a0a0990524f77",
-                "e223c50d5c721039"
-            ]
-        ]
-    },
-    {
-        "id": "e4624ef9b4a1d94b",
-        "type": "comment",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "MQTT Logging",
-        "info": "",
-        "x": 160,
-        "y": 1160,
-        "wires": []
-    },
-    {
-        "id": "4adb3d0d2a6e026e",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 1160,
-        "wires": [
-            [
-                "00df87db84b78811"
-            ]
-        ]
-    },
-    {
-        "id": "00df87db84b78811",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_raw_input_v.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_raw_input_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1210,
-        "y": 1160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "79356ea0aadc9a91",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_raw_input.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_raw_input.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1200,
-        "y": 1200,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "70a12dada24e2da5",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_raw_input_v.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_raw_input_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 470,
-        "y": 1160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "78b2a95148c008a2",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\MQTT_raw_input.json",
-        "filename": "E:\\NodeRed\\Logs\\MQTT_raw_input.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 460,
-        "y": 1200,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "68bd7524f18bb41d",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "59c49ae82eea4453",
-        "name": "generate IPs",
-        "func": "// Function to generate IP addresses based on last octet ranges within a fixed subnet\n// ============================================================================\n// Overview:\n// This Node-RED function node builds a list of IP address messages based on defined\n// host or range entries. Each entry in `ranges` represents either a single host or a\n// consecutive range of hosts within a base subnet. Messages are returned with both\n// `msg.payload` and `msg.ip` set to the IP string.\n// ----------------------------------------------------------------------------\n// Modifiable Fields:\n// 1. `ranges` array: Define which IP addresses or ranges to generate.\n//    - Use `host` for a single IP.\n//    - Use `start` and `end` for a continuous range.\n//    - Each entry needs a `base` subnet (e.g., '192.168.1').\n// 2. Function behavior: You could adjust payload structure or add additional fields.\n// ----------------------------------------------------------------------------\n\n// 1. Define your IP ranges or single hosts:\n//    - Example single host: { base: '10.0.0', host: 5 }\n//    - Example range:       { base: '10.0.1', start: 10, end: 15 }\nconst ranges = [\n    { base: '192.168.1', start: 111, end: 130 }\n];\n\n// 2. Prepare an array to collect each generated msg object:\nlet ips = [];  // Will store messages: { payload: 'x.x.x.x', ip: 'x.x.x.x' }\n\n// 3. Iterate over each range definition:\nfor (const range of ranges) {\n    // 3a. Check if `host` property exists (single IP scenario):\n    if (range.host !== undefined) {\n        // Construct the IP string by appending the host octet to the base subnet:\n        const ip = `${range.base}.${range.host}`;\n        // Push a message object with both payload and ip fields:\n        ips.push({ payload: ip, ip });\n    }\n    // 3b. Otherwise, check for `start` and `end` to cover a sequence of hosts:\n    else if (range.start !== undefined && range.end !== undefined) {\n        // Loop from the start octet up to and including the end octet:\n        for (let i = range.start; i <= range.end; i++) {\n            const ip = `${range.base}.${i}`;\n            ips.push({ payload: ip, ip });\n        }\n    }\n    // 3c. You could add an `else` block here to handle invalid entries or throw errors.\n}\n\n// 4. Return the list of messages as a single output array:\n//    Node-RED will send one message per array element in `ips`.\nreturn [ips];\n\n// ----------------------------------------------------------------------------\n// How to Modify:\n// - To add a new single IP, append: { base: '192.168.2', host: 20 }\n// - To add a new range, append: { base: '10.0.0', start: 1, end: 5 }\n// - To change payload format, edit the object inside `ips.push({...})`.\n// - For additional metadata (e.g., port or timestamp), add new properties to each msg.\n\n// Example: Adding metadata\n// ips.push({ payload: ip, ip, timestamp: new Date().toISOString() });\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 310,
-        "y": 420,
-        "wires": [
-            [
-                "8eaae0548f6f1ac0"
-            ]
-        ]
-    },
-    {
-        "id": "820eca120de9c8dc",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 600,
-        "wires": [
-            [
-                "d6ed388d600d8ec0"
-            ]
-        ]
-    },
-    {
-        "id": "b580f3c166ef8dda",
-        "type": "inject",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "Log Reset",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "172800",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 170,
-        "y": 680,
-        "wires": [
-            [
-                "020cd237371f7f2d",
-                "88d0db573e750331",
-                "e34aa1f071f6d44f",
-                "e2930e5ebe425c46",
-                "d320d8d3aff09585"
-            ]
-        ]
-    },
-    {
-        "id": "020cd237371f7f2d",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "E:\\NodeRed\\Logs\\01_GET_request.json",
-        "filename": "E:\\NodeRed\\Logs\\01_GET_request.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 440,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "88d0db573e750331",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "E:\\NodeRed\\Logs\\02_GET_reply.json",
-        "filename": "E:\\NodeRed\\Logs\\02_GET_reply.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 430,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d6ed388d600d8ec0",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "E:\\NodeRed\\Logs\\01_GET_request.json",
-        "filename": "E:\\NodeRed\\Logs\\01_GET_request.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1060,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5228d7f553f62aef",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 640,
-        "wires": [
-            [
-                "b773ec8167ad6eac"
-            ]
-        ]
-    },
-    {
-        "id": "b773ec8167ad6eac",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "E:\\NodeRed\\Logs\\02_GET_reply.json",
-        "filename": "E:\\NodeRed\\Logs\\02_GET_reply.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1050,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "eebe93151283d1c7",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 680,
-        "wires": [
-            [
-                "7010792667254c11"
-            ]
-        ]
-    },
-    {
-        "id": "7010792667254c11",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "E:\\NodeRed\\Logs\\03_GET_tag.json",
-        "filename": "E:\\NodeRed\\Logs\\03_GET_tag.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1040,
-        "y": 680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "98cb5aedb10e2562",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 720,
-        "wires": [
-            [
-                "687557aee3e668df"
-            ]
-        ]
-    },
-    {
-        "id": "687557aee3e668df",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "E:\\NodeRed\\Logs\\04_GET_split.json",
-        "filename": "E:\\NodeRed\\Logs\\04_GET_split.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1050,
-        "y": 720,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b7533422c67034ea",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 760,
-        "wires": [
-            [
-                "152b94b2cb4c6c3a"
-            ]
-        ]
-    },
-    {
-        "id": "152b94b2cb4c6c3a",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "E:\\NodeRed\\Logs\\05_GET_influx.json",
-        "filename": "E:\\NodeRed\\Logs\\05_GET_influx.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1050,
-        "y": 760,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e34aa1f071f6d44f",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "E:\\NodeRed\\Logs\\03_GET_tag.json",
-        "filename": "E:\\NodeRed\\Logs\\03_GET_tag.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 420,
-        "y": 680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e2930e5ebe425c46",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "E:\\NodeRed\\Logs\\04_GET_split.json",
-        "filename": "E:\\NodeRed\\Logs\\04_GET_split.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 430,
-        "y": 720,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d320d8d3aff09585",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "E:\\NodeRed\\Logs\\05_GET_influx.json",
-        "filename": "E:\\NodeRed\\Logs\\05_GET_influx.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 430,
-        "y": 760,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "06c17a95883f1b43",
-        "type": "comment",
-        "z": "cf2c675f8061347b",
-        "g": "b985c3ba5e5519d9",
-        "name": "GET Logging",
-        "info": "",
-        "x": 150,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "3443c80672c5e636",
-        "type": "mqtt in",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "#",
-        "topic": "#",
-        "qos": "1",
-        "datatype": "auto-detect",
-        "broker": "mqtt-broker-local",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 150,
-        "y": 1620,
-        "wires": [
-            [
-                "2a62ca5551eb6109"
-            ]
-        ]
-    },
-    {
-        "id": "2bd8aa8546924e19",
-        "type": "mqtt in",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "$SYS/#",
-        "topic": "$SYS/#",
-        "qos": "1",
-        "datatype": "auto-detect",
-        "broker": "mqtt-broker-local",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 150,
-        "y": 1680,
-        "wires": [
-            [
-                "13fd02c9973d8e8b"
-            ]
-        ]
-    },
-    {
-        "id": "2a62ca5551eb6109",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 1620,
-        "wires": [
-            [
-                "713a0f9a472d65ca"
-            ]
-        ]
-    },
-    {
-        "id": "713a0f9a472d65ca",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\#_v.json",
-        "filename": "E:\\NodeRed\\Logs\\#_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1160,
-        "y": 1620,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ef8a0a0990524f77",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\#_v.json",
-        "filename": "E:\\NodeRed\\Logs\\#_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 420,
-        "y": 1480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "13fd02c9973d8e8b",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "Serialize Full Message",
-        "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 1680,
-        "wires": [
-            [
-                "2766c1795827424a"
-            ]
-        ]
-    },
-    {
-        "id": "2766c1795827424a",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\$SYS_v.json",
-        "filename": "E:\\NodeRed\\Logs\\$SYS_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 1170,
-        "y": 1680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e223c50d5c721039",
-        "type": "file",
-        "z": "cf2c675f8061347b",
-        "g": "d82d2374fafffe60",
-        "name": "E:\\NodeRed\\Logs\\$SYS_v.json",
-        "filename": "E:\\NodeRed\\Logs\\$SYS_v.json",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "delete",
-        "encoding": "none",
-        "x": 430,
-        "y": 1520,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "23be7c7ce3851001",
-        "type": "function",
-        "z": "cf2c675f8061347b",
-        "g": "6bd2050295ba993d",
-        "name": "Influx data prep",
-        "func": "/**\n * Node-RED Function Node: Error Event Parser (Version 8)\n *\n * This function enriches incoming error events from devices, maps numeric error codes\n * to human-readable descriptions, and shapes the output message for downstream flows.\n *\n * How to customize:\n *  - Modify the `errorMap` global context key to update code descriptions.\n *  - Adjust the `msg.topic` template to change InfluxDB measurement paths.\n *  - Extend the payload with additional fields (e.g., device ID, location).\n *  - Update the `eventState` mapping logic to support new modes.\n */\n\n// Retrieve the user-defined map of error codes (numeric and hex) to descriptions.\n// This global context object should be populated elsewhere in your flow (e.g., a config node).\nlet map = global.get('errorMap') || {};\n\n// Alias the incoming event object for readability.\nconst ev = msg.payload;\n\n// Early exit if essential event properties are missing to avoid function node errors.\nif (!ev || !ev.origin || !ev.message) {\n  // Returning null halts this message, preventing downstream processing.\n  return null;\n}\n\n// -----------------------------------------------------------------------------\n// 1) Parse core numeric values from the event\n// -----------------------------------------------------------------------------\n// Convert origin identifiers to numbers (ensures type consistency).\nconst master = Number(ev.origin.masterNumber);\nconst port = Number(ev.origin.portNumber);\nconst code = Number(ev.message.code);\n\n// Compute the uppercase hexadecimal representation (e.g., 0x1F4).\nconst hexCode = '0x' + code.toString(16).toUpperCase();\n\n// -----------------------------------------------------------------------------\n// 2) Preserve the original device timestamp\n// -----------------------------------------------------------------------------\n// Devices may supply time in different fields; prioritize in this order:\n//  - ev.time\n//  - ev.timestamp\n//  - ev.timeStamp\n// Fallback to null if none exist.\nconst rawDeviceTimestamp =\n  ev.time !== undefined ? String(ev.time) :\n    ev.timestamp !== undefined ? String(ev.timestamp) :\n      ev.timeStamp !== undefined ? String(ev.timeStamp) :\n        null;\n\n// -----------------------------------------------------------------------------\n// 3) Normalize the event mode and derive a standardized event state\n// -----------------------------------------------------------------------------\n// The device may send mode as 'appears' or 'disappears', so convert to uppercase.\nconst rawMode = (ev.message.mode || '').toUpperCase();\n\n// Map the raw mode to an internal state string used in downstream analytics.\n//  - 'APPEARS'   \u2192 'event_start'\n//  - 'DISAPPEARS'\u2192 'event_stop'\n//  - otherwise   \u2192 'unknown'\nconst eventState =\n  rawMode === 'APPEARS' ? 'event_start' :\n    rawMode === 'DISAPPEARS' ? 'event_stop' :\n      'unknown';\n\n// -----------------------------------------------------------------------------\n// 4) Prepare metadata for InfluxDB insertion\n// -----------------------------------------------------------------------------\n// Customize the topic prefix to match your measurement structure.\nmsg.topic = `impact67/master/${master}/port/${port}`;\n\n// Use the current system timestamp for InfluxDB write time.\n// You can override this with the device timestamp if preferred.\nmsg.timestamp = Date.now();\n\n// -----------------------------------------------------------------------------\n// 5) Lookup the human-readable error description\n// -----------------------------------------------------------------------------\n// The map may contain either numeric keys or hex-string keys.\nconst description = map[code] || map[hexCode] || 'Unknown code';\n\n// -----------------------------------------------------------------------------\n// 6) Construct the outgoing payload object\n// -----------------------------------------------------------------------------\nmsg.payload = {\n  severity: ev.severity,             // device-reported severity level\n  mode: rawMode,                 // raw mode from the device\n  eventState: eventState,              // normalized state\n  errorCode: code,                    // numeric code\n  errorCodeHex: hexCode,                 // hex representation\n  errorDescription: description,             // human-readable description\n  master: master,                  // master unit identifier\n  port: port,                    // port number on master\n  isoTime: new Date(msg.timestamp)  // InfluxDB requires ISO timestamps\n    .toISOString(),\n  rawDeviceTimestamp: rawDeviceTimestamp,      // original timestamp from device\n  ip: msg.ip || 'unknown'      // optional IP address metadata\n};\n\n// Return the enriched message to the next node in the flow.\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1520,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "28500336b4ee8595",
-        "type": "influxdb",
-        "hostname": "127.0.0.1",
-        "port": 8086,
-        "protocol": "http",
-        "database": "database",
-        "name": "InfluxDB",
-        "usetls": false,
-        "tls": "",
-        "influxdbVersion": "2.0",
-        "url": "http://localhost:8086",
-        "timeout": 10,
-        "rejectUnauthorized": true
-    },
-    {
-        "id": "mqtt-broker-local",
-        "type": "mqtt-broker",
-        "name": "Local MQTT",
-        "broker": "localhost",
-        "port": "1883",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": 4,
-        "keepalive": "60",
-        "cleansession": true,
-        "autoUnsubscribe": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthRetain": "false",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closeRetain": "false",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
-    }
+  {
+    "id": "cf2c675f8061347b",
+    "type": "tab",
+    "label": "Influx_Data_Pipeline_v1.2",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "30ecd298364bec85",
+    "type": "group",
+    "z": "cf2c675f8061347b",
+    "style": {
+      "stroke": "#999999",
+      "stroke-opacity": "1",
+      "fill": "none",
+      "fill-opacity": "1",
+      "label": true,
+      "label-position": "nw",
+      "color": "#a4a4a4"
+    },
+    "nodes": [
+      "55a97baa1df66b2d",
+      "8c7c9f588c43b1cc",
+      "c462826f6ba56b05",
+      "0b8152f986cc3aee",
+      "04eaeab3954ed85b",
+      "763043855486292d",
+      "bfaa229223513b0a",
+      "9d03019ea3347369"
+    ],
+    "x": 54,
+    "y": 839,
+    "w": 1232,
+    "h": 229.5
+  },
+  {
+    "id": "6bd2050295ba993d",
+    "type": "group",
+    "z": "cf2c675f8061347b",
+    "style": {
+      "stroke": "#999999",
+      "stroke-opacity": "1",
+      "fill": "none",
+      "fill-opacity": "1",
+      "label": true,
+      "label-position": "nw",
+      "color": "#a4a4a4"
+    },
+    "nodes": [
+      "726e078392dc6661",
+      "45fe23c1743f8061",
+      "0273fa386257d86f",
+      "6d31ed85854d0d21",
+      "adee3a7bbf45528f",
+      "2ac727f19d830d9e",
+      "07adc65d2bd0b02c",
+      "injectLoad",
+      "readFile",
+      "parseJSON",
+      "storeGlobal",
+      "43099c37e53f94c1",
+      "cab45e0aedc11ecb",
+      "23be7c7ce3851001"
+    ],
+    "x": 54,
+    "y": 39,
+    "w": 1832,
+    "h": 222
+  },
+  {
+    "id": "59c49ae82eea4453",
+    "type": "group",
+    "z": "cf2c675f8061347b",
+    "style": {
+      "stroke": "#999999",
+      "stroke-opacity": "1",
+      "fill": "none",
+      "fill-opacity": "1",
+      "label": true,
+      "label-position": "nw",
+      "color": "#a4a4a4"
+    },
+    "nodes": [
+      "94c4b64fe48bf7a9",
+      "8eaae0548f6f1ac0",
+      "b9e806b2050cdbc1",
+      "fdce59a9bc71b2ec",
+      "4561984a904805be",
+      "64754fb1bd63425a",
+      "68bd7524f18bb41d"
+    ],
+    "x": 54,
+    "y": 299,
+    "w": 1372,
+    "h": 162
+  },
+  {
+    "id": "d82d2374fafffe60",
+    "type": "group",
+    "z": "cf2c675f8061347b",
+    "style": {
+      "stroke": "#999999",
+      "stroke-opacity": "1",
+      "fill": "none",
+      "fill-opacity": "1",
+      "label": true,
+      "label-position": "nw",
+      "color": "#a4a4a4"
+    },
+    "nodes": [
+      "9b8227a1903ea259",
+      "8fa862cf2b5615e5",
+      "b0c120bd5e993542",
+      "71be59b7c2d5a7bb",
+      "1f1c7025f2a3ce1c",
+      "5fbc78e027f42a44",
+      "17bdca1c684de37f",
+      "ed545088864a6cb0",
+      "27d6194124762096",
+      "ea423b52b1e9b387",
+      "37d1b98dd92fd5d8",
+      "64b71e04aa8a1a66",
+      "22361c21b043030f",
+      "f5ac08b67bcbd3f4",
+      "818bedb30d9efcc5",
+      "2cf6872e1b3ad487",
+      "e4624ef9b4a1d94b",
+      "4adb3d0d2a6e026e",
+      "00df87db84b78811",
+      "79356ea0aadc9a91",
+      "70a12dada24e2da5",
+      "78b2a95148c008a2",
+      "ef8a0a0990524f77",
+      "3443c80672c5e636",
+      "2bd8aa8546924e19",
+      "2a62ca5551eb6109",
+      "713a0f9a472d65ca",
+      "13fd02c9973d8e8b",
+      "2766c1795827424a",
+      "e223c50d5c721039"
+    ],
+    "x": 54,
+    "y": 1119,
+    "w": 1372,
+    "h": 602
+  },
+  {
+    "id": "b985c3ba5e5519d9",
+    "type": "group",
+    "z": "cf2c675f8061347b",
+    "style": {
+      "stroke": "#999999",
+      "stroke-opacity": "1",
+      "fill": "none",
+      "fill-opacity": "1",
+      "label": true,
+      "label-position": "nw",
+      "color": "#a4a4a4"
+    },
+    "nodes": [
+      "820eca120de9c8dc",
+      "b580f3c166ef8dda",
+      "020cd237371f7f2d",
+      "88d0db573e750331",
+      "d6ed388d600d8ec0",
+      "5228d7f553f62aef",
+      "b773ec8167ad6eac",
+      "eebe93151283d1c7",
+      "7010792667254c11",
+      "98cb5aedb10e2562",
+      "687557aee3e668df",
+      "b7533422c67034ea",
+      "152b94b2cb4c6c3a",
+      "e34aa1f071f6d44f",
+      "e2930e5ebe425c46",
+      "d320d8d3aff09585",
+      "06c17a95883f1b43"
+    ],
+    "x": 54,
+    "y": 499,
+    "w": 1192,
+    "h": 302
+  },
+  {
+    "id": "726e078392dc6661",
+    "type": "inject",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "trigger",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "60",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "5",
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 160,
+    "y": 220,
+    "wires": [["45fe23c1743f8061"]]
+  },
+  {
+    "id": "45fe23c1743f8061",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "generate IPs",
+    "func": "// Function to generate IP addresses based on last octet ranges within a fixed subnet\n// ============================================================================\n// Overview:\n// This Node-RED function node builds a list of IP address messages based on defined\n// host or range entries. Each entry in `ranges` represents either a single host or a\n// consecutive range of hosts within a base subnet. Messages are returned with both\n// `msg.payload` and `msg.ip` set to the IP string.\n// ----------------------------------------------------------------------------\n// Modifiable Fields:\n// 1. `ranges` array: Define which IP addresses or ranges to generate.\n//    - Use `host` for a single IP.\n//    - Use `start` and `end` for a continuous range.\n//    - Each entry needs a `base` subnet (e.g., '192.168.1').\n// 2. Function behavior: You could adjust payload structure or add additional fields.\n// ----------------------------------------------------------------------------\n\n// 1. Define your IP ranges or single hosts:\n//    - Example single host: { base: '10.0.0', host: 5 }\n//    - Example range:       { base: '10.0.1', start: 10, end: 15 }\nconst ranges = [\n    { base: '192.168.1', start: 111, end: 130 }\n];\n\n// 2. Prepare an array to collect each generated msg object:\nlet ips = [];  // Will store messages: { payload: 'x.x.x.x', ip: 'x.x.x.x' }\n\n// 3. Iterate over each range definition:\nfor (const range of ranges) {\n    // 3a. Check if `host` property exists (single IP scenario):\n    if (range.host !== undefined) {\n        // Construct the IP string by appending the host octet to the base subnet:\n        const ip = `${range.base}.${range.host}`;\n        // Push a message object with both payload and ip fields:\n        ips.push({ payload: ip, ip });\n    }\n    // 3b. Otherwise, check for `start` and `end` to cover a sequence of hosts:\n    else if (range.start !== undefined && range.end !== undefined) {\n        // Loop from the start octet up to and including the end octet:\n        for (let i = range.start; i <= range.end; i++) {\n            const ip = `${range.base}.${i}`;\n            ips.push({ payload: ip, ip });\n        }\n    }\n    // 3c. You could add an `else` block here to handle invalid entries or throw errors.\n}\n\n// 4. Return the list of messages as a single output array:\n//    Node-RED will send one message per array element in `ips`.\nreturn [ips];\n\n// ----------------------------------------------------------------------------\n// How to Modify:\n// - To add a new single IP, append: { base: '192.168.2', host: 20 }\n// - To add a new range, append: { base: '10.0.0', start: 1, end: 5 }\n// - To change payload format, edit the object inside `ips.push({...})`.\n// - For additional metadata (e.g., port or timestamp), add new properties to each msg.\n\n// Example: Adding metadata\n// ips.push({ payload: ip, ip, timestamp: new Date().toISOString() });\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 220,
+    "wires": [["0273fa386257d86f"]]
+  },
+  {
+    "id": "0273fa386257d86f",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "build HTTP URL",
+    "func": "// Function to build the HTTP URL used for polling the device\n// Each device is expected to host an IOLink gateway at a known path\n// Default path used here: '/iolink/v1/gateway/events'\n\n// --- Default behavior ---\n// msg.payload should contain the IP address (e.g., '192.168.1.6')\n// This builds a URL like: http://192.168.1.6/iolink/v1/gateway/events\n\n// --- Modify this behavior ---\n// To change the endpoint path (for example, to '/status' or '/custom/path'):\n// Replace the value of `basePath` below with your desired path.\n// To use HTTPS instead of HTTP, change the protocol string accordingly.\n// To include a port, append it to the IP like `${msg.payload}:8080`.\n\nconst basePath = '/iolink/v1/gateway/events'; // default polling path\nconst protocol = 'http'; // change to 'https' if needed\n\n// Construct the full URL using the IP and path\nmsg.url = `${protocol}://${msg.payload}${basePath}`;\n\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 560,
+    "y": 220,
+    "wires": [["6d31ed85854d0d21", "820eca120de9c8dc"]]
+  },
+  {
+    "id": "6d31ed85854d0d21",
+    "type": "http request",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "GET gateway events",
+    "method": "GET",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": true,
+    "headers": [],
+    "x": 780,
+    "y": 220,
+    "wires": [["adee3a7bbf45528f", "5228d7f553f62aef"]]
+  },
+  {
+    "id": "adee3a7bbf45528f",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "tag IP to payload / error handling",
+    "func": "// Attach the IP address to the message\n// Check if HTTP returned an error\nif (msg.statusCode >= 400 || !msg.payload) {\n    node.warn(`Error from ${msg.ip || msg.payload}: ${msg.statusCode}`);\n    return null; // Skip this result\n}\n\nmsg.ip = msg.ip || msg.payload.ip || null;\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1050,
+    "y": 220,
+    "wires": [["2ac727f19d830d9e", "eebe93151283d1c7"]]
+  },
+  {
+    "id": "2ac727f19d830d9e",
+    "type": "split",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "split events array",
+    "splt": "",
+    "spltType": "str",
+    "arraySplt": "1",
+    "stream": false,
+    "addname": "",
+    "x": 1310,
+    "y": 220,
+    "wires": [["43099c37e53f94c1", "98cb5aedb10e2562"]]
+  },
+  {
+    "id": "07adc65d2bd0b02c",
+    "type": "influxdb out",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "influxdb": "28500336b4ee8595",
+    "name": "Influx - gateway_events",
+    "measurement": "gateway_events",
+    "precision": "",
+    "retentionPolicy": "",
+    "database": "",
+    "precisionV18FluxV20": "ms",
+    "retentionPolicyV18Flux": "",
+    "org": "ADTA",
+    "bucket": "iot_events",
+    "x": 1750,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "55a97baa1df66b2d",
+    "type": "inject",
+    "z": "cf2c675f8061347b",
+    "g": "30ecd298364bec85",
+    "name": "Load masterMap.json on start",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "0.1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 230,
+    "y": 960,
+    "wires": [["8c7c9f588c43b1cc"]]
+  },
+  {
+    "id": "8c7c9f588c43b1cc",
+    "type": "file in",
+    "z": "cf2c675f8061347b",
+    "g": "30ecd298364bec85",
+    "name": "Read config JSON",
+    "filename": "config/masterMap.json",
+    "filenameType": "str",
+    "format": "utf8",
+    "chunk": false,
+    "sendError": false,
+    "encoding": "none",
+    "allProps": false,
+    "x": 490,
+    "y": 960,
+    "wires": [["c462826f6ba56b05"]]
+  },
+  {
+    "id": "c462826f6ba56b05",
+    "type": "json",
+    "z": "cf2c675f8061347b",
+    "g": "30ecd298364bec85",
+    "name": "parse",
+    "property": "payload",
+    "action": "obj",
+    "pretty": false,
+    "x": 670,
+    "y": 960,
+    "wires": [["0b8152f986cc3aee"]]
+  },
+  {
+    "id": "0b8152f986cc3aee",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "30ecd298364bec85",
+    "name": "save cfg -> flow",
+    "func": "flow.set(\"cfg\", msg.payload);\nreturn null;",
+    "outputs": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 840,
+    "y": 960,
+    "wires": []
+  },
+  {
+    "id": "04eaeab3954ed85b",
+    "type": "mqtt in",
+    "z": "cf2c675f8061347b",
+    "g": "30ecd298364bec85",
+    "name": "All IO-Link topics",
+    "topic": "+/iolink/v1/#",
+    "qos": "1",
+    "datatype": "json",
+    "broker": "mqtt-broker-local",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 180,
+    "y": 1020,
+    "wires": [["763043855486292d", "4adb3d0d2a6e026e", "79356ea0aadc9a91"]]
+  },
+  {
+    "id": "763043855486292d",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "30ecd298364bec85",
+    "name": "IO-Link router",
+    "func": "/**\n * IO-Link router \u2013 v10 (2025-06-09)\n * \u2022 Supports classic ports/* & devices/masterNportM topics\n * \u2022 Flattens getData & setData\n * \u2022 Now handles:\n *     \u2013 diagnostics, statistics, processdata, identification, capabilities\n *     \u2013 configuration (port & gateway)\n *     \u2013 events (one message per event)\n * \u2022 Output contract:\n *     0 \u279c Influx points\n *     1 \u279c accepted raw frame\n *     2 \u279c discarded frame (+ msg.reason & msg.routerTime)\n */\n\nconst cfg = flow.get(\"cfg\");\n// 1. Load and validate configuration from flow context\n//    \u2022 `cfg` must exist and contain your alias mappings\n//    \u2022 If not loaded, route frame to output 2 with reason and timestamp\nif (!cfg) {\n  msg.reason     = \"cfg not loaded yet\";\n  msg.routerTime = new Date().toISOString();\n  // Outputs: [InfluxPoints, AcceptedRaw, Discarded]\n  return [null, null, msg];\n}\n// 2. Ensure incoming payload is an object\nif (typeof msg.payload !== \"object\" || msg.payload === null) {\n  msg.reason     = \"payload not an object\";\n  msg.routerTime = new Date().toISOString();\n  return [null, null, msg];\n}\n\n// \u2500\u2500 Topic parsing \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n// Split the MQTT topic into parts for downstream logic\nconst parts = msg.topic.split(\"/\");    // e.g. [\"A01R03\",\"iolink\",\"v1\",...]\nconst head  = parts[0];                  // Device identifier, e.g. \"A01R03\"\n\n// 3. Determine portTag (x0\u2013x7 or xM for gateway-level)\n//    \u2022 If topic path includes \"ports/N\", portTag = x(N-1)\n//    \u2022 Else if path includes \"devices/masterNportN\", extract similarly\nlet portTag = \"xM\";\nif (parts.includes(\"ports\")) {\n  const idx  = parts.indexOf(\"ports\");\n  const pNum = Number(parts[idx + 1]);\n  if (!isNaN(pNum) && pNum >= 1 && pNum <= 8) {\n    portTag = `x${pNum - 1}`;\n  }\n} else {\n  const devIdx = parts.indexOf(\"devices\");\n  if (devIdx !== -1) {\n    const m = /port(\\d+)/i.exec(parts[devIdx + 1]);\n    if (m) {\n      const p = Number(m[1]);\n      if (p >= 1 && p <= 8) portTag = `x${p - 1}`;\n    }\n  }\n}\n\n// 4. Section + metric detection\n//    Identify what kind of data this topic is routing:\n//    \u2013 processdata, statistics, diagnostics, configuration, events,\n//      identification, or capabilities\nlet section = \"\", metric = \"\";\nif (parts.includes(\"processdata\")) {\n  section = \"processdata\";\n  metric  = parts[parts.indexOf(\"processdata\") + 1] || \"\";\n} else if (parts.includes(\"statistics\")) {\n  section = \"statistics\";\n  metric  = parts[parts.indexOf(\"statistics\") + 1] || \"\";\n} else if (parts.includes(\"diagnostics\")) {\n  section = \"diagnostics\";\n  metric  = parts[parts.indexOf(\"diagnostics\") + 1] || \"\";\n} else if (parts.includes(\"configuration\")) {\n  section = \"configuration\";\n  // metrics not used for configuration\n} else if (parts.includes(\"events\")) {\n  section = \"events\";\n} else if (parts.includes(\"identification\")) {\n  section = \"identification\";\n} else if (parts.includes(\"capabilities\")) {\n  section = \"capabilities\";\n} else {\n  // Unknown section \u2192 discard with reason\n  msg.reason     = \"section not recognised\";\n  msg.routerTime = new Date().toISOString();\n  return [null, null, msg];\n}\n\n// 5. Construct alias map key based on section and metric\n//    \u2022 For statistics: use \"statistics_<field>\"\n//    \u2022 For diagnostics: use the field name directly\n//    \u2022 For processdata: key is \"processdata\"\n//    \u2022 Else: key = section\nconst mapKey =\n  section === \"statistics\"   ? `statistics_${metric}` :\n  section === \"diagnostics\"  ? metric                         :\n  section === \"processdata\"  ? \"processdata\"               :\n  section;\nconst aliasMap = cfg.pins?.[mapKey];\n// 5a. If mapping missing \u2192 discard\nif (!aliasMap) {\n  msg.reason     = `no mapping for '${mapKey}'`;\n  msg.routerTime = new Date().toISOString();\n  return [null, null, msg];\n}\n\n// 6. Special handling for events arrays\n//    \u2022 For \"events\": msg.payload should be an array of event objects\n//    \u2022 Send one point per event on output 0 with custom measurement, tags, and timestamp\nif (section === \"events\" && Array.isArray(msg.payload)) {\n  msg.payload.forEach(evt => {\n    node.send([{\n      payload:     evt.eventCode,\n      measurement: `${head}_${portTag}_${aliasMap.eventCode}`,\n      tags:        { severity: evt.severity },\n      timestamp:   new Date(evt.timestamp).getTime()\n    }]);\n  });\n  // End processing after events; no further messages\n  return [null, null, null];\n}\n\n// 7. Flatten nested getData & setData properties\n//    \u2022 If payload contains getData or setData objects, merge their fields into top-level payload\nif (msg.payload.getData && typeof msg.payload.getData === \"object\") {\n  Object.assign(msg.payload, msg.payload.getData);\n}\nif (msg.payload.setData && typeof msg.payload.setData === \"object\") {\n  Object.assign(msg.payload, msg.payload.setData);\n}\n\n// 8. Emit Influx points for each mapped key in aliasMap\n//    \u2022 Supports nested keys with dot notation (e.g., \"a.b.c\")\n//    \u2022 Sends one msg on output 0 per field found\nObject.entries(aliasMap).forEach(([jsonKey, alias]) => {\n  const value = jsonKey.split('.')\n    .reduce((o, k) => (o !== undefined ? o[k] : undefined), msg.payload);\n  if (value !== undefined && value !== null) {\n    node.send([{\n      payload:     value,\n      measurement: `${head}_${portTag}_${alias}`\n    }]);\n  }\n});\n\n// 9. Final step: route original raw frame to output 1 (accepted)\nreturn [null, msg, null];\n\n/**\n * How to customize:\n * - Update your `cfg.pins` object in flow context with new alias mappings.\n * - Add or modify sections by changing the `if (parts.includes(...))` blocks.\n * - Adjust event handling tag or timestamp fields under the events block.\n * - To capture raw payload on a different output, modify the final return array.\n */",
+    "outputs": 3,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 1020,
+    "wires": [
+      ["bfaa229223513b0a", "17bdca1c684de37f"],
+      ["9b8227a1903ea259", "1f1c7025f2a3ce1c", "27d6194124762096"],
+      ["b0c120bd5e993542", "5fbc78e027f42a44"]
+    ]
+  },
+  {
+    "id": "bfaa229223513b0a",
+    "type": "influxdb out",
+    "z": "cf2c675f8061347b",
+    "g": "30ecd298364bec85",
+    "influxdb": "28500336b4ee8595",
+    "name": "Influx - A01",
+    "measurement": "",
+    "precision": "ms",
+    "retentionPolicy": "",
+    "database": "database",
+    "precisionV18FluxV20": "ms",
+    "retentionPolicyV18Flux": "",
+    "org": "ADTA",
+    "bucket": "A01",
+    "x": 1190,
+    "y": 1020,
+    "wires": []
+  },
+  {
+    "id": "injectLoad",
+    "type": "inject",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "Load errorCodes.json",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "0.1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 200,
+    "y": 160,
+    "wires": [["readFile"]]
+  },
+  {
+    "id": "readFile",
+    "type": "file in",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "Read errorCodes.json",
+    "filename": "config/errorCodes.json",
+    "filenameType": "str",
+    "format": "utf8",
+    "chunk": false,
+    "sendError": false,
+    "encoding": "none",
+    "allProps": false,
+    "x": 440,
+    "y": 160,
+    "wires": [["parseJSON"]]
+  },
+  {
+    "id": "parseJSON",
+    "type": "json",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "Parse to Object",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 660,
+    "y": 160,
+    "wires": [["storeGlobal"]]
+  },
+  {
+    "id": "storeGlobal",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "Store in global.errorMap",
+    "func": "// Put the parsed object into global context:\nif (typeof global.set === 'function') {\n  global.set('errorMap', msg.payload);\n} else {\n  // older Node-RED version:\n  context.global.errorMap = msg.payload;\n}\nreturn null;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 880,
+    "y": 160,
+    "wires": [[]]
+  },
+  {
+    "id": "94c4b64fe48bf7a9",
+    "type": "inject",
+    "z": "cf2c675f8061347b",
+    "g": "59c49ae82eea4453",
+    "name": "trigger",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "600",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "60",
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 160,
+    "y": 420,
+    "wires": [["68bd7524f18bb41d"]]
+  },
+  {
+    "id": "8eaae0548f6f1ac0",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "59c49ae82eea4453",
+    "name": "build HTTP URL",
+    "func": "const basePath ='/iolink/v1/gateway/identification';\nmsg.url=`http://${msg.payload}${basePath}`;\n// keep a copy of the IP for downstream nodes\nmsg.gateway=msg.payload;\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 500,
+    "y": 420,
+    "wires": [["b9e806b2050cdbc1"]]
+  },
+  {
+    "id": "b9e806b2050cdbc1",
+    "type": "http request",
+    "z": "cf2c675f8061347b",
+    "g": "59c49ae82eea4453",
+    "name": "GET gateway identification",
+    "method": "GET",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": true,
+    "headers": [],
+    "x": 740,
+    "y": 420,
+    "wires": [["64754fb1bd63425a"]]
+  },
+  {
+    "id": "fdce59a9bc71b2ec",
+    "type": "comment",
+    "z": "cf2c675f8061347b",
+    "g": "59c49ae82eea4453",
+    "name": "GET Identification",
+    "info": "",
+    "x": 170,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "4561984a904805be",
+    "type": "influxdb out",
+    "z": "cf2c675f8061347b",
+    "g": "59c49ae82eea4453",
+    "influxdb": "28500336b4ee8595",
+    "name": "Influx - gateway_identification",
+    "measurement": "gateway_identification",
+    "precision": "",
+    "retentionPolicy": "",
+    "database": "",
+    "precisionV18FluxV20": "ns",
+    "retentionPolicyV18Flux": "",
+    "org": "ADTA",
+    "bucket": "gateway_identification",
+    "x": 1270,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "64754fb1bd63425a",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "59c49ae82eea4453",
+    "name": "All messages to Influx",
+    "func": "// Node-RED Function: send entire GET reply to Influx\n\n// pull the entire object off of msg.payload\nconst info = msg.payload;\n\n// build the Influx point, copying every field (plus gateway)\nconst point = {\n    measurement: 'device_info',\n    payload: {\n        macAddress:       info.macAddress,\n        serialNumber:     info.serialNumber,\n        productId:        info.productId,\n        vendorName:       info.vendorName,\n        productName:      info.productName,\n        hardwareRevision: info.hardwareRevision,\n        firmwareRevision: info.firmwareRevision,\n        gateway:          msg.gateway\n    },\n    // timestamp as milliseconds since epoch\n    // timestamp: Date.now()\n    timestamp: Date.now() * 1e6   // ms \u2192 ns\n};\n\n// emit a single message containing the full point\nreturn [ point ];\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1000,
+    "y": 420,
+    "wires": [["4561984a904805be"]]
+  },
+  {
+    "id": "43099c37e53f94c1",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "Influx data prep",
+    "func": "// Retrieve the user-defined map of error codes (numeric and hex) to descriptions.\nlet map = global.get('errorMap') || {};\n\nconst ev = msg.payload;\nif (!ev || !ev.origin || !ev.message) {\n  return null;\n}\n\nconst master = Number(ev.origin.masterNumber);\nconst port = Number(ev.origin.portNumber);\nconst code = Number(ev.message.code);\n\n// convert port number: 1\u20138 \u2192 x0\u2013x7\nconst portConv = 'x' + (port - 1);\n\nconst hexCode = '0x' + code.toString(16).toUpperCase();\n\nconst rawDeviceTimestamp =\n  ev.time !== undefined ? String(ev.time) :\n  ev.timestamp !== undefined ? String(ev.timestamp) :\n  ev.timeStamp !== undefined ? String(ev.timeStamp) :\n  null;\n\nconst rawMode = (ev.message.mode || '').toUpperCase();\nconst eventState =\n  rawMode === 'APPEARS' ? 'event_start' :\n  rawMode === 'DISAPPEARS' ? 'event_stop' :\n  'unknown';\n\n// use converted port in topic\nmsg.topic = `impact67/master/${master}/port/${portConv}`;\nmsg.timestamp = Date.now();\n\nconst description = map[code] || map[hexCode] || 'Unknown code';\n\nmsg.payload = {\n  severity: ev.severity,\n  mode: rawMode,\n  eventState: eventState,\n  errorCode: code,\n  errorCodeHex: hexCode,\n  errorDescription: description,\n  master: master,\n  port: portConv,   // use converted port here\n  isoTime: new Date(msg.timestamp).toISOString(),\n  rawDeviceTimestamp: rawDeviceTimestamp,\n  ip: msg.ip || 'unknown'\n};\n\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1520,
+    "y": 220,
+    "wires": [["07adc65d2bd0b02c", "b7533422c67034ea"]]
+  },
+  {
+    "id": "cab45e0aedc11ecb",
+    "type": "comment",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "GET Events",
+    "info": "",
+    "x": 150,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "9d03019ea3347369",
+    "type": "comment",
+    "z": "cf2c675f8061347b",
+    "g": "30ecd298364bec85",
+    "name": "MQTT Message Routing",
+    "info": "",
+    "x": 190,
+    "y": 880,
+    "wires": []
+  },
+  {
+    "id": "9b8227a1903ea259",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 900,
+    "y": 1320,
+    "wires": [["8fa862cf2b5615e5"]]
+  },
+  {
+    "id": "8fa862cf2b5615e5",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_raw_frames_v.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_raw_frames_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1210,
+    "y": 1320,
+    "wires": [[]]
+  },
+  {
+    "id": "b0c120bd5e993542",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 900,
+    "y": 1400,
+    "wires": [["71be59b7c2d5a7bb"]]
+  },
+  {
+    "id": "71be59b7c2d5a7bb",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_discard_frames_v.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_discard_frames_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1220,
+    "y": 1400,
+    "wires": [[]]
+  },
+  {
+    "id": "1f1c7025f2a3ce1c",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_raw_frames.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_raw_frames.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1210,
+    "y": 1360,
+    "wires": [[]]
+  },
+  {
+    "id": "5fbc78e027f42a44",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_discard_frames.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_discard_frames.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1220,
+    "y": 1440,
+    "wires": [[]]
+  },
+  {
+    "id": "17bdca1c684de37f",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 900,
+    "y": 1240,
+    "wires": [["ed545088864a6cb0"]]
+  },
+  {
+    "id": "ed545088864a6cb0",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_Influx_v.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_Influx_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1190,
+    "y": 1240,
+    "wires": [[]]
+  },
+  {
+    "id": "27d6194124762096",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_Influx.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_Influx.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1190,
+    "y": 1280,
+    "wires": [[]]
+  },
+  {
+    "id": "ea423b52b1e9b387",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_raw_frames_v.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_raw_frames_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 470,
+    "y": 1320,
+    "wires": [[]]
+  },
+  {
+    "id": "37d1b98dd92fd5d8",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_discard_frames_v.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_discard_frames_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 480,
+    "y": 1400,
+    "wires": [[]]
+  },
+  {
+    "id": "64b71e04aa8a1a66",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_raw_frames.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_raw_frames.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 470,
+    "y": 1360,
+    "wires": [[]]
+  },
+  {
+    "id": "22361c21b043030f",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_discard_frames.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_discard_frames.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 480,
+    "y": 1440,
+    "wires": [[]]
+  },
+  {
+    "id": "f5ac08b67bcbd3f4",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_Influx_v.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_Influx_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 450,
+    "y": 1240,
+    "wires": [[]]
+  },
+  {
+    "id": "818bedb30d9efcc5",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_Influx.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_Influx.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 450,
+    "y": 1280,
+    "wires": [[]]
+  },
+  {
+    "id": "2cf6872e1b3ad487",
+    "type": "inject",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "Log Reset",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "172800",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "0.1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 170,
+    "y": 1260,
+    "wires": [
+      [
+        "70a12dada24e2da5",
+        "78b2a95148c008a2",
+        "f5ac08b67bcbd3f4",
+        "818bedb30d9efcc5",
+        "ea423b52b1e9b387",
+        "64b71e04aa8a1a66",
+        "37d1b98dd92fd5d8",
+        "22361c21b043030f",
+        "ef8a0a0990524f77",
+        "e223c50d5c721039"
+      ]
+    ]
+  },
+  {
+    "id": "e4624ef9b4a1d94b",
+    "type": "comment",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "MQTT Logging",
+    "info": "",
+    "x": 160,
+    "y": 1160,
+    "wires": []
+  },
+  {
+    "id": "4adb3d0d2a6e026e",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 900,
+    "y": 1160,
+    "wires": [["00df87db84b78811"]]
+  },
+  {
+    "id": "00df87db84b78811",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_raw_input_v.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_raw_input_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1210,
+    "y": 1160,
+    "wires": [[]]
+  },
+  {
+    "id": "79356ea0aadc9a91",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_raw_input.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_raw_input.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1200,
+    "y": 1200,
+    "wires": [[]]
+  },
+  {
+    "id": "70a12dada24e2da5",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_raw_input_v.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_raw_input_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 470,
+    "y": 1160,
+    "wires": [[]]
+  },
+  {
+    "id": "78b2a95148c008a2",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\MQTT_raw_input.json",
+    "filename": "E:\\NodeRed\\Logs\\MQTT_raw_input.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 460,
+    "y": 1200,
+    "wires": [[]]
+  },
+  {
+    "id": "68bd7524f18bb41d",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "59c49ae82eea4453",
+    "name": "generate IPs",
+    "func": "// Function to generate IP addresses based on last octet ranges within a fixed subnet\n// ============================================================================\n// Overview:\n// This Node-RED function node builds a list of IP address messages based on defined\n// host or range entries. Each entry in `ranges` represents either a single host or a\n// consecutive range of hosts within a base subnet. Messages are returned with both\n// `msg.payload` and `msg.ip` set to the IP string.\n// ----------------------------------------------------------------------------\n// Modifiable Fields:\n// 1. `ranges` array: Define which IP addresses or ranges to generate.\n//    - Use `host` for a single IP.\n//    - Use `start` and `end` for a continuous range.\n//    - Each entry needs a `base` subnet (e.g., '192.168.1').\n// 2. Function behavior: You could adjust payload structure or add additional fields.\n// ----------------------------------------------------------------------------\n\n// 1. Define your IP ranges or single hosts:\n//    - Example single host: { base: '10.0.0', host: 5 }\n//    - Example range:       { base: '10.0.1', start: 10, end: 15 }\nconst ranges = [\n    { base: '192.168.1', start: 111, end: 130 }\n];\n\n// 2. Prepare an array to collect each generated msg object:\nlet ips = [];  // Will store messages: { payload: 'x.x.x.x', ip: 'x.x.x.x' }\n\n// 3. Iterate over each range definition:\nfor (const range of ranges) {\n    // 3a. Check if `host` property exists (single IP scenario):\n    if (range.host !== undefined) {\n        // Construct the IP string by appending the host octet to the base subnet:\n        const ip = `${range.base}.${range.host}`;\n        // Push a message object with both payload and ip fields:\n        ips.push({ payload: ip, ip });\n    }\n    // 3b. Otherwise, check for `start` and `end` to cover a sequence of hosts:\n    else if (range.start !== undefined && range.end !== undefined) {\n        // Loop from the start octet up to and including the end octet:\n        for (let i = range.start; i <= range.end; i++) {\n            const ip = `${range.base}.${i}`;\n            ips.push({ payload: ip, ip });\n        }\n    }\n    // 3c. You could add an `else` block here to handle invalid entries or throw errors.\n}\n\n// 4. Return the list of messages as a single output array:\n//    Node-RED will send one message per array element in `ips`.\nreturn [ips];\n\n// ----------------------------------------------------------------------------\n// How to Modify:\n// - To add a new single IP, append: { base: '192.168.2', host: 20 }\n// - To add a new range, append: { base: '10.0.0', start: 1, end: 5 }\n// - To change payload format, edit the object inside `ips.push({...})`.\n// - For additional metadata (e.g., port or timestamp), add new properties to each msg.\n\n// Example: Adding metadata\n// ips.push({ payload: ip, ip, timestamp: new Date().toISOString() });\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 310,
+    "y": 420,
+    "wires": [["8eaae0548f6f1ac0"]]
+  },
+  {
+    "id": "820eca120de9c8dc",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 760,
+    "y": 600,
+    "wires": [["d6ed388d600d8ec0"]]
+  },
+  {
+    "id": "b580f3c166ef8dda",
+    "type": "inject",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "Log Reset",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "172800",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 170,
+    "y": 680,
+    "wires": [
+      [
+        "020cd237371f7f2d",
+        "88d0db573e750331",
+        "e34aa1f071f6d44f",
+        "e2930e5ebe425c46",
+        "d320d8d3aff09585"
+      ]
+    ]
+  },
+  {
+    "id": "020cd237371f7f2d",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "E:\\NodeRed\\Logs\\01_GET_request.json",
+    "filename": "E:\\NodeRed\\Logs\\01_GET_request.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 440,
+    "y": 600,
+    "wires": [[]]
+  },
+  {
+    "id": "88d0db573e750331",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "E:\\NodeRed\\Logs\\02_GET_reply.json",
+    "filename": "E:\\NodeRed\\Logs\\02_GET_reply.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 430,
+    "y": 640,
+    "wires": [[]]
+  },
+  {
+    "id": "d6ed388d600d8ec0",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "E:\\NodeRed\\Logs\\01_GET_request.json",
+    "filename": "E:\\NodeRed\\Logs\\01_GET_request.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1060,
+    "y": 600,
+    "wires": [[]]
+  },
+  {
+    "id": "5228d7f553f62aef",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 760,
+    "y": 640,
+    "wires": [["b773ec8167ad6eac"]]
+  },
+  {
+    "id": "b773ec8167ad6eac",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "E:\\NodeRed\\Logs\\02_GET_reply.json",
+    "filename": "E:\\NodeRed\\Logs\\02_GET_reply.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1050,
+    "y": 640,
+    "wires": [[]]
+  },
+  {
+    "id": "eebe93151283d1c7",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 760,
+    "y": 680,
+    "wires": [["7010792667254c11"]]
+  },
+  {
+    "id": "7010792667254c11",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "E:\\NodeRed\\Logs\\03_GET_tag.json",
+    "filename": "E:\\NodeRed\\Logs\\03_GET_tag.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1040,
+    "y": 680,
+    "wires": [[]]
+  },
+  {
+    "id": "98cb5aedb10e2562",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 760,
+    "y": 720,
+    "wires": [["687557aee3e668df"]]
+  },
+  {
+    "id": "687557aee3e668df",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "E:\\NodeRed\\Logs\\04_GET_split.json",
+    "filename": "E:\\NodeRed\\Logs\\04_GET_split.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1050,
+    "y": 720,
+    "wires": [[]]
+  },
+  {
+    "id": "b7533422c67034ea",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 760,
+    "y": 760,
+    "wires": [["152b94b2cb4c6c3a"]]
+  },
+  {
+    "id": "152b94b2cb4c6c3a",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "E:\\NodeRed\\Logs\\05_GET_influx.json",
+    "filename": "E:\\NodeRed\\Logs\\05_GET_influx.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1050,
+    "y": 760,
+    "wires": [[]]
+  },
+  {
+    "id": "e34aa1f071f6d44f",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "E:\\NodeRed\\Logs\\03_GET_tag.json",
+    "filename": "E:\\NodeRed\\Logs\\03_GET_tag.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 420,
+    "y": 680,
+    "wires": [[]]
+  },
+  {
+    "id": "e2930e5ebe425c46",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "E:\\NodeRed\\Logs\\04_GET_split.json",
+    "filename": "E:\\NodeRed\\Logs\\04_GET_split.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 430,
+    "y": 720,
+    "wires": [[]]
+  },
+  {
+    "id": "d320d8d3aff09585",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "E:\\NodeRed\\Logs\\05_GET_influx.json",
+    "filename": "E:\\NodeRed\\Logs\\05_GET_influx.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 430,
+    "y": 760,
+    "wires": [[]]
+  },
+  {
+    "id": "06c17a95883f1b43",
+    "type": "comment",
+    "z": "cf2c675f8061347b",
+    "g": "b985c3ba5e5519d9",
+    "name": "GET Logging",
+    "info": "",
+    "x": 150,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "3443c80672c5e636",
+    "type": "mqtt in",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "#",
+    "topic": "#",
+    "qos": "1",
+    "datatype": "auto-detect",
+    "broker": "mqtt-broker-local",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 150,
+    "y": 1620,
+    "wires": [["2a62ca5551eb6109"]]
+  },
+  {
+    "id": "2bd8aa8546924e19",
+    "type": "mqtt in",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "$SYS/#",
+    "topic": "$SYS/#",
+    "qos": "1",
+    "datatype": "auto-detect",
+    "broker": "mqtt-broker-local",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 150,
+    "y": 1680,
+    "wires": [["13fd02c9973d8e8b"]]
+  },
+  {
+    "id": "2a62ca5551eb6109",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 900,
+    "y": 1620,
+    "wires": [["713a0f9a472d65ca"]]
+  },
+  {
+    "id": "713a0f9a472d65ca",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\#_v.json",
+    "filename": "E:\\NodeRed\\Logs\\#_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1160,
+    "y": 1620,
+    "wires": [[]]
+  },
+  {
+    "id": "ef8a0a0990524f77",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\#_v.json",
+    "filename": "E:\\NodeRed\\Logs\\#_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 420,
+    "y": 1480,
+    "wires": [[]]
+  },
+  {
+    "id": "13fd02c9973d8e8b",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "Serialize Full Message",
+    "func": "msg.payload = JSON.stringify(msg);\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 900,
+    "y": 1680,
+    "wires": [["2766c1795827424a"]]
+  },
+  {
+    "id": "2766c1795827424a",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\$SYS_v.json",
+    "filename": "E:\\NodeRed\\Logs\\$SYS_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1170,
+    "y": 1680,
+    "wires": [[]]
+  },
+  {
+    "id": "e223c50d5c721039",
+    "type": "file",
+    "z": "cf2c675f8061347b",
+    "g": "d82d2374fafffe60",
+    "name": "E:\\NodeRed\\Logs\\$SYS_v.json",
+    "filename": "E:\\NodeRed\\Logs\\$SYS_v.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "delete",
+    "encoding": "none",
+    "x": 430,
+    "y": 1520,
+    "wires": [[]]
+  },
+  {
+    "id": "23be7c7ce3851001",
+    "type": "function",
+    "z": "cf2c675f8061347b",
+    "g": "6bd2050295ba993d",
+    "name": "Influx data prep",
+    "func": "/**\n * Node-RED Function Node: Error Event Parser (Version 8)\n *\n * This function enriches incoming error events from devices, maps numeric error codes\n * to human-readable descriptions, and shapes the output message for downstream flows.\n *\n * How to customize:\n *  - Modify the `errorMap` global context key to update code descriptions.\n *  - Adjust the `msg.topic` template to change InfluxDB measurement paths.\n *  - Extend the payload with additional fields (e.g., device ID, location).\n *  - Update the `eventState` mapping logic to support new modes.\n */\n\n// Retrieve the user-defined map of error codes (numeric and hex) to descriptions.\n// This global context object should be populated elsewhere in your flow (e.g., a config node).\nlet map = global.get('errorMap') || {};\n\n// Alias the incoming event object for readability.\nconst ev = msg.payload;\n\n// Early exit if essential event properties are missing to avoid function node errors.\nif (!ev || !ev.origin || !ev.message) {\n  // Returning null halts this message, preventing downstream processing.\n  return null;\n}\n\n// -----------------------------------------------------------------------------\n// 1) Parse core numeric values from the event\n// -----------------------------------------------------------------------------\n// Convert origin identifiers to numbers (ensures type consistency).\nconst master = Number(ev.origin.masterNumber);\nconst port = Number(ev.origin.portNumber);\nconst code = Number(ev.message.code);\n\n// Compute the uppercase hexadecimal representation (e.g., 0x1F4).\nconst hexCode = '0x' + code.toString(16).toUpperCase();\n\n// -----------------------------------------------------------------------------\n// 2) Preserve the original device timestamp\n// -----------------------------------------------------------------------------\n// Devices may supply time in different fields; prioritize in this order:\n//  - ev.time\n//  - ev.timestamp\n//  - ev.timeStamp\n// Fallback to null if none exist.\nconst rawDeviceTimestamp =\n  ev.time !== undefined ? String(ev.time) :\n    ev.timestamp !== undefined ? String(ev.timestamp) :\n      ev.timeStamp !== undefined ? String(ev.timeStamp) :\n        null;\n\n// -----------------------------------------------------------------------------\n// 3) Normalize the event mode and derive a standardized event state\n// -----------------------------------------------------------------------------\n// The device may send mode as 'appears' or 'disappears', so convert to uppercase.\nconst rawMode = (ev.message.mode || '').toUpperCase();\n\n// Map the raw mode to an internal state string used in downstream analytics.\n//  - 'APPEARS'   \u2192 'event_start'\n//  - 'DISAPPEARS'\u2192 'event_stop'\n//  - otherwise   \u2192 'unknown'\nconst eventState =\n  rawMode === 'APPEARS' ? 'event_start' :\n    rawMode === 'DISAPPEARS' ? 'event_stop' :\n      'unknown';\n\n// -----------------------------------------------------------------------------\n// 4) Prepare metadata for InfluxDB insertion\n// -----------------------------------------------------------------------------\n// Customize the topic prefix to match your measurement structure.\nmsg.topic = `impact67/master/${master}/port/${port}`;\n\n// Use the current system timestamp for InfluxDB write time.\n// You can override this with the device timestamp if preferred.\nmsg.timestamp = Date.now();\n\n// -----------------------------------------------------------------------------\n// 5) Lookup the human-readable error description\n// -----------------------------------------------------------------------------\n// The map may contain either numeric keys or hex-string keys.\nconst description = map[code] || map[hexCode] || 'Unknown code';\n\n// -----------------------------------------------------------------------------\n// 6) Construct the outgoing payload object\n// -----------------------------------------------------------------------------\nmsg.payload = {\n  severity: ev.severity,             // device-reported severity level\n  mode: rawMode,                 // raw mode from the device\n  eventState: eventState,              // normalized state\n  errorCode: code,                    // numeric code\n  errorCodeHex: hexCode,                 // hex representation\n  errorDescription: description,             // human-readable description\n  master: master,                  // master unit identifier\n  port: port,                    // port number on master\n  isoTime: new Date(msg.timestamp)  // InfluxDB requires ISO timestamps\n    .toISOString(),\n  rawDeviceTimestamp: rawDeviceTimestamp,      // original timestamp from device\n  ip: msg.ip || 'unknown'      // optional IP address metadata\n};\n\n// Return the enriched message to the next node in the flow.\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1520,
+    "y": 160,
+    "wires": [[]]
+  },
+  {
+    "id": "28500336b4ee8595",
+    "type": "influxdb",
+    "hostname": "127.0.0.1",
+    "port": 8086,
+    "protocol": "http",
+    "database": "database",
+    "name": "InfluxDB",
+    "usetls": false,
+    "tls": "",
+    "influxdbVersion": "2.0",
+    "url": "http://localhost:8086",
+    "timeout": 10,
+    "rejectUnauthorized": true
+  },
+  {
+    "id": "mqtt-broker-local",
+    "type": "mqtt-broker",
+    "name": "Local MQTT",
+    "broker": "localhost",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": 4,
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  }
 ]

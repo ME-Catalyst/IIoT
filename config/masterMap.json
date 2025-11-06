@@ -15,34 +15,34 @@
       "voltagePin2": "volt_pin2",
       "voltagePin4": "volt_pin4"
     },
-	"value": {
+    "value": {
       "meanTemperature": "temp_avg",
-      "meanVoltageL":   "voltL_avg",
-      "meanVoltageL2":  "voltL2_avg",
-      "sumCurrentL":    "currL_sum",
-      "sumCurrentL2":   "currL2_sum"
+      "meanVoltageL": "voltL_avg",
+      "meanVoltageL2": "voltL2_avg",
+      "sumCurrentL": "currL_sum",
+      "sumCurrentL2": "currL2_sum"
     },
-	"processdata": {
-	  "cqValue": "cq",
+    "processdata": {
+      "cqValue": "cq",
       "iqValue": "iq"
     },
-	"configuration": {
-	  "overCurrentPin1":   "overCurr_pin1",
-      "underCurrentPin1":  "underCurr_pin1",
-      "overCurrentPin2":   "overCurr_pin2",
-      "underCurrentPin2":  "underCurr_pin2",
-      "overCurrentPin4":   "overCurr_pin4",
-      "underCurrentPin4":  "underCurr_pin4",
-      "ipAddress":         "ip_address",
-      "subnetMask":        "subnet_mask",
-      "standardGateway":   "gateway",
-      "clientMode":        "mqtt_client_mode"
-	},
-	"events": {
-      "eventCode":         "evt_code",
-      "severity":          "evt_severity",
-      "timestamp":         "evt_time"
-	},
+    "configuration": {
+      "overCurrentPin1": "overCurr_pin1",
+      "underCurrentPin1": "underCurr_pin1",
+      "overCurrentPin2": "overCurr_pin2",
+      "underCurrentPin2": "underCurr_pin2",
+      "overCurrentPin4": "overCurr_pin4",
+      "underCurrentPin4": "underCurr_pin4",
+      "ipAddress": "ip_address",
+      "subnetMask": "subnet_mask",
+      "standardGateway": "gateway",
+      "clientMode": "mqtt_client_mode"
+    },
+    "events": {
+      "eventCode": "evt_code",
+      "severity": "evt_severity",
+      "timestamp": "evt_time"
+    },
     "statistics_current": {
       "maxCurrentPin1": "currMax_pin1",
       "minCurrentPin1": "currMin_pin1",
