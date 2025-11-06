@@ -4,6 +4,7 @@ All notable changes to the Industrial IoT Data Pipeline are documented in this f
 
 ## [Unreleased]
 - Expanded operator documentation with context reference tables, structured log catalogues, and schema-backed editing guidance to streamline maintenance tasks.
+- Added Flux-based Grafana dashboard exports (`docs/grafana/`) covering gateway events and device inventory to accelerate observability rollout.
 
 ## [v1.2] - 2024-02-15
 - Unified the HTTP and MQTT pipelines with shared enrichment logic so operators get consistent alias resolution and tagging across ingestion paths.

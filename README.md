@@ -30,6 +30,7 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 | --- | --- |
 | `flows/` | Exported Node-RED flow definitions. The flagship flow, [`Influx_Data_Pipeline_v1.2.json`](flows/Influx_Data_Pipeline_v1.2.json), implements the dual HTTP/MQTT ingestion architecture described above. |
 | `docs/` | In-depth documentation, including the [Flow guide](docs/README.md). |
+| `docs/grafana/` | Example Grafana dashboards that visualise gateway events and inventory data produced by the flow. |
 | `docs/CHANGELOG.md` | Operator-focused history of notable pipeline updates and deployment guidance. |
 | `config/` | Configuration dictionaries consumed by the flow. See `config/masterMap.json` (alias map) and `config/errorCodes.json` (error dictionary). |
 | `docs/schemas/` | JSON Schemas that describe and validate the configuration dictionaries. |
