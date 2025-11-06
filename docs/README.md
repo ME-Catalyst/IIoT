@@ -214,7 +214,20 @@ Rotate or archive these files prior to redeployments—the **Log Reset** inject 
 
 ---
 
-## 5. Inspecting structured debug logs
+## 5. Grafana dashboards
+
+Import the example dashboards under [`docs/grafana/`](grafana/) to accelerate observability bring-up:
+
+| Dashboard | Backing bucket | Highlights |
+| --- | --- | --- |
+| `io-link-gateway-overview.json` | `iot_events` | Event volume trends per gateway/port, current state table with descriptions, average severity trace, and a 24-hour leaderboard of recurring alarms. |
+| `io-link-device-inventory.json` | `gateway_identification` | Gateway count stat, pivoted inventory table, and firmware distribution bar gauge based on the device identification poll. |
+
+When importing, point each dashboard at the Flux-enabled InfluxDB data source used by the Node-RED flow. Adjust the constant bucket variables if your deployment writes to different bucket names.
+
+---
+
+## 6. Inspecting structured debug logs
 
 Both the HTTP and MQTT branches persist intermediate states to disk so you can replay the pipeline without live traffic.
 
@@ -236,7 +249,7 @@ Both the HTTP and MQTT branches persist intermediate states to disk so you can r
 
 ---
 
-## 6. Quick triage: where to enable debug nodes
+## 7. Quick triage: where to enable debug nodes
 
 Use the Node-RED editor’s debug sidebar to stream messages at the key choke points shown below. The diagram references the default group names from the flow JSON.
 

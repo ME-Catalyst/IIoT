@@ -1,0 +1,329 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_INFLUXDB",
+      "label": "InfluxDB",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__elements": [],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.4.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": "9.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": "9.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "flux"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "iteration": 1712054400000,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "$DS_INFLUXDB"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "showPoints": "never"
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "query": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gateway_events\")\n  |> filter(fn: (r) => r[\"_field\"] == \"errorCode\")\n  |> group(columns: [\"ip\", \"port\"])\n  |> aggregateWindow(every: v.windowPeriod, fn: count, createEmpty: false)\n  |> map(fn: (r) => ({ r with _field: \"events\" }))\n  |> yield(name: \"event_count\")",
+          "refId": "A",
+          "queryType": "flux"
+        }
+      ],
+      "title": "Gateway event volume by IP/port",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "$DS_INFLUXDB"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto"
+          },
+          "mappings": [
+            {
+              "options": {
+                "event_start": {
+                  "color": "rgba(45, 191, 0, 0.7)",
+                  "index": 0,
+                  "text": "Active"
+                },
+                "event_stop": {
+                  "color": "rgba(128, 128, 128, 0.6)",
+                  "index": 1,
+                  "text": "Cleared"
+                },
+                "unknown": {
+                  "color": "rgba(237, 129, 40, 0.8)",
+                  "index": 2,
+                  "text": "Unknown"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.0",
+      "targets": [
+        {
+          "query": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gateway_events\")\n  |> filter(fn: (r) => r[\"_field\"] == \"eventState\")\n  |> group(columns: [\"ip\", \"port\"])\n  |> sort(columns: [\"_time\"], desc: true)\n  |> unique(column: \"_value\")\n  |> last()\n  |> keep(columns: [\"ip\", \"port\", \"_value\", \"errorDescription\"])\n  |> rename(columns: { _value: \"state\" })",
+          "refId": "A",
+          "queryType": "flux"
+        }
+      ],
+      "title": "Latest gateway event state",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "ip",
+                "port",
+                "state",
+                "errorDescription"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "$DS_INFLUXDB"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "lineWidth": 2
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "query": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gateway_events\")\n  |> filter(fn: (r) => r[\"_field\"] == \"severity\")\n  |> map(fn: (r) => ({ r with _value: float(v: int(v: r._value)) }))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"severity_mean\")",
+          "refId": "A",
+          "queryType": "flux"
+        }
+      ],
+      "title": "Average severity",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "$DS_INFLUXDB"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left"
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "query": "from(bucket: v.bucket)\n  |> range(start: -24h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"gateway_events\")\n  |> filter(fn: (r) => r[\"_field\"] == \"errorDescription\")\n  |> group(columns: [\"ip\", \"port\", \"errorDescription\"])\n  |> count(column: \"_value\")\n  |> rename(columns: { _value: \"occurrences\" })\n  |> sort(columns: [\"occurrences\"], desc: true)\n  |> limit(n: 10)",
+          "refId": "A",
+          "queryType": "flux"
+        }
+      ],
+      "title": "Top recurring events (24h)",
+      "type": "table"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [
+    "iolink",
+    "gateway"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "InfluxDB",
+          "value": "$DS_INFLUXDB"
+        },
+        "hide": 0,
+        "label": "Datasource",
+        "name": "DS_INFLUXDB",
+        "options": [],
+        "query": "influxdb",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "iot_events",
+          "value": "iot_events"
+        },
+        "hide": 0,
+        "label": "Bucket",
+        "name": "bucket",
+        "options": [
+          {
+            "selected": true,
+            "text": "iot_events",
+            "value": "iot_events"
+          }
+        ],
+        "query": "iot_events",
+        "type": "constant"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "IO-Link Gateway Overview",
+  "uid": "iolink-gateway-overview",
+  "version": 1,
+  "weekStart": ""
+}
