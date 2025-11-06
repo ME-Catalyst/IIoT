@@ -34,6 +34,51 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 | `config/` | Configuration dictionaries consumed by the flow. See `config/masterMap.json` (alias map) and `config/errorCodes.json` (error dictionary). |
 | `docs/schemas/` | JSON Schemas that describe and validate the configuration dictionaries. |
 
+## Working with the repository
+
+### Exporting and versioning flow updates
+
+1. Make your Node-RED edits locally.
+2. Export the flow as JSON (`Menu → Export → Clipboard`) and save it as `flows/Influx_Data_Pipeline_vX.Y.json` where `X.Y` tracks the release number.
+3. Update `docs/README.md` (flow walkthrough) and `docs/CHANGELOG.md` with the behavioural changes you introduced.
+4. Follow the [release procedure](RELEASE.md) to tag the repo and publish the release artefacts.
+
+> **Tip:** Keep the previous flow exports under `flows/` so reviewers can diff behavioural changes between releases.
+
+### Local validation workflow
+
+Before opening a pull request:
+
+1. **Check JSON dictionaries** – Validate `config/masterMap.json` and `config/errorCodes.json` against their schemas.
+   ```bash
+   npx --yes ajv-cli validate \
+     -s docs/schemas/masterMap.schema.json \
+     -d config/masterMap.json
+
+   npx --yes ajv-cli validate \
+     -s docs/schemas/errorCodes.schema.json \
+     -d config/errorCodes.json
+   ```
+2. **Review structured docs** – Confirm the flow guide, changelog, and this README reflect your changes.
+3. **Sanity-check Node-RED context** – After importing the updated flow, deploy it once and confirm the context store populates `global.errorMap` and `flow.cfg` (open `Menu → Context Data`).
+
+### Helpful CLI snippets
+
+- Diff two flow exports to visualise node changes:
+  ```bash
+  npx --yes json-diff flows/Influx_Data_Pipeline_v1.1.json flows/Influx_Data_Pipeline_v1.2.json
+  ```
+- Pretty-print a captured MQTT frame during troubleshooting:
+  ```bash
+  jq '.' < MQTT_raw_frames.json
+  ```
+- Tail Node-RED runtime logs when running as a systemd service:
+  ```bash
+  journalctl -u nodered -f
+  ```
+
+These commands help you keep configuration files valid and ensure the exported flow matches what runs in your Node-RED instance.
+
 ## Release management
 
 - Review the [changelog](docs/CHANGELOG.md) to understand what changed between tagged versions before deploying updates to production gateways.

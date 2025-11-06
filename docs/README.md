@@ -1,7 +1,7 @@
 # Influx Data Pipeline v1.2 – Node‑RED Flow
 
 > **Flow file:** `Influx_Data_Pipeline_v1.2.json`
-> **Last reviewed:** 2025‑06‑10
+> **Last reviewed:** 2025‑03‑27
 
 This flow ingests IO‑Link gateway data through two independent paths (HTTP polling & MQTT subscribe), enriches it with metadata, writes structured points to InfluxDB 2.x, and archives full frames for audit/debug.  It is designed for **industrial edge deployments** where on‑prem Node‑RED acts as a lightweight collector in a Mosquitto / Influx / Grafana stack.
 
@@ -128,6 +128,17 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 * **Serialize Full Message** nodes – Persist raw MQTT inputs, router outputs, discarded frames, and Influx-ready payloads to `MQTT_raw_input*.json`, `MQTT_raw_frames*.json`, `MQTT_discard_frames*.json`, and `MQTT_Influx*.json`.
 * **mqtt in `#` / `$SYS/#`** – Optional broker-wide taps that mirror all topics into the structured log set for diagnostics.
 
+### 3.7 Context reference
+
+| Context scope | Key | Source node | Purpose |
+| ------------- | --- | ----------- | ------- |
+| `global` | `errorMap` | **Store in global.errorMap** | Lookup table for translating gateway event codes into human-readable strings before writing to Influx or emitting alerts. |
+| `flow` | `cfg` | **Read config JSON → parse → save cfg** | Alias dictionary for MQTT router and HTTP event parser. Contains nested objects keyed by metric group (for example `pins.temperature`). |
+| `flow` | `logDirectory`* | (Function constants inside logging tabs) | Shared base path used when writing structured JSON debug artefacts. Update alongside File Out nodes if you relocate logs. |
+
+> \*The logging groups derive `logDirectory` from constants in their Function nodes. Search for `E:\\NodeRed\\Logs` inside the flow if you need to change the path globally.
+
+On a fresh deploy, confirm both context entries populate by opening **Menu → Context Data** in the Node-RED editor. Empty context suggests a missing configuration file, schema violation, or file permission issue.
 
 
 ---
@@ -186,6 +197,20 @@ Follow this checklist to validate that the gateways are reachable, the brokers a
 | **HTTP** | `curl` requests return JSON arrays/objects with a 200 status. |
 | **Influx** | Check the bucket dashboards or use the `/api/v2/query` endpoint to confirm new timestamps appear after the MQTT/HTTP probes. |
 
+### 4.4 Structured log catalogue
+
+| File prefix | Source group | What it captures | Why it matters |
+| ----------- | ------------ | ---------------- | -------------- |
+| `01_GET_request*.json` | HTTP pipeline | Raw request metadata and target URL list. | Confirms the IP generator and URL builder produced the expected targets. |
+| `02_GET_reply*.json` | HTTP pipeline | Gateway responses prior to parsing. | Identify HTTP status codes, authentication failures, or malformed JSON before the parser runs. |
+| `03_GET_tag*.json` / `04_GET_split*.json` | HTTP pipeline | Events after tagging with IP metadata and after array splitting. | Verify event fan-out and per-host attribution. |
+| `05_GET_influx*.json` | HTTP pipeline | Final Influx payloads that include error descriptions. | Diff against database contents when troubleshooting missing measurements. |
+| `MQTT_raw_input*.json` | MQTT pipeline | Frames exactly as received from the broker. | Detect broker-side schema drift or connectivity hiccups. |
+| `MQTT_raw_frames*.json` | MQTT pipeline | Parsed frames grouped before alias routing. | Inspect topic naming and payload segmentation. |
+| `MQTT_discard_frames*.json` | MQTT pipeline | Frames rejected by the router. | Quickly surface alias gaps or unexpected payload shapes. |
+| `MQTT_Influx*.json` | MQTT pipeline | Ready-to-write points including computed measurement names. | Compare with Influx bucket contents to confirm ingestion succeeded. |
+
+Rotate or archive these files prior to redeployments—the **Log Reset** inject truncates them on each deploy and every 48 hours.
 
 ---
 
@@ -244,6 +269,12 @@ Use the Node-RED editor’s debug sidebar to stream messages at the key choke po
 | `config/errorCodes.json` | Dictionary of gateway event codes to human‑readable descriptions.                     | `{ "0x1830": "Secondary supply voltage overrun." }`            |
 
 > **Tip:** Keep these files under version control; the flow loads them at runtime, so changes take effect on next deploy.
+
+### 7.1 Schema-backed editing
+
+- The JSON Schemas in `docs/schemas/` enforce structural correctness. Use `ajv-cli` locally (see [Local validation workflow](../README.md#local-validation-workflow)) to catch typos before deployment.
+- When adding a new metric category inside `masterMap.json`, create a sibling object under `pins` with string aliases for every device field you expect. The MQTT router automatically discovers new keys.
+- Event code additions in `errorCodes.json` can use either decimal integers (`"6144"`) or hexadecimal strings (`"0x9801"`); the flow normalises both when enriching HTTP events.
 
 ### Production overrides
 
