@@ -31,11 +31,41 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 | `flows/` | Exported Node-RED flow definitions. The flagship flow, [`Influx_Data_Pipeline_v1.2.json`](flows/Influx_Data_Pipeline_v1.2.json), implements the dual HTTP/MQTT ingestion architecture described above. |
 | `docs/` | In-depth documentation, including the [Flow guide](docs/README.md). Future additions such as `CONTRIBUTING.md` and `TESTING.md` will land here to describe collaboration and verification practices. |
 | `config/` | Configuration dictionaries consumed by the flow. See `config/masterMap.json` (alias map) and `config/errorCodes.json` (error dictionary). |
+| `docs/schemas/` | JSON Schemas that describe and validate the configuration dictionaries. |
 
 ### Configuration dictionaries
 
 - **`config/masterMap.json`** – Maps IO-Link process, diagnostic, and statistical fields (e.g., `temperaturePin1`, `meanTemperature`) to concise aliases that form Influx measurement names.
 - **`config/errorCodes.json`** – Enumerates numeric gateway event codes (hex and decimal) alongside human-readable messages used in alerts and dashboards.
+
+### Validating configuration locally
+
+Validate `config/masterMap.json` and `config/errorCodes.json` before deploying updated dictionaries:
+
+```bash
+npx --yes ajv-cli validate \
+  -s docs/schemas/masterMap.schema.json \
+  -d config/masterMap.json
+
+npx --yes ajv-cli validate \
+  -s docs/schemas/errorCodes.schema.json \
+  -d config/errorCodes.json
+```
+
+These commands install `ajv-cli` on-demand via `npx`. For repeated validation during development, you can add the tool as a local dependency:
+
+```bash
+npm install --save-dev ajv-cli
+npm run validate:config
+```
+
+Add the following npm script to your `package.json` if you prefer a shorthand command:
+
+```json
+"scripts": {
+  "validate:config": "ajv validate -s docs/schemas/masterMap.schema.json -d config/masterMap.json && ajv validate -s docs/schemas/errorCodes.schema.json -d config/errorCodes.json"
+}
+```
 
 ### Overriding configuration in production
 
@@ -46,6 +76,15 @@ The defaults in `config/` are designed for quick evaluation. For production depl
 - **Automated rollouts** – Export `config/masterMap.json` and `config/errorCodes.json` as ConfigMaps or environment-configured files and mount them into the runtime. This allows centralised updates without modifying the flow definition.
 
 Keep both files under version control and redeploy the flow after any updates so the runtime context reflects the latest mappings.
+
+### Troubleshooting configuration validation
+
+| Symptom | Resolution |
+| --- | --- |
+| `data must have required property 'pins'` when validating `masterMap.json` | Ensure the root object contains a `pins` property and that it is spelled correctly. |
+| `data/pins/temperature` fails with `must be string` errors | Check for nested objects that contain non-string values—aliases must be strings in every category. |
+| Validation errors referencing `additionalProperties` | Remove unexpected top-level keys from the config files or extend the schema if a new section is intentional. |
+| Error codes rejected because the key format is invalid | Use decimal integers (e.g., `6144`) or hexadecimal strings prefixed with `0x` (e.g., `0x9801`). |
 
 ## Next steps for contributors
 

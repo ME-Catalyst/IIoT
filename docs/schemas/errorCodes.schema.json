@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/errorCodes.json",
+  "title": "Error Codes Dictionary",
+  "description": "Validates the gateway error code map consumed by the Node-RED flow.",
+  "type": "object",
+  "minProperties": 1,
+  "additionalProperties": false,
+  "patternProperties": {
+    "^(0x[0-9A-Fa-f]+|[0-9]+)$": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human readable explanation for the gateway error code."
+    }
+  }
+}
