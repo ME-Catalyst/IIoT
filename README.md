@@ -30,8 +30,14 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 | --- | --- |
 | `flows/` | Exported Node-RED flow definitions. The flagship flow, [`Influx_Data_Pipeline_v1.2.json`](flows/Influx_Data_Pipeline_v1.2.json), implements the dual HTTP/MQTT ingestion architecture described above. |
 | `docs/` | In-depth documentation, including the [Flow guide](docs/README.md). |
+| `docs/CHANGELOG.md` | Operator-focused history of notable pipeline updates and deployment guidance. |
 | `config/` | Configuration dictionaries consumed by the flow. See `config/masterMap.json` (alias map) and `config/errorCodes.json` (error dictionary). |
 | `docs/schemas/` | JSON Schemas that describe and validate the configuration dictionaries. |
+
+## Release management
+
+- Review the [changelog](docs/CHANGELOG.md) to understand what changed between tagged versions before deploying updates to production gateways.
+- Follow the [release procedure](RELEASE.md) when publishing a new tag so the exported flow, documentation, and GitHub Release assets stay in sync for operators.
 
 ### Configuration dictionaries
 
