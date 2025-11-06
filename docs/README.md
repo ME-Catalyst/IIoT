@@ -132,7 +132,111 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 
 ---
 
-## 4. Configuration files
+## 4. End-to-end verification playbook
+
+Follow this checklist to validate that the gateways are reachable, the brokers are emitting data, and the flow still enriches frames before they are written to disk or InfluxDB.
+
+### 4.1 MQTT ingress smoke test
+
+1. **Confirm broker reachability**
+   ```bash
+   mosquitto_sub -h <mqtt-host> -p 1883 -t "$SYS/broker/version" -C 1
+   ```
+   This lightweight probe ensures your credentials and TLS settings (if enabled) are accepted before subscribing to the production topics.
+
+2. **Watch the IO-Link namespace**
+   ```bash
+   mosquitto_sub -h <mqtt-host> -p 1883 -u <user> -P '<password>' \
+     -t '+/iolink/v1/#' -v | jq '.'
+   ```
+   Leave this running while triggering sensor activity. You should see JSON payloads containing `head`, `port`, and `timestamp` fields.
+
+3. **Check discard feed for schema drift**
+   ```bash
+   mosquitto_sub -h <mqtt-host> -p 1883 -u <user> -P '<password>' \
+     -t 'debug/iot/MQTT_discard_frames' -v -C 10 | jq '.'
+   ```
+   Non-empty output indicates frames the router could not map (for example, unknown aliases). Investigate before promoting the change.
+
+### 4.2 HTTP poll verification
+
+1. **Validate `/gateway/events` endpoint**
+   ```bash
+   curl -sS http://<gateway-ip>/iolink/v1/gateway/events | jq '.'
+   ```
+   Expect an array of event objects. If the call fails, the HTTP pipeline will drop the message and you will only see errors in the structured logs.
+
+2. **Verify identification poll**
+   ```bash
+   curl -sS http://<gateway-ip>/iolink/v1/gateway/identification | jq '.'
+   ```
+   The response should include `vendorName`, `productCode`, and `firmwareVersion`—values that the flow forwards to the `gateway_identification` bucket.
+
+3. **Run curl through the Node-RED host**
+   ```bash
+   curl -sS -H 'X-Debug: pipeline' http://localhost:1880/io-test/health
+   ```
+   (Optional) Use this if you have exposed a local test HTTP-In node that fans into the same parser. It confirms the Node-RED container has outbound egress to the gateways.
+
+### 4.3 Message path validation
+
+| Step | Expected signal |
+| ---- | ---------------- |
+| **MQTT** | `mosquitto_sub` shows live traffic on `+/iolink/v1/#` and zero (or temporary) entries on `debug/iot/MQTT_discard_frames`. |
+| **HTTP** | `curl` requests return JSON arrays/objects with a 200 status. |
+| **Influx** | Check the bucket dashboards or use the `/api/v2/query` endpoint to confirm new timestamps appear after the MQTT/HTTP probes. |
+
+
+---
+
+## 5. Inspecting structured debug logs
+
+Both the HTTP and MQTT branches persist intermediate states to disk so you can replay the pipeline without live traffic.
+
+1. **Locate the files** – By default they live under `E:\NodeRed\Logs` (Windows) or the directory you configured in each *File out* node. Each stage has a numbered prefix (`01_GET_request.json`, `MQTT_raw_input.json`, etc.).
+2. **Tail the latest entries** – On Linux-based deployments:
+   ```bash
+   sudo tail -f /opt/nodered/logs/01_GET_request.json
+   ```
+   Pair this with another terminal watching `MQTT_Influx.json` to see the enriched payloads that are handed to the Influx writers.
+3. **Replay a single frame** – Use `jq` to inspect a captured message and re-inject it through the flow for debugging:
+   ```bash
+   jq '.[0]' MQTT_raw_frames.json > /tmp/frame.json
+   curl -X POST -H 'Content-Type: application/json' \
+     --data @/tmp/frame.json http://localhost:1880/test/replay
+   ```
+   Create a temporary HTTP-In → Function → Debug chain in Node-RED to capture the output. Remove it after the investigation.
+4. **Archive before rotating** – The `Log Reset` inject truncates the files on deploy and every 48 h. Copy files you need to retain into your ticket workspace before redeploying (`cp MQTT_discard_frames.json ~/cases/INC1234/`).
+
+
+---
+
+## 6. Quick triage: where to enable debug nodes
+
+Use the Node-RED editor’s debug sidebar to stream messages at the key choke points shown below. The diagram references the default group names from the flow JSON.
+
+```text
+ MQTT Ingest Group (30ecd298…)
+ ├─ All IO-Link topics (mqtt in)
+ │    └─ 📌 enable Debug node "MQTT raw tap"
+ ├─ IO-Link router (function)
+ │    └─ 📌 enable Debug node "Router output"
+ └─ Write Influx (influxdb out)
+      └─ 📌 enable Debug node "Influx payload"
+
+ HTTP Poll Group (6bd20502…)
+ ├─ GET gateway events (http request)
+ │    └─ 📌 enable Debug node "HTTP reply"
+ └─ Influx data prep (function v8)
+      └─ 📌 enable Debug node "HTTP to Influx"
+```
+
+> **Tip:** Toggle the small green bug icons on these nodes when triaging issues. Keeping them disabled by default avoids flooding the debug sidebar during normal operation.
+
+
+---
+
+## 7. Configuration files
 
 | File              | Description                                                                           | Key fields                                                     |
 | ----------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
@@ -188,7 +292,7 @@ volumes:
 
 ---
 
-## 5. Customisation guide
+## 8. Customisation guide
 
 * **Add devices to polling list** – Edit the `ranges` array in **generate IPs** (supports single host or range).
 * **Change poll interval** – Adjust the `repeat` field (seconds) on the HTTP **trigger** inject node.
@@ -199,7 +303,7 @@ volumes:
 
 ---
 
-## 6. Troubleshooting
+## 9. Troubleshooting
 
 | Symptom                       | Check                                                                                                                                |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -210,7 +314,7 @@ volumes:
 
 ---
 
-## 7. Deployment & scaling tips
+## 10. Deployment & scaling tips
 
 * **Multiple gateways** – MQTT pipeline auto‑scales; for HTTP polling, simply extend the IP list.
 * **Kubernetes / Docker** – Mount the `config/` and `logs/` directories as volumes; pass sensitive tokens via secrets.
