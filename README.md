@@ -29,7 +29,7 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 | Path | What you will find |
 | --- | --- |
 | `flows/` | Exported Node-RED flow definitions. The flagship flow, [`Influx_Data_Pipeline_v1.2.json`](flows/Influx_Data_Pipeline_v1.2.json), implements the dual HTTP/MQTT ingestion architecture described above. |
-| `docs/` | In-depth documentation, including the [Flow guide](docs/README.md). Future additions such as `CONTRIBUTING.md` and `TESTING.md` will land here to describe collaboration and verification practices. |
+| `docs/` | In-depth documentation, including the [Flow guide](docs/README.md). |
 | `config/` | Configuration dictionaries consumed by the flow. See `config/masterMap.json` (alias map) and `config/errorCodes.json` (error dictionary). |
 | `docs/schemas/` | JSON Schemas that describe and validate the configuration dictionaries. |
 
@@ -89,7 +89,7 @@ Keep both files under version control and redeploy the flow after any updates so
 ## Next steps for contributors
 
 - Review the [flow documentation](docs/README.md) to understand deployment expectations and operational tips.
-- Check back for upcoming `docs/CONTRIBUTING.md` and `docs/TESTING.md` guides; until then, please document any local testing steps directly in your pull requests.
+- Read the [Contributing Guide](CONTRIBUTING.md) for exporting flows, formatting JSON, running validations, and documenting your work before opening a pull request.
 
 ## License
 
