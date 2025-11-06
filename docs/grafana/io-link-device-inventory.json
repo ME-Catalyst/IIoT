@@ -110,7 +110,7 @@
       },
       "targets": [
         {
-          "query": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"device_info\")\n  |> filter(fn: (r) => r[\"_field\"] == \"serialNumber\")\n  |> group(columns: [\"gateway\"])\n  |> last()\n  |> count()",
+          "query": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"device_info\")\n  |> pivot(rowKey: [\"_time\", \"serialNumber\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> keep(columns: [\"_time\", \"gateway\"])\n  |> distinct(column: \"gateway\")\n  |> count(column: \"gateway\")",
           "refId": "A",
           "queryType": "flux"
         }
@@ -143,7 +143,7 @@
       },
       "targets": [
         {
-          "query": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"device_info\")\n  |> pivot(rowKey: [\"gateway\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group()\n  |> sort(columns: [\"gateway\"], desc: false)",
+          "query": "from(bucket: v.bucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"device_info\")\n  |> pivot(rowKey: [\"_time\", \"serialNumber\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group(columns: [\"serialNumber\"])\n  |> sort(columns: [\"_time\"], desc: true)\n  |> limit(n: 1)\n  |> group()\n  |> sort(columns: [\"gateway\"], desc: false)",
           "refId": "A",
           "queryType": "flux"
         }
