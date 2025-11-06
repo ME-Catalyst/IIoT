@@ -1,17 +1,18 @@
-## Summary
-- [ ] Linked issue: <!-- e.g. Closes #123 -->
-- [ ] Summary of changes: <!-- high-level bullet list -->
+## Summary of Changes
 
-## Validation
-- [ ] `npx --yes ajv-cli validate -s docs/schemas/masterMap.schema.json -d config/masterMap.json`
-- [ ] `npx --yes ajv-cli validate -s docs/schemas/errorCodes.schema.json -d config/errorCodes.json`
-- [ ] Flow smoke test on Node-RED runtime (describe environment & result)
-- [ ] Markdown lint for updated docs (`npx --yes markdownlint-cli2 README.md docs/**/*.md`) or reason it was skipped
+<!-- Summarize the Node-RED flow updates and why they are needed. Reference related issues when possible. -->
 
-## Documentation & visuals
-- [ ] Updated relevant docs per [Contributing Guide](../CONTRIBUTING.md)
-- [ ] Added/updated screenshots or diagrams when UI or topology changed
+## Documentation Updates
 
-## Additional context
-- Notes for reviewers:
-- Deployment considerations:
+- [ ] Documentation updated
+- [ ] Not required
+
+<!-- Please ensure you have followed the steps in the [CONTRIBUTING guide](../CONTRIBUTING.md). -->
+
+## Validation Steps
+
+<!-- List the manual or automated checks performed to validate the flows (e.g., deployed to staging, ran specific tests). -->
+
+## Additional Notes
+
+<!-- Add any extra information reviewers should know. -->
