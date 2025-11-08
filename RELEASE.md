@@ -29,7 +29,7 @@ This repository uses date-stamped semantic version tags (for example, `v1.2`) to
 ## 3. Publish the GitHub Release
 1. Draft a new GitHub Release anchored to the freshly pushed tag.
 2. Copy the operator-facing highlights from `docs/CHANGELOG.md` into the release description and add any upgrade guidance or known issues.
-3. Attach the exported flow JSON (`flows/Influx_Data_Pipeline_vX.Y.json`) and any supplementary assets (for example, validation reports or dashboard exports) so operators can download the exact artefacts tested for the release.
+3. Attach the exported flow JSON (`flows/Influx_Data_Pipeline_vX.Y.json`) and any supplementary assets (for example, validation reports or dashboard exports) so operators can download the exact artifacts tested for the release.
 4. Publish the Release once the assets, notes, and tag alignment have been verified by a second reviewer when possible.
 
-Following this procedure ensures each tag is auditable, that operators can retrieve the correct flow artefacts, and that upgrade expectations remain transparent.
+Following this procedure ensures each tag is auditable, that operators can retrieve the correct flow artifacts, and that upgrade expectations remain transparent.

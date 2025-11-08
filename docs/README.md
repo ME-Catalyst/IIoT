@@ -8,7 +8,7 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 > ℹ️ **What’s new in v1.2**
 >
 > * Added an identification poll that writes gateway make/model metadata into a new Influx bucket `gateway_identification`—create the bucket (or disable the writer) before upgrading from v1.0.
-> * Upgraded the HTTP error-event parser (Function v8) to emit normalised port names (`x0`–`x7`), event state (`event_start`/`event_stop`), and raw device timestamps; dashboards that key off the old port strings must be updated.
+> * Upgraded the HTTP error-event parser (Function v8) to emit normalized port names (`x0`–`x7`), event state (`event_start`/`event_stop`), and raw device timestamps; dashboards that key off the old port strings must be updated.
 > * Replaced the ad-hoc debug dumps with structured log files (`MQTT_raw_*`, `MQTT_discard_*`, `01_GET_*`, etc.) driven by a new “Log Reset” inject plus wildcard MQTT taps (`#`, `$SYS/#`). Confirm the Node-RED service account can overwrite the new file set.
 
 
@@ -65,7 +65,7 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 ```
 
 * **Config Loader Group** – Loads `errorCodes.json` into global context and `masterMap.json` into flow context (`cfg`) on startup.
-* **HTTP Poll Pipeline** – Generates IP targets, polls `/iolink/v1/gateway/events` every 60 s (default), and runs the v8 event parser that normalises port IDs (`x0`–`x7`), state transitions, and timestamps before handing off to Influx.
+* **HTTP Poll Pipeline** – Generates IP targets, polls `/iolink/v1/gateway/events` every 60 s (default), and runs the v8 event parser that normalizes port IDs (`x0`–`x7`), state transitions, and timestamps before handing off to Influx.
 * **Gateway identification poll** – On deploy, calls `/iolink/v1/gateway/identification` for each host and persists make/model metadata via the `All messages to Influx` function.
 * **MQTT Ingest Pipeline** – Subscribes to all IO‑Link frames, resolves aliases via `cfg.pins`, and flattens data for storage.
 * **InfluxDB Out** – Three writers:
@@ -99,7 +99,7 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 4. **GET gateway events** *(http request)* – Parses JSON response (`ret:obj`). On error, `statusCode` is set and downstream logic drops the message.
 5. **tag IP / error handling** – Adds `msg.ip`, filters out 4xx/5xx.
 6. **split events array** – Breaks the returned list so each event is processed separately.
-7. **Influx data prep** *(function v8)* – Normalises port IDs to `x0`–`x7`, derives `eventState`, enriches with `rawDeviceTimestamp`, and looks up `errorDescription` from `global.errorMap`.
+7. **Influx data prep** *(function v8)* – Normalizes port IDs to `x0`–`x7`, derives `eventState`, enriches with `rawDeviceTimestamp`, and looks up `errorDescription` from `global.errorMap`.
 8. **Influx - gateway_events** – Inserts into **iot_events** bucket, measurement `gateway_events`.
 
 ### 3.3 Gateway identification poll (`59c49ae82e…`)
@@ -134,7 +134,7 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 | ------------- | --- | ----------- | ------- |
 | `global` | `errorMap` | **Store in global.errorMap** | Lookup table for translating gateway event codes into human-readable strings before writing to Influx or emitting alerts. |
 | `flow` | `cfg` | **Read config JSON → parse → save cfg** | Alias dictionary for MQTT router and HTTP event parser. Contains nested objects keyed by metric group (for example `pins.temperature`). |
-| `flow` | `logDirectory`* | (Function constants inside logging tabs) | Shared base path used when writing structured JSON debug artefacts. Update alongside File Out nodes if you relocate logs. |
+| `flow` | `logDirectory`* | (Function constants inside logging tabs) | Shared base path used when writing structured JSON debug artifacts. Update alongside File Out nodes if you relocate logs. |
 
 > \*The logging groups derive `logDirectory` from constants in their Function nodes. Search for `E:\\NodeRed\\Logs` inside the flow if you need to change the path globally.
 
@@ -197,7 +197,7 @@ Follow this checklist to validate that the gateways are reachable, the brokers a
 | **HTTP** | `curl` requests return JSON arrays/objects with a 200 status. |
 | **Influx** | Check the bucket dashboards or use the `/api/v2/query` endpoint to confirm new timestamps appear after the MQTT/HTTP probes. |
 
-### 4.4 Structured log catalogue
+### 4.4 Structured log catalog
 
 | File prefix | Source group | What it captures | Why it matters |
 | ----------- | ------------ | ---------------- | -------------- |
@@ -287,7 +287,7 @@ Use the Node-RED editor’s debug sidebar to stream messages at the key choke po
 
 - The JSON Schemas in `docs/schemas/` enforce structural correctness. Use `ajv-cli` locally (see [Local validation workflow](../README.md#local-validation-workflow)) to catch typos before deployment.
 - When adding a new metric category inside `masterMap.json`, create a sibling object under `pins` with string aliases for every device field you expect. The MQTT router automatically discovers new keys.
-- Event code additions in `errorCodes.json` can use either decimal integers (`"6144"`) or hexadecimal strings (`"0x9801"`); the flow normalises both when enriching HTTP events.
+- Event code additions in `errorCodes.json` can use either decimal integers (`"6144"`) or hexadecimal strings (`"0x9801"`); the flow normalizes both when enriching HTTP events.
 
 ### Production overrides
 
@@ -336,7 +336,7 @@ volumes:
 
 ---
 
-## 8. Customisation guide
+## 8. Customization guide
 
 * **Add devices to polling list** – Edit the `ranges` array in **generate IPs** (supports single host or range).
 * **Change poll interval** – Adjust the `repeat` field (seconds) on the HTTP **trigger** inject node.
