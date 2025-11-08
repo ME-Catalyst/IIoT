@@ -1,6 +1,6 @@
 # Grafana dashboards
 
-This directory contains example Grafana dashboards that visualise the Node-RED pipelines and supporting configuration shipped with this repository.
+This directory contains example Grafana dashboards that visualize the Node-RED pipelines and supporting configuration shipped with this repository.
 
 ## Dashboards
 

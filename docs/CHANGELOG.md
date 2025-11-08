@@ -3,7 +3,7 @@
 All notable changes to the Industrial IoT Data Pipeline are documented in this file. Dates reflect when the flow definition and supporting assets were published to the repository.
 
 ## [Unreleased]
-- Expanded operator documentation with context reference tables, structured log catalogues, and schema-backed editing guidance to streamline maintenance tasks.
+- Expanded operator documentation with context reference tables, structured log catalogs, and schema-backed editing guidance to streamline maintenance tasks.
 - Added Flux-based Grafana dashboard exports (`docs/grafana/`) covering gateway events and device inventory to accelerate observability rollout.
 
 ## [v1.2] - 2024-02-15
@@ -12,7 +12,7 @@ All notable changes to the Industrial IoT Data Pipeline are documented in this f
 - Refreshed the exported flow (`Influx_Data_Pipeline_v1.2.json`) and updated documentation to reflect the new Grafana dashboards and validation tooling.
 
 ## [v1.1] - 2023-09-08
-- Introduced dedicated context initialisation for configuration dictionaries to avoid stale IO-Link alias mappings after hot redeploys.
+- Introduced dedicated context initialization for configuration dictionaries to avoid stale IO-Link alias mappings after hot redeploys.
 - Hardened MQTT topic filters and payload schema validation to prevent malformed messages from bypassing error handling nodes.
 - Published a troubleshooting checklist focused on distinguishing gateway firmware faults from transport issues.
 

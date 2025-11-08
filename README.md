@@ -17,10 +17,10 @@ Before importing the flow, ensure the following tooling and services are availab
 The flow loads shared configuration on deploy, then runs two parallel ingestion paths that converge on InfluxDB writers:
 
 1. **Configuration loaders** populate `global.errorMap` and `flow.cfg` with the error dictionary and IO-Link alias map from the JSON config files.
-2. **HTTP polling pipeline** generates gateway IP targets, calls `/iolink/v1/gateway/events`, normalises event payloads (ports `x0`–`x7`, event state transitions, timestamps), and writes structured points to the `iot_events` bucket.
+2. **HTTP polling pipeline** generates gateway IP targets, calls `/iolink/v1/gateway/events`, normalizes event payloads (ports `x0`–`x7`, event state transitions, timestamps), and writes structured points to the `iot_events` bucket.
 3. **Gateway identification poll** periodically queries `/iolink/v1/gateway/identification` to capture hardware and firmware metadata for the `gateway_identification` bucket.
 4. **MQTT ingestion pipeline** subscribes to wildcard IO-Link topics, resolves measurement aliases from `flow.cfg`, and streams process data into the `A01` bucket.
-5. **Structured logging taps** mirror each pipeline stage into JSON files for audit/debug, with a scheduled reset to keep the artefacts fresh.
+5. **Structured logging taps** mirror each pipeline stage into JSON files for audit/debug, with a scheduled reset to keep the artifacts fresh.
 
 See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, upgrade notes, and troubleshooting guidance.
 
@@ -30,7 +30,7 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 | --- | --- |
 | `flows/` | Exported Node-RED flow definitions. The flagship flow, [`Influx_Data_Pipeline_v1.2.json`](flows/Influx_Data_Pipeline_v1.2.json), implements the dual HTTP/MQTT ingestion architecture described above. |
 | `docs/` | In-depth documentation, including the [Flow guide](docs/README.md). |
-| `docs/grafana/` | Example Grafana dashboards that visualise gateway events and inventory data produced by the flow. |
+| `docs/grafana/` | Example Grafana dashboards that visualize gateway events and inventory data produced by the flow. |
 | `docs/CHANGELOG.md` | Operator-focused history of notable pipeline updates and deployment guidance. |
 | `config/` | Configuration dictionaries consumed by the flow. See `config/masterMap.json` (alias map) and `config/errorCodes.json` (error dictionary). |
 | `docs/schemas/` | JSON Schemas that describe and validate the configuration dictionaries. |
@@ -41,10 +41,10 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 
 1. Make your Node-RED edits locally.
 2. Export the flow as JSON (`Menu → Export → Clipboard`) and save it as `flows/Influx_Data_Pipeline_vX.Y.json` where `X.Y` tracks the release number.
-3. Update `docs/README.md` (flow walkthrough) and `docs/CHANGELOG.md` with the behavioural changes you introduced.
-4. Follow the [release procedure](RELEASE.md) to tag the repo and publish the release artefacts.
+3. Update `docs/README.md` (flow walkthrough) and `docs/CHANGELOG.md` with the behavioral changes you introduced.
+4. Follow the [release procedure](RELEASE.md) to tag the repo and publish the release artifacts.
 
-> **Tip:** Keep the previous flow exports under `flows/` so reviewers can diff behavioural changes between releases.
+> **Tip:** Keep the previous flow exports under `flows/` so reviewers can diff behavioral changes between releases.
 
 ### Local validation workflow
 
@@ -65,7 +65,7 @@ Before opening a pull request:
 
 ### Helpful CLI snippets
 
-- Diff two flow exports to visualise node changes:
+- Diff two flow exports to visualize node changes:
   ```bash
   npx --yes json-diff flows/Influx_Data_Pipeline_v1.1.json flows/Influx_Data_Pipeline_v1.2.json
   ```
