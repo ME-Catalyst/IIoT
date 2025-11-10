@@ -1,7 +1,6 @@
 # Industrial IoT Data Pipeline
 
-Production-ready Node-RED flows that collect IO-Link telemetry, enrich it with contextual metadata, and deliver normalized metri
-cs to an InfluxDB + Grafana observability stack.
+Production-ready Node-RED flows that collect IO-Link telemetry, enrich it with contextual metadata, and deliver normalized metrics to an InfluxDB + Grafana observability stack.
 
 > **No Warranty or Liability** – Provided “as-is,” without warranty of any kind.
 
