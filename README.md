@@ -41,7 +41,7 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 | `flows/` | Exported Node-RED flow definitions. The flagship flow, [`Influx_Data_Pipeline_v1.2.json`](flows/Influx_Data_Pipeline_v1.2.json), implements the dual HTTP/MQTT ingestion architecture described above. |
 | `docs/` | In-depth documentation, including the [Flow guide](docs/README.md). |
 | `docs/grafana/` | Example Grafana dashboards that visualize gateway events and inventory data produced by the flow. |
-| `docs/CHANGELOG.md` | Operator-focused history of notable pipeline updates and deployment guidance. |
+| `CHANGELOG.md` | Operator-focused history of notable pipeline updates and deployment guidance. |
 | `config/` | Configuration dictionaries consumed by the flow. See `config/masterMap.json` (alias map) and `config/errorCodes.json` (error dictionary). |
 | `docs/schemas/` | JSON Schemas that describe and validate the configuration dictionaries. |
 
@@ -51,7 +51,7 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 
 1. Make your Node-RED edits locally.
 2. Export the flow as JSON (`Menu → Export → Clipboard`) and save it as `flows/Influx_Data_Pipeline_vX.Y.json` where `X.Y` tracks the release number.
-3. Update `docs/README.md` (flow walkthrough) and `docs/CHANGELOG.md` with the behavioral changes you introduced.
+3. Update `docs/README.md` (flow walkthrough) and `CHANGELOG.md` with the behavioral changes you introduced.
 4. Follow the [release procedure](RELEASE.md) to tag the repo and publish the release artifacts.
 
 > **Tip:** Keep the previous flow exports under `flows/` so reviewers can diff behavioral changes between releases.
@@ -92,7 +92,7 @@ These commands help you keep configuration files valid and ensure the exported f
 
 ## Release management
 
-- Review the [changelog](docs/CHANGELOG.md) to understand what changed between tagged versions before deploying updates to production gateways.
+- Review the [changelog](CHANGELOG.md) to understand what changed between tagged versions before deploying updates to production gateways.
 - Follow the [release procedure](RELEASE.md) when publishing a new tag so the exported flow, documentation, and GitHub Release assets stay in sync for operators.
 
 ### Configuration dictionaries
