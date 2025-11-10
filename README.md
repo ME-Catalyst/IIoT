@@ -145,4 +145,4 @@ Keep both files under version control and redeploy the flow after any updates so
 
 ## License
 
-This project is distributed under the [Apache License 2.0](LICENSE).
+This project is distributed under the [MIT License](LICENSE).

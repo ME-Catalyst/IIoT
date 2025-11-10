@@ -369,7 +369,7 @@ volumes:
 
 ## License
 
-This project is licensed under the [Apache-2.0](../LICENSE) license.
+This project is licensed under the [MIT License](../LICENSE).
 
 This repository is managed with the help of AI support and the Codex environment.
 
