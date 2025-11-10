@@ -33,5 +33,5 @@
 | Structured log directory unavailable | Debug history lost | Include path verification checks in deployment checklists; allow configurable fallback paths. |
 
 ## 7. Dependencies & key dates
-- `docs/CHANGELOG.md` tracks release history; align roadmap checkpoints with tagged flow exports.
+- `CHANGELOG.md` tracks release history; align roadmap checkpoints with tagged flow exports.
 - Coordinate roadmap updates with quarterly flow reviews to confirm the Node-RED runtime still matches repository defaults.

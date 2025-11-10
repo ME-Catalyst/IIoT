@@ -8,7 +8,7 @@ This document orients contributors who maintain the Node-RED flow, configuration
 | --- | --- |
 | `flows/` | Versioned Node-RED flow exports (`Influx_Data_Pipeline_v1.2.json`). |
 | `config/` | Runtime configuration dictionaries (`masterMap.json`, `errorCodes.json`). |
-| `docs/` | Flow walkthrough, changelog, schemas, Grafana dashboards, and architecture assets. |
+| `docs/` | Flow walkthrough, schemas, Grafana dashboards, and architecture assets. |
 | `docs/schemas/` | JSON Schemas enforcing dictionary structure. |
 | `docs/grafana/` | Importable Grafana dashboards. |
 | `RELEASE.md` | Release engineering checklist. |
@@ -34,7 +34,7 @@ This document orients contributors who maintain the Node-RED flow, configuration
 
 ## 6. Release management
 - Follow `RELEASE.md` for tagging, packaging flow JSON, and updating documentation.
-- Summarize behavior changes in `docs/CHANGELOG.md` and align version numbers across flow export and documentation headers.
+- Summarize behavior changes in `CHANGELOG.md` and align version numbers across flow export and documentation headers.
 - Coordinate with operations to update production configuration mounts and tokens.
 
 ## 7. Tooling roadmap for developers
