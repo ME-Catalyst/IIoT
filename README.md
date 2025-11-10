@@ -38,7 +38,9 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 
 | Path | What you will find |
 | --- | --- |
-| `flows/` | Exported Node-RED flow definitions. The flagship flow, [`Influx_Data_Pipeline_v1.2.json`](flows/Influx_Data_Pipeline_v1.2.json), implements the dual HTTP/MQTT ingestion architecture described above. |
+| `src/` | Reusable runtime assets. Production Node-RED exports live under `src/flows/production`, alongside any helper functions shared between flows. The flagship flow, [`Influx_Data_Pipeline_v1.2.json`](src/flows/production/Influx_Data_Pipeline_v1.2.json), implements the dual HTTP/MQTT ingestion architecture described above. |
+| `examples/` | Sanitized flow variants and configuration samples that mirror the production structure without environment-specific secrets. |
+| `tests/` | Validation utilities such as JSON schemas and structural checks for Node-RED exports. Run `python -m tests.validate_flows` to confirm production flows meet the baseline contract. |
 | `docs/` | In-depth documentation, including the [Flow guide](docs/README.md). |
 | `docs/grafana/` | Example Grafana dashboards that visualize gateway events and inventory data produced by the flow. |
 | `CHANGELOG.md` | Operator-focused history of notable pipeline updates and deployment guidance. |
@@ -50,11 +52,12 @@ See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, u
 ### Exporting and versioning flow updates
 
 1. Make your Node-RED edits locally.
-2. Export the flow as JSON (`Menu → Export → Clipboard`) and save it as `flows/Influx_Data_Pipeline_vX.Y.json` where `X.Y` tracks the release number.
-3. Update `docs/README.md` (flow walkthrough) and `CHANGELOG.md` with the behavioral changes you introduced.
-4. Follow the [release procedure](RELEASE.md) to tag the repo and publish the release artifacts.
+2. Export the flow as JSON (`Menu → Export → Clipboard`) and save it as `src/flows/production/Influx_Data_Pipeline_vX.Y.json` where `X.Y` tracks the release number.
+3. Copy a sanitized subset (if relevant) into `examples/flows/` so downstream consumers have a reference implementation without production details.
+4. Update `docs/README.md` (flow walkthrough) and `CHANGELOG.md` with the behavioral changes you introduced.
+5. Follow the [release procedure](RELEASE.md) to tag the repo and publish the release artifacts.
 
-> **Tip:** Keep the previous flow exports under `flows/` so reviewers can diff behavioral changes between releases.
+> **Tip:** Keep the previous flow exports under `src/flows/production/` so reviewers can diff behavioral changes between releases. Mirror any redacted examples in `examples/flows/` when you introduce new versions.
 
 ### Local validation workflow
 
@@ -77,7 +80,7 @@ Before opening a pull request:
 
 - Diff two flow exports to visualize node changes:
   ```bash
-  npx --yes json-diff flows/Influx_Data_Pipeline_v1.1.json flows/Influx_Data_Pipeline_v1.2.json
+  npx --yes json-diff src/flows/production/Influx_Data_Pipeline_v1.1.json src/flows/production/Influx_Data_Pipeline_v1.2.json
   ```
 - Pretty-print a captured MQTT frame during troubleshooting:
   ```bash

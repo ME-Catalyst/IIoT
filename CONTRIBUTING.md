@@ -11,7 +11,7 @@ Follow these steps whenever you modify a flow and need to add it to version cont
 3. From the editor menu choose **Export → Selected flows** (or **Export → All flows** if appropriate).
 4. Set the **Export format** to **Formatted JSON** to keep the file readable in Git.
 5. Ensure **Indent** is set to **2 spaces** and the **include flow credentials** toggle remains **off**.
-6. Replace the corresponding file under [`flows/`](flows/) in this repository with the exported JSON. Use semantic versioning in filenames when creating new revisions (e.g., `Influx_Data_Pipeline_v1.3.json`).
+6. Replace the corresponding file under [`src/flows/production/`](src/flows/production/) in this repository with the exported JSON. Use semantic versioning in filenames when creating new revisions (e.g., `Influx_Data_Pipeline_v1.3.json`). When appropriate, publish a redacted companion under [`examples/flows/`](examples/flows/) so downstream consumers can test without production secrets.
 7. Run the validation commands described below to confirm the flow still operates with the shared configuration files.
 
 ## JSON formatting standards

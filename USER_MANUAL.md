@@ -15,7 +15,7 @@ This manual walks operations engineers through deploying and operating the `Infl
 
 ## 3. Installation workflow
 1. **Copy configuration dictionaries** – Place `config/masterMap.json` and `config/errorCodes.json` on the Node-RED host (or mount overrides). Confirm file permissions allow the Node-RED service account to read them.
-2. **Import the flow** – In the Node-RED editor, choose `Menu → Import → Clipboard`, paste the contents of `flows/Influx_Data_Pipeline_v1.2.json`, and deploy to a dedicated tab.
+2. **Import the flow** – In the Node-RED editor, choose `Menu → Import → Clipboard`, paste the contents of `src/flows/production/Influx_Data_Pipeline_v1.2.json`, and deploy to a dedicated tab. A redacted demonstration variant is available under `examples/flows/` if you need to test editor behavior without production credentials.
 3. **Configure credentials** – Open the InfluxDB config node and supply URL, organization, token, and bucket names. Update MQTT config node with broker host, port, TLS, and credentials.
 4. **Adjust file log paths** – If the default `E:\\NodeRed\\Logs` directory does not exist, edit the file nodes under HTTP/MQTT taps to point at a writable path.
 5. **Deploy** – Click **Deploy**. The configuration injects run immediately, populating `global.errorMap` and `flow.cfg` contexts. Confirm by opening `Menu → Context Data`.

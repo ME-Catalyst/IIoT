@@ -1,0 +1,16 @@
+{
+  "pins": {
+    "temperature": {
+      "sensorA": "temp_a",
+      "sensorB": "temp_b"
+    },
+    "voltage": {
+      "lineA": "volt_a",
+      "lineB": "volt_b"
+    },
+    "identification": {
+      "vendorName": "demoVendor",
+      "productName": "demoProduct"
+    }
+  }
+}

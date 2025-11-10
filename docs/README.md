@@ -20,7 +20,7 @@ This flow ingests IO‑Link gateway data through two independent paths (HTTP pol
 | --- | --- |
 | **1** | Install **Node‑RED ≥ 3.1** and the palette modules:<br/>`node-red-contrib-influxdb` *(Influx 2.x writer)*. |
 | **2** | Copy the supporting config files:<br/>`config/masterMap.json` (IO‑Link alias map)<br/>`config/errorCodes.json` (event/error dictionary). |
-| **3** | Import the flow JSON into the Node‑RED editor (`Menu → Import → Clipboard`). |
+| **3** | Import the flow JSON from `src/flows/production/Influx_Data_Pipeline_v1.2.json` into the Node‑RED editor (`Menu → Import → Clipboard`). Use the sanitized variants under `examples/flows/` when you need a reference implementation without production endpoints. |
 | **4** | Provision InfluxDB targets: ensure buckets **A01**, **iot_events**, and new **gateway_identification** exist and the token assigned to the `InfluxDB` node can write to all three. |
 | **5** | Double‑click the **InfluxDB** and **Local MQTT** config nodes to enter credentials/hostnames, then adjust the file node paths if your log directory is not `E:\NodeRed\Logs`. |
 | **6** | Click **Deploy**. On startup the config injects load the maps, the identification poll seeds `gateway_identification`, and the **Log Reset** inject truncates the structured debug files. |
