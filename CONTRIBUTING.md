@@ -26,7 +26,8 @@ Consistent JSON formatting makes diffs easy to review and keeps the automated sc
 
 ## Documentation expectations
 
-- Update the [`docs/`](docs/) folder or inline README sections whenever you make changes that affect operator workflows, configuration, or troubleshooting.
+- Update the structured documentation tree under [`docs/`](docs/) whenever you make changes that affect operator workflows, configuration, or troubleshooting.
+- Place detailed architecture updates in `docs/architecture/`, user guides in `docs/user/`, developer notes in `docs/developer/`, and troubleshooting additions in `docs/troubleshooting/`.
 - Call out new or updated documentation in your pull request description so reviewers know where to look.
 - When adding diagrams, store the source files (e.g., `.drawio`) alongside exported assets (`.png`/`.svg`) so future updates are easy.
 
@@ -37,11 +38,11 @@ Before requesting a review, complete the following checks and note the results i
 1. **Schema validation for configuration dictionaries**
    ```bash
    npx --yes ajv-cli validate \
-     -s docs/schemas/masterMap.schema.json \
+     -s docs/developer/examples/sample_configs/schemas/masterMap.schema.json \
      -d config/masterMap.json
 
    npx --yes ajv-cli validate \
-     -s docs/schemas/errorCodes.schema.json \
+     -s docs/developer/examples/sample_configs/schemas/errorCodes.schema.json \
      -d config/errorCodes.json
    ```
 2. **Flow regression smoke test** – Import the updated flow into a local or staging Node-RED runtime and confirm telemetry arrives in InfluxDB, MQTT subscriptions connect, and the HTTP polling nodes succeed.
@@ -53,6 +54,6 @@ Before requesting a review, complete the following checks and note the results i
 
 - Reference this guide in the pull request template checklist and confirm each item is complete.
 - Provide context for reviewers: summarize the problem, outline the solution, and describe any manual validation you performed.
-- Attach screenshots or diagrams directly to the pull request or store them under `docs/assets/` and reference them from the description.
+- Attach screenshots or diagrams directly to the pull request or store them under `docs/visuals/` and reference them from the description.
 
 We appreciate your help keeping the Industrial IoT Data Pipeline reliable and well-documented!
