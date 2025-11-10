@@ -1,0 +1,5 @@
+{
+  "0x0000": "No error",
+  "0x8000": "Device application error",
+  "0xFF22": "Device not available"
+}

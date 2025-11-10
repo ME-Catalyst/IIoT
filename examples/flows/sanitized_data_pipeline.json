@@ -1,0 +1,65 @@
+[
+  {
+    "id": "example-tab",
+    "type": "tab",
+    "label": "Sanitized Example",
+    "disabled": false,
+    "info": "Example flow demonstrating sanitized structure",
+    "env": []
+  },
+  {
+    "id": "inject-node",
+    "type": "inject",
+    "z": "example-tab",
+    "name": "Simulated Payload",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payloadType": "json",
+    "payload": {
+      "deviceId": "demo-sensor-001",
+      "temperature": 22.5,
+      "status": "ok"
+    },
+    "x": 140,
+    "y": 120,
+    "wires": [["function-node"]]
+  },
+  {
+    "id": "function-node",
+    "type": "function",
+    "z": "example-tab",
+    "name": "Normalize Payload",
+    "func": "return { payload: { device: msg.payload.deviceId, value: msg.payload.temperature } };",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 360,
+    "y": 120,
+    "wires": [["debug-node"]]
+  },
+  {
+    "id": "debug-node",
+    "type": "debug",
+    "z": "example-tab",
+    "name": "Preview Output",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 580,
+    "y": 120,
+    "wires": []
+  }
+]

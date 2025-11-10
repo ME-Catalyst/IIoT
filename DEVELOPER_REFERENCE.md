@@ -6,7 +6,9 @@ This document orients contributors who maintain the Node-RED flow, configuration
 ## 2. Repository layout
 | Path | Description |
 | --- | --- |
-| `flows/` | Versioned Node-RED flow exports (`Influx_Data_Pipeline_v1.2.json`). |
+| `src/` | Runtime assets, including production Node-RED exports under `src/flows/production`. |
+| `examples/` | Sanitized flow variants and configuration samples for local exploration. |
+| `tests/` | Structural validation scripts and schemas (`python -m tests.validate_flows`). |
 | `config/` | Runtime configuration dictionaries (`masterMap.json`, `errorCodes.json`). |
 | `docs/` | Flow walkthrough, schemas, Grafana dashboards, and architecture assets. |
 | `docs/schemas/` | JSON Schemas enforcing dictionary structure. |
@@ -28,7 +30,7 @@ This document orients contributors who maintain the Node-RED flow, configuration
 
 ## 5. Validation workflow
 1. **Schema validation** – Run the `ajv-cli` commands from `README.md` whenever modifying `config/` files.
-2. **Flow diffs** – Compare flow exports using `npx --yes json-diff flows/Influx_Data_Pipeline_v1.1.json flows/Influx_Data_Pipeline_v1.2.json` (adjust versions) to review structural changes.
+2. **Flow diffs** – Compare flow exports using `npx --yes json-diff src/flows/production/Influx_Data_Pipeline_v1.1.json src/flows/production/Influx_Data_Pipeline_v1.2.json` (adjust versions) to review structural changes.
 3. **Runtime smoke test** – Import updated flow into a staging Node-RED instance, confirm context loaders execute, and check structured logs write successfully.
 4. **Grafana verification** – Import dashboards and ensure new measurements appear; update panels if measurement names change.
 
