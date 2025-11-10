@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <style>
+    .title { font: bold 26px 'Segoe UI', sans-serif; fill: #1b4b82; }
+    .label { font: 16px 'Segoe UI', sans-serif; fill: #0f172a; }
+    .note { font: 13px 'Segoe UI', sans-serif; fill: #475569; }
+    .lane { fill: #f8fafc; stroke: #cbd5f5; stroke-width: 2; }
+    .step { fill: #e2e8f0; stroke: #1e293b; stroke-width: 2; rx: 10; ry: 10; }
+    .arrow { marker-end: url(#arrowhead); stroke: #1e293b; stroke-width: 2.5; fill: none; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1e293b" />
+    </marker>
+  </defs>
+  <rect x="20" y="20" width="920" height="500" fill="#ffffff" stroke="#cbd5f5" stroke-width="2" rx="24" ry="24" />
+  <text x="60" y="70" class="title">Operations Runbook – Pipeline Lifecycle</text>
+
+  <rect x="60" y="100" width="840" height="100" class="lane" />
+  <text x="80" y="130" class="label">Startup</text>
+  <rect x="160" y="120" width="180" height="60" class="step" />
+  <text x="180" y="155" class="label">Deploy flow / restart</text>
+  <rect x="380" y="120" width="200" height="60" class="step" />
+  <text x="400" y="150" class="label">Load config dictionaries</text>
+  <rect x="620" y="120" width="220" height="60" class="step" />
+  <text x="640" y="150" class="label">Seed identification bucket</text>
+  <path class="arrow" d="M340 150 H380" />
+  <path class="arrow" d="M580 150 H620" />
+
+  <rect x="60" y="220" width="840" height="120" class="lane" />
+  <text x="80" y="250" class="label">Steady state</text>
+  <rect x="160" y="240" width="180" height="70" class="step" />
+  <text x="180" y="270" class="label">HTTP poll loop</text>
+  <text x="180" y="295" class="note">60s interval (default)</text>
+  <rect x="380" y="240" width="200" height="70" class="step" />
+  <text x="400" y="270" class="label">MQTT ingest &amp; routing</text>
+  <text x="400" y="295" class="note">Wildcard topics</text>
+  <rect x="620" y="240" width="220" height="70" class="step" />
+  <text x="640" y="270" class="label">InfluxDB writers</text>
+  <text x="640" y="295" class="note">A01 / iot_events / identification</text>
+  <path class="arrow" d="M340 275 H380" />
+  <path class="arrow" d="M580 275 H620" />
+
+  <rect x="60" y="360" width="840" height="120" class="lane" />
+  <text x="80" y="390" class="label">Observability &amp; Recovery</text>
+  <rect x="160" y="380" width="180" height="70" class="step" />
+  <text x="180" y="410" class="label">Structured log rotation</text>
+  <text x="180" y="435" class="note">Log Reset inject</text>
+  <rect x="380" y="380" width="200" height="70" class="step" />
+  <text x="400" y="410" class="label">Grafana dashboards</text>
+  <text x="400" y="435" class="note">Events + inventory</text>
+  <rect x="620" y="380" width="220" height="70" class="step" />
+  <text x="640" y="410" class="label">Diagnostics &amp; alerts</text>
+  <text x="640" y="435" class="note">Context data, MQTT taps</text>
+  <path class="arrow" d="M340 415 H380" />
+  <path class="arrow" d="M580 415 H620" />
+</svg>
