@@ -1,0 +1,11 @@
+{
+  "metadata": {
+    "version": "v1.2",
+    "description": "Error code dictionary aligned with the v1.2 flow release."
+  },
+  "codes": {
+    "0x0000": "No error",
+    "0x8000": "Device application error",
+    "0xFF22": "Device not available"
+  }
+}

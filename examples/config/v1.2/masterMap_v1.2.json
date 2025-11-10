@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "version": "v1.2",
+    "description": "Master map structure aligned with the v1.2 flow release."
+  },
   "pins": {
     "temperature": {
       "sensorA": "temp_a",
