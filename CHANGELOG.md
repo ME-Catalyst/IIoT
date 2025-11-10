@@ -5,6 +5,7 @@ All notable changes to the Industrial IoT Data Pipeline are documented in this f
 ## Unreleased
 **Tag:** `vNext` — **Release Date:** TBD
 
+- Documented every Node-RED node with rich info panels and inline Function comments to streamline on-call troubleshooting.
 - Switched the project licensing from Apache 2.0 to MIT; downstream consumers should review the updated LICENSE file and ensure their compliance processes reflect the change.
 - Expanded operator documentation with context reference tables, structured log catalogs, and schema-backed editing guidance to streamline maintenance tasks.
 - Added Flux-based Grafana dashboard exports (`docs/grafana/`) covering gateway events and device inventory to accelerate observability rollout.

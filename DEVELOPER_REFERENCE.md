@@ -7,6 +7,7 @@ This document orients contributors who maintain the Node-RED flow, configuration
 | Path | Description |
 | --- | --- |
 | `src/` | Runtime assets, including production Node-RED exports under `src/flows/production`. |
+| `flows/` | Export-ready flow snapshots with full inline documentation. |
 | `examples/` | Sanitized flow variants and configuration samples for local exploration. |
 | `tests/` | Structural validation scripts and schemas (`python -m tests.validate_flows`). |
 | `config/` | Runtime configuration dictionaries (`masterMap.json`, `errorCodes.json`). |
@@ -24,6 +25,7 @@ This document orients contributors who maintain the Node-RED flow, configuration
 
 ## 4. Coding conventions
 - Keep Function node code pure JavaScript without external dependencies; rely on Node-RED context for shared state.
+- Keep each Node-RED node's `info` panel current and annotate Function nodes with inline comments that explain logic and edge cases.
 - Normalize port identifiers to `x0`–`x7` and ensure timestamps are ISO strings before writing to InfluxDB.
 - When introducing new buckets or measurements, document them in `docs/README.md` and update Grafana dashboards.
 - Maintain JSON indentation at two spaces and alphabetize object keys where practical to reduce diff churn.
