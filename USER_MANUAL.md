@@ -14,8 +14,8 @@ This manual walks operations engineers through deploying and operating the `Infl
   - Updated `config/masterMap.json` and `config/errorCodes.json` files from this repository or your production overrides.
 
 ## 3. Installation workflow
-1. **Copy configuration dictionaries** – Place `config/masterMap.json` and `config/errorCodes.json` on the Node-RED host (or mount overrides). Confirm file permissions allow the Node-RED service account to read them.
-2. **Import the flow** – In the Node-RED editor, choose `Menu → Import → Clipboard`, paste the contents of `src/flows/production/Influx_Data_Pipeline_v1.2.json`, and deploy to a dedicated tab. A redacted demonstration variant is available under `examples/flows/` if you need to test editor behavior without production credentials.
+1. **Copy configuration dictionaries** – Place `config/masterMap.json` and `config/errorCodes.json` on the Node-RED host (or mount overrides). Confirm file permissions allow the Node-RED service account to read them. To rehearse without production data, use the sanitized dictionaries under `examples/config/v1.2/` which mirror the live schema but contain only demonstrative values.
+2. **Import the flow** – In the Node-RED editor, choose `Menu → Import → Clipboard`, paste the contents of `src/flows/production/Influx_Data_Pipeline_v1.2.json`, and deploy to a dedicated tab. When you need a credential-free rehearsal, import `examples/flows/v1.2/sanitized_data_pipeline_v1.2.json` instead; it preserves node structure and comments from the matching release while removing environment secrets.
 3. **Configure credentials** – Open the InfluxDB config node and supply URL, organization, token, and bucket names. Update MQTT config node with broker host, port, TLS, and credentials.
 4. **Adjust file log paths** – If the default `E:\\NodeRed\\Logs` directory does not exist, edit the file nodes under HTTP/MQTT taps to point at a writable path.
 5. **Deploy** – Click **Deploy**. The configuration injects run immediately, populating `global.errorMap` and `flow.cfg` contexts. Confirm by opening `Menu → Context Data`.
@@ -40,11 +40,17 @@ This manual walks operations engineers through deploying and operating the `Infl
 | Refresh credentials | Per security policy | Update InfluxDB token and MQTT passwords in Node-RED config nodes; redeploy. |
 | Trim log directory | Monthly or as needed | Rotate or archive structured logs to prevent disk exhaustion. |
 
-## 7. Troubleshooting
+## 7. Using the example assets
+- **Locate versioned samples** – Each release has its own folder under `examples/`, such as `examples/flows/v1.2/` and `examples/config/v1.2/`. The suffix matches the flow tag (for example `v1.2`), ensuring the sample structure mirrors the production export for that release.
+- **Practice imports safely** – Import the sanitized flow into a non-production Node-RED workspace to review wiring, context usage, and info panel guidance without touching live services. The sanitized flow retains Function logic but replaces credentials with neutral placeholders.
+- **Validate customizations** – Copy the configuration samples to a scratch directory, adapt field names for your environment, then run the schema validation commands from the README. Once validated, promote the modified dictionaries into `config/`.
+- **Sync with new releases** – When a new tagged flow ships, pull the matching versioned folder so your rehearsal assets stay aligned with the production baseline.
+
+## 8. Troubleshooting
 - Refer to [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) for a symptom-driven guide.
 - Use the operational lifecycle diagram (`docs/pipeline-operations.svg`) to trace where a failure occurs in the pipeline.
 
-## 8. Additional resources
+## 9. Additional resources
 - Flow walkthrough and node-level behavior: [`docs/README.md`](docs/README.md)
 - Architecture context: [`ARCHITECTURE.md`](ARCHITECTURE.md)
 - Release process for coordinated upgrades: [`RELEASE.md`](RELEASE.md)

@@ -8,7 +8,7 @@ This document orients contributors who maintain the Node-RED flow, configuration
 | --- | --- |
 | `src/` | Runtime assets, including production Node-RED exports under `src/flows/production`. |
 | `flows/` | Export-ready flow snapshots with full inline documentation. |
-| `examples/` | Sanitized flow variants and configuration samples for local exploration. |
+| `examples/` | Version-tagged sanitized flow variants and configuration samples for local exploration. |
 | `tests/` | Structural validation scripts and schemas (`python -m tests.validate_flows`). |
 | `config/` | Runtime configuration dictionaries (`masterMap.json`, `errorCodes.json`). |
 | `docs/` | Flow walkthrough, schemas, Grafana dashboards, and architecture assets. |
@@ -41,12 +41,18 @@ This document orients contributors who maintain the Node-RED flow, configuration
 - Summarize behavior changes in `CHANGELOG.md` and align version numbers across flow export and documentation headers.
 - Coordinate with operations to update production configuration mounts and tokens.
 
-## 7. Tooling roadmap for developers
+## 7. Managing example assets
+- **Mirror release tags** – For every production flow tagged `vX.Y`, create matching folders under `examples/flows/vX.Y/` and `examples/config/vX.Y/`. Name the files with the same suffix (for example `sanitized_data_pipeline_v1.2.json`) so operators can confirm provenance quickly.
+- **Redact before publishing** – Strip credentials, server addresses, and tokens from the example flow. Replace them with descriptive placeholders while keeping node wiring, context keys, and function logic intact.
+- **Document updates** – Whenever you add or refresh example assets, update the `USER_MANUAL` and this reference to call out availability and usage so downstream teams know which artifacts map to which releases.
+- **Validate structure** – Run schema validation against the example configuration dictionaries to ensure they continue to round-trip through the same tooling as production files.
+
+## 8. Tooling roadmap for developers
 - Add npm scripts (`validate:config`, `diff:flows`) to streamline routine checks.
 - Explore automated payload replay tests using stored MQTT/HTTP samples.
 - Investigate GitHub Actions to enforce schema validation on pull requests.
 
-## 8. Helpful references
+## 9. Helpful references
 - Architecture overview: [`ARCHITECTURE.md`](ARCHITECTURE.md)
 - Operations lifecycle diagram: [`docs/pipeline-operations.svg`](docs/pipeline-operations.svg)
 - Troubleshooting playbook: [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md)

@@ -2,9 +2,9 @@
   {
     "id": "example-tab",
     "type": "tab",
-    "label": "Sanitized Example",
+    "label": "Sanitized Example v1.2",
     "disabled": false,
-    "info": "Example flow demonstrating sanitized structure",
+    "info": "Flow export demonstrating the v1.2 structure without environment-specific credentials.",
     "env": []
   },
   {
@@ -37,7 +37,7 @@
     "type": "function",
     "z": "example-tab",
     "name": "Normalize Payload",
-    "func": "return { payload: { device: msg.payload.deviceId, value: msg.payload.temperature } };",
+    "func": "return { payload: { device: msg.payload.deviceId, value: msg.payload.temperature, version: 'v1.2' } };",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
