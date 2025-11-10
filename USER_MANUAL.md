@@ -1,0 +1,50 @@
+# Industrial IoT Data Pipeline – User Manual
+
+## 1. Introduction
+This manual walks operations engineers through deploying and operating the `Influx_Data_Pipeline_v1.2.json` Node-RED flow. It builds on the quick-start summary in `docs/README.md` and focuses on day-to-day tasks: preparing prerequisites, importing the flow, validating connectivity, and using the supplied observability tooling.
+
+## 2. Audience & prerequisites
+- **Audience**: Plant-floor engineers, OT administrators, and support teams responsible for IO-Link telemetry collection.
+- **Skills required**: Familiarity with Node-RED editor, MQTT brokers (Mosquitto or equivalent), InfluxDB 2.x administration, Grafana dashboard import.
+- **Prerequisites**:
+  - Node-RED ≥ 3.1 running near the IO-Link gateways.
+  - `node-red-contrib-influxdb` palette installed.
+  - InfluxDB 2.x instance with buckets `A01`, `iot_events`, and `gateway_identification` plus a token with write access.
+  - Accessible MQTT broker with credentials.
+  - Updated `config/masterMap.json` and `config/errorCodes.json` files from this repository or your production overrides.
+
+## 3. Installation workflow
+1. **Copy configuration dictionaries** – Place `config/masterMap.json` and `config/errorCodes.json` on the Node-RED host (or mount overrides). Confirm file permissions allow the Node-RED service account to read them.
+2. **Import the flow** – In the Node-RED editor, choose `Menu → Import → Clipboard`, paste the contents of `flows/Influx_Data_Pipeline_v1.2.json`, and deploy to a dedicated tab.
+3. **Configure credentials** – Open the InfluxDB config node and supply URL, organization, token, and bucket names. Update MQTT config node with broker host, port, TLS, and credentials.
+4. **Adjust file log paths** – If the default `E:\\NodeRed\\Logs` directory does not exist, edit the file nodes under HTTP/MQTT taps to point at a writable path.
+5. **Deploy** – Click **Deploy**. The configuration injects run immediately, populating `global.errorMap` and `flow.cfg` contexts. Confirm by opening `Menu → Context Data`.
+
+## 4. Post-deployment validation
+1. **Check InfluxDB writes** – Use the InfluxDB UI or `influx query` CLI to verify measurements arriving in `A01` and `iot_events` buckets.
+2. **Inspect structured logs** – Review JSON files generated in the log directory (e.g., `01_GET_*.json`, `MQTT_raw_*.json`) to ensure HTTP and MQTT payloads are captured.
+3. **Import Grafana dashboards** – Load dashboards from `docs/grafana/` to visualize pipeline health and gateway inventory.
+4. **Monitor context** – In Node-RED, ensure `global.errorMap` and `flow.cfg` are populated and updating when config files change.
+
+## 5. Routine operations
+- **Scaling gateways** – Edit the `ranges` array in the `generate IPs` function node to add or remove gateway addresses.
+- **Changing poll cadence** – Update the HTTP `trigger` inject repeat interval to tune load vs. freshness.
+- **Rotating logs** – Trigger the **Log Reset** inject or schedule additional rotations if running continuously for long periods.
+- **Updating configuration** – Modify the JSON dictionaries, validate them against schemas using the commands in `README.md`, then redeploy the flow.
+
+## 6. Maintenance checklist
+| Task | Frequency | Steps |
+| --- | --- | --- |
+| Validate configuration schemas | Before each deployment | Run `ajv-cli` commands listed in `README.md` to catch schema violations. |
+| Review Grafana dashboards | Weekly | Confirm data freshness and investigate anomalies flagged by panels. |
+| Refresh credentials | Per security policy | Update InfluxDB token and MQTT passwords in Node-RED config nodes; redeploy. |
+| Trim log directory | Monthly or as needed | Rotate or archive structured logs to prevent disk exhaustion. |
+
+## 7. Troubleshooting
+- Refer to [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) for a symptom-driven guide.
+- Use the operational lifecycle diagram (`docs/pipeline-operations.svg`) to trace where a failure occurs in the pipeline.
+
+## 8. Additional resources
+- Flow walkthrough and node-level behavior: [`docs/README.md`](docs/README.md)
+- Architecture context: [`ARCHITECTURE.md`](ARCHITECTURE.md)
+- Release process for coordinated upgrades: [`RELEASE.md`](RELEASE.md)

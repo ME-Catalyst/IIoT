@@ -24,6 +24,16 @@ The flow loads shared configuration on deploy, then runs two parallel ingestion 
 
 See the [detailed flow walkthrough](docs/README.md) for node-by-node behavior, upgrade notes, and troubleshooting guidance.
 
+### Expanded documentation set
+
+| Guide | Purpose |
+| --- | --- |
+| [`ARCHITECTURE.md`](ARCHITECTURE.md) | System-level topology, data flow, and integration details with supporting diagrams. |
+| [`USER_MANUAL.md`](USER_MANUAL.md) | Operator-oriented setup, validation, and maintenance procedures. |
+| [`DEVELOPER_REFERENCE.md`](DEVELOPER_REFERENCE.md) | Contributor workflow, coding conventions, and release expectations. |
+| [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) | Symptom-driven diagnostics and recovery playbooks linked to lifecycle diagrams. |
+| [`ROADMAP.md`](ROADMAP.md) | Strategic direction, milestone planning, and risk tracking for upcoming releases. |
+
 ## Repository tour
 
 | Path | What you will find |
