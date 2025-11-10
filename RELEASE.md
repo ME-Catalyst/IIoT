@@ -1,6 +1,6 @@
 # Release Procedure
 
-This repository uses date-stamped semantic version tags (for example, `v1.2`) to publish updates to the Industrial IoT Data Pipeline. Follow the steps below whenever preparing a new release.
+This repository uses date-stamped semantic version tags (for example, `v1.2`) to publish updates to the Industrial IoT Data Pipeline. Follow the steps below whenever preparing a new release. Use the [release audit checklist](AUDIT_CHECKLIST.md) alongside this guide and attach a completed copy to your release notes.
 
 ## 1. Prepare the repository
 1. Update [`CHANGELOG.md`](CHANGELOG.md) with the highlights that operators and maintainers should know for the upcoming version.
@@ -16,6 +16,7 @@ This repository uses date-stamped semantic version tags (for example, `v1.2`) to
      -d config/errorCodes.json
    ```
 4. Ensure documentation updates are committed (README, flow walkthroughs, operational notes).
+5. Check off each item in the [release audit checklist](AUDIT_CHECKLIST.md) and capture the evidence (command output, reviewer initials) for the release record.
 
 ## 2. Tag the release
 1. Bump the version number as needed in the flow filename and documentation.
