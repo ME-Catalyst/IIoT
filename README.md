@@ -96,6 +96,7 @@ These commands help you keep configuration files valid and ensure the exported f
 ## Release management
 
 - Review the [changelog](CHANGELOG.md) to understand what changed between tagged versions before deploying updates to production gateways.
+- Complete the [release audit checklist](AUDIT_CHECKLIST.md) so every ME-Catalyst compliance control is satisfied before tagging.
 - Follow the [release procedure](RELEASE.md) when publishing a new tag so the exported flow, documentation, and GitHub Release assets stay in sync for operators.
 
 ### Configuration dictionaries
