@@ -15,5 +15,5 @@ examples/
 
 ## Usage
 - Import the sanitized flow into a non-production Node-RED instance to review node wiring and context behavior.
-- Copy the configuration samples when drafting site-specific overrides, then validate with the JSON schemas in `docs/schemas/` before deployment.
+- Copy the configuration samples when drafting site-specific overrides, then validate with the JSON schemas in `docs/developer/examples/sample_configs/schemas/` before deployment.
 - When a new flow tag is published, add matching folders and filenames under `flows/` and `config/` so the examples remain in lockstep with production exports.
