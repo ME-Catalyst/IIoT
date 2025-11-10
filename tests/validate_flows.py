@@ -41,9 +41,13 @@ def _validate_tabs(flow: Iterable[dict], path: pathlib.Path) -> None:
     if not tabs:
         raise ValidationError(f"{path} does not define a workspace tab")
 
+    containers: Set[str] = tabs | {
+        node["id"] for node in flow if node.get("type") == "subflow"
+    }
+
     for node in flow:
         tab_id = node.get("z")
-        if tab_id and tab_id not in tabs:
+        if tab_id and tab_id not in containers:
             raise ValidationError(
                 f"{path} node '{node['id']}' targets unknown tab '{tab_id}'"
             )
