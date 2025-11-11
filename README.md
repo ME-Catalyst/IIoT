@@ -1,4 +1,4 @@
-# Industrial IoT Data Pipeline
+# Murr Elektronik Impact67 Pro IO Link Master IoT Data Pipeline
 
 Production-ready Node-RED flows that collect IO-Link telemetry, enrich it with contextual metadata, and deliver normalized metrics to an InfluxDB + Grafana observability stack.
 
