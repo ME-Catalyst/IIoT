@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2024 ME-Catalyst
+Copyright (c) 2025 ME-Catalyst
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
