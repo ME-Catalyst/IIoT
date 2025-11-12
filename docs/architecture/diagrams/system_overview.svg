@@ -17,11 +17,15 @@
   <text x="60" y="70" class="title">Industrial IoT Data Pipeline – Architecture Overview</text>
   <text x="60" y="100" class="subtitle">Dual HTTP/MQTT ingestion feeding InfluxDB + Grafana observability stack</text>
 
-  <rect x="60" y="140" width="220" height="130" class="group" />
+  <rect x="60" y="140" width="220" height="150" class="group" />
   <text x="90" y="175" class="label">Edge IO-Link Gateways</text>
-  <text x="85" y="205" class="note">• REST endpoints `/gateway/events`</text>
-  <text x="85" y="230" class="note">• Identification metadata</text>
-  <text x="85" y="255" class="note">• MQTT telemetry topics</text>
+  <text x="85" y="205" class="note">
+    <tspan x="85" dy="0">• REST endpoints</tspan>
+    <tspan x="105" dy="18">`/iolink/v1/gateway/events`</tspan>
+    <tspan x="105" dy="18">`/iolink/v1/gateway/identification`</tspan>
+  </text>
+  <text x="85" y="255" class="note">• Identification metadata</text>
+  <text x="85" y="280" class="note">• MQTT telemetry topics</text>
 
   <rect x="320" y="120" width="260" height="170" class="group" />
   <text x="360" y="155" class="label">Node-RED Runtime (Edge)</text>
