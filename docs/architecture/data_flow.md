@@ -49,4 +49,4 @@ eway issues.
   `docs/developer/examples/sample_configs/` for reuse.
 * The pipeline optionally publishes system health metrics to MQTT topics consumed by plant supervisory systems.
 
-Refer to `docs/architecture/diagrams/system_overview.svg` for a visual depiction of these interactions.
+Refer to the system overview diagram at the top of [`ARCHITECTURE.md`](../../ARCHITECTURE.md) for a visual depiction of these interactions.
