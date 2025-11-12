@@ -20,7 +20,35 @@ Production-ready Node-RED flows that collect IO-Link telemetry, enrich it with c
 
 ## Visual Reference
 
-![System overview](docs/architecture/diagrams/system_overview.svg)
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'fontFamily': '"Inter","Segoe UI","Helvetica Neue",Arial,sans-serif', 'fontSize': '16px', 'primaryColor': '#f1f5f9', 'primaryBorderColor': '#1e293b', 'lineColor': '#1e293b', 'secondaryColor': '#e2e8f0', 'tertiaryColor': '#cbd5f5'}}}%%
+flowchart LR
+    Edge["Edge IO-Link Gateways\n\u2022 REST endpoints\n\u2022 /iolink/v1/gateway/events\n\u2022 /iolink/v1/gateway/identification\n\u2022 Identification metadata\n\u2022 MQTT telemetry topics"]
+    subgraph NodeRED["Node-RED Runtime (Edge)"]
+        direction TB
+        HTTP["HTTP Event Poll Pipeline\nTransforms REST payloads"]
+        MQTT["MQTT Ingest Pipeline\nNormalizes telemetry topics"]
+    end
+    subgraph Context["Runtime Context & Logging"]
+        direction TB
+        Config["Config Loaders\nmasterMap.json \u00b7 errorCodes.json"]
+        Logs["Structured File Logs & Reset"]
+    end
+    Influx["InfluxDB 2.x Buckets\n\u2022 iot_events (HTTP event stream)\n\u2022 gateway_identification (HTTP metadata)\n\u2022 A01 (MQTT telemetry)"]
+    Grafana["Grafana Dashboards\nVisualize metrics, events, inventory"]
+
+    Edge --> HTTP
+    Edge --> MQTT
+    HTTP -->|iot_events| Influx
+    HTTP -->|gateway_identification| Influx
+    MQTT -->|A01 bucket| Influx
+    Config --> HTTP
+    Config --> MQTT
+    HTTP -.->|Structured logs| Logs
+    MQTT -.->|Structured logs| Logs
+    Config --> Logs
+    Influx -->|Flux queries| Grafana
+```
 
 ## Documentation Map
 
