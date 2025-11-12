@@ -46,23 +46,28 @@
 
   <rect x="620" y="180" width="260" height="130" class="group" />
   <text x="750" y="215" class="label center">InfluxDB 2.x Buckets</text>
-  <text x="640" y="245" class="note">• A01 (process &amp; diagnostics)</text>
-  <text x="640" y="270" class="note">• iot_events (event telemetry)</text>
-  <text x="640" y="295" class="note">• gateway_identification</text>
+  <text x="640" y="235" class="note">• iot_events (HTTP event stream)</text>
+  <text x="640" y="260" class="note">• gateway_identification (HTTP metadata)</text>
+  <text x="640" y="285" class="note">• A01 (MQTT telemetry)</text>
 
   <rect x="620" y="340" width="260" height="100" class="group" />
   <text x="750" y="375" class="label center">Grafana Dashboards</text>
   <text x="640" y="405" class="note">Visualize metrics, events, inventory</text>
 
   <path class="arrow" d="M280 205 H320" />
-  <path class="arrow" d="M280 245 H320" />
+  <path class="arrow" d="M280 230 H320" />
+  <path class="arrow" d="M280 255 H320" />
   <path class="arrow" d="M450 290 V340" />
   <path class="arrow" d="M580 210 H620" />
-  <path class="arrow" d="M580 255 H620" />
+  <path class="arrow" d="M580 245 H620" />
+  <path class="arrow" d="M580 280 H620" />
   <path class="arrow" d="M580 400 H620" />
   <path class="arrow" d="M750 310 V340" />
-  <text x="300" y="215" class="note">HTTP JSON</text>
-  <text x="300" y="250" class="note">MQTT frames</text>
-  <text x="585" y="235" class="note">Normalized measurements</text>
+  <text x="300" y="192" class="note center">HTTP events → iot_events bucket</text>
+  <text x="300" y="217" class="note center">HTTP identification → gateway_identification bucket</text>
+  <text x="300" y="242" class="note center">MQTT telemetry → A01 bucket</text>
+  <text x="575" y="210" class="note" text-anchor="end" dominant-baseline="middle">→ iot_events</text>
+  <text x="575" y="245" class="note" text-anchor="end" dominant-baseline="middle">→ gateway_identification</text>
+  <text x="575" y="280" class="note" text-anchor="end" dominant-baseline="middle">→ A01</text>
   <text x="585" y="420" class="note">Flux queries</text>
 </svg>
