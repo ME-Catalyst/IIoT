@@ -7,12 +7,26 @@ Use the tables below to quickly map observed symptoms to likely causes and recov
 ram to identify which stage (startup, steady state, observability) is affected, then follow the deep-dive procedures.
 
 ## 2. Quick Symptom Matrix
-| Symptom | Likely cause | Resolution |
+
+```mermaid
+flowchart LR
+    A([Pipeline issue detected]) --> B(No Data in InfluxDB Buckets)
+    A --> C(MQTT Router Errors)
+    A --> D(HTTP Poll Failures)
+    A --> E(Structured Log Issues)
+
+    B --> B1(Lifecycle stage: ingest)
+    C --> C1(Lifecycle stage: fieldbus)
+    D --> D1(Lifecycle stage: gateway)
+    E --> E1(Lifecycle stage: observability)
+```
+
+| Symptom Branch | Likely cause | Resolution |
 | --- | --- | --- |
-| No data in InfluxDB buckets | Invalid Influx credentials or bucket names; network reachability issues | Re-enter token and bucket names in the InfluxDB config node; test reachability with `curl` or the Influx UI. |
-| MQTT router outputs `cfg not loaded yet` | `config/masterMap.json` failed to load or is invalid JSON | Validate the file against schema (`ajv-cli`); confirm file path in File In node and ensure permissions allow read access. |
-| HTTP poll returns 4xx/5xx errors | Gateway credentials incorrect, TLS mismatch, or IP range misconfigured | Verify gateway auth, adjust `generate IPs` ranges, and inspect gateway logs for blocked requests. |
-| Structured logs missing or empty | Log directory does not exist or Node-RED lacks write permission | Create directory, adjust file node paths, and trigger the **Log Reset** inject to recreate files. |
+| **No Data in InfluxDB Buckets** | Invalid Influx credentials or bucket names; network reachability issues | Re-enter token and bucket names in the InfluxDB config node; test reachability with `curl` or the Influx UI. |
+| **MQTT Router Errors** (e.g., `cfg not loaded yet`) | `config/masterMap.json` failed to load or is invalid JSON | Validate the file against schema (`ajv-cli`); confirm file path in File In node and ensure permissions allow read access. |
+| **HTTP Poll Failures** | Gateway credentials incorrect, TLS mismatch, or IP range misconfigured | Verify gateway auth, adjust `generate IPs` ranges, and inspect gateway logs for blocked requests. |
+| **Structured Log Issues** | Log directory does not exist or Node-RED lacks write permission | Create directory, adjust file node paths, and trigger the **Log Reset** inject to recreate files. |
 | Grafana dashboards show stale data | Flow not writing or queries outdated | Confirm Influx writes succeed, then update dashboard queries to reflect latest measurement names. |
 
 ## 3. Diagnostic Procedures
