@@ -4,6 +4,35 @@ This document explains how telemetry, metadata, and diagnostics traverse the Ind
 ed as a Node-RED project that runs on the shop-floor edge and bridges IO-Link gateways, MQTT brokers, and an InfluxDB + Grafana
 observability stack.
 
+Figure 1 provides a high-level visual that mirrors the narrative sections that follow.
+
+```mermaid
+flowchart TB
+    start([Deployment & Runtime Triggers])
+
+    start --> startup["Config Loader Group\n(flow context prep)"]
+    startup --> cfg["flow.cfg / global.errorMap"]
+
+    start --> http["HTTP Event Pipeline\n(HTTP Event Parser v8)"]
+    http --> httpInflux["InfluxDB bucket: iot_events"]
+    http --> httpLogs["01_GET_*.json File Out"]
+
+    start --> ident["Gateway Identification Poll\n(Identification Normalizer)"]
+    ident --> identInflux["InfluxDB bucket: gateway_identification"]
+    ident --> identLogs["Structured Metadata Logs"]
+
+    start --> mqtt["MQTT Ingestion\n(IO-Link Router v10)"]
+    mqtt --> mqttInflux["InfluxDB bucket: A01"]
+    mqtt --> mqttLogs["Wildcard Bus Tap Logs"]
+
+    httpLogs --> logReset["Log Reset Inject"]
+    identLogs --> logReset
+    mqttLogs --> logReset
+    logReset --> archive["Operator Archive / Truncate"]
+```
+
+*Figure 1. High-level Node-RED data flow highlighting startup, HTTP, MQTT, and structured logging branches.*
+
 ## Startup and Configuration Loading
 
 1. The **Config Loader** group executes after deployment and on every scheduled refresh.
