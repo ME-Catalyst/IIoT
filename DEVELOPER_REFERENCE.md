@@ -25,6 +25,21 @@ ents the user-focused manual and codifies expectations for coding standards, val
 
 Detailed module descriptions are available in [`docs/architecture/module_graph.md`](docs/architecture/module_graph.md).
 
+### Flow Components at a Glance
+
+```mermaid
+mindmap
+  root((Flow Components))
+    "Config Loader\nGroup: Config Loader Group\nSource: config/masterMap.json + config/errorCodes.json (honors CONFIG_BASE_PATH)\nPrereq: CONFIG_BASE_PATH env overrides file path, Node-RED file access\nOutput: global.cfg.*, global.errorCodes contexts"
+      "Feeds context to downstream modules"
+    "HTTP Poller\nGroup: HTTP Poll Pipeline\nSource: /iolink/v1/gateway/events\nPrereq: Poll cadence inject + gateway list from flow/global context\nOutput: raw HTTP events -> Function v8"
+    "HTTP Event Parser\nGroup: Function v8\nSource: HTTP events from poller\nPrereq: global.cfg.pins + errorCodes context\nOutput: normalized payloads -> Write Influx + log taps"
+    "Identification Poll\nGroup: Gateway Identification\nSource: /iolink/v1/gateway/identification\nPrereq: gateway list in context, credentials for HTTP nodes\nOutput: inventory snapshots -> Influx - gateway_identification + structured logs"
+    "MQTT Router\nGroup: IO-Link Router v10\nSource: +/iolink/v1/# topics\nPrereq: flow.cfg.pins context, broker credentials, network reachability\nOutput: normalized MQTT metrics -> Write Influx (A01 bucket)"
+    "Influx Writers\nGroups: Write Influx, write to Influx (gateway_events), Influx - gateway_identification\nSource: normalized payloads from Function v8 + IO-Link Router v10 + Gateway Identification\nPrereq: Influx credentials/tokens in config nodes\nOutput: A01, iot_events, gateway_identification buckets"
+    "Log Reset & File Writers\nNodes: Log Reset + File Out\nSource: mirrored HTTP/MQTT payloads\nPrereq: writable log directory + rotation schedule\nOutput: structured JSON archives for audits"
+```
+
 ## 4. Coding Conventions
 - Keep Function node code pure JavaScript without external dependencies; rely on Node-RED context for shared state.
 - Keep each Node-RED node's **info** panel current and annotate Function nodes with inline comments that explain logic and edge cases.
