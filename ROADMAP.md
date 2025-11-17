@@ -12,16 +12,42 @@ ied InfluxDB observability plane.
 - **Operational baseline**: Configuration dictionaries stored under `config/`, context loaders populate `global.errorMap` and `flow.cfg`, Grafana dashboards available in `docs/developer/examples/sample_configs/`.
 
 ## 3. Near-term Goals (0–3 months)
+The mermaid timeline below highlights how telemetry, observability, and platform initiatives align with the next 12 months; review it alongside each goal list for quick prioritisation context.
+
+```mermaid
+timeline
+    title Initiative timeline by theme
+    0-3 months : Expand telemetry coverage
+    0-3 months : Tighten observability
+    0-3 months : Smooth platform upgrades
+    3-6 months : Edge platform packaging
+    3-6 months : Observability automation (replay testing)
+    3-6 months : Telemetry context externalisation
+    6-12 months : Platform-level edge-to-cloud sync
+    6-12 months : Telemetry-driven fleet insights
+    6-12 months : Observability plug-in ecosystem
+    classDef telemetry fill:#68c1ff,stroke:#0b3d91,color:#0b3d91
+    classDef observability fill:#ffd166,stroke:#7c4700,color:#7c4700
+    classDef platform fill:#95d5b2,stroke:#1b4332,color:#1b4332
+    class "Expand telemetry coverage","Telemetry context externalisation","Telemetry-driven fleet insights" telemetry
+    class "Tighten observability","Observability automation (replay testing)","Observability plug-in ecosystem" observability
+    class "Smooth platform upgrades","Edge platform packaging","Platform-level edge-to-cloud sync" platform
+```
+
 1. **Expand telemetry coverage** – Add IO-Link statistics aliases to `config/masterMap.json` as devices ship new registers; update flow router to persist them automatically.
 2. **Tighten observability** – Ship prebuilt Grafana alert rules alongside dashboards; extend structured log set with retention automation.
 3. **Smooth upgrades** – Script JSON schema validation + flow export diff checks as npm scripts to lower friction for contributors.
 
 ## 4. Mid-term Initiatives (3–6 months)
+Review the same timeline above when sequencing these mid-term milestones.
+
 1. **Edge packaging** – Provide Docker Compose and Kubernetes manifests that wire Node-RED, Mosquitto, and InfluxDB with secure defaults.
 2. **Context externalisation** – Investigate remote storage for `errorMap` and `masterMap` to support stateless Node-RED deployments.
 3. **Automated replay testing** – Capture golden MQTT/HTTP payloads and replay them during CI to catch parser regressions.
 
 ## 5. Long-term Vision (6–12 months)
+Keep cross-referencing the timeline to ensure long-term bets stay balanced with the short- and mid-term initiatives.
+
 1. **Fleet insights** – Enrich Grafana dashboards with anomaly detection panels powered by Flux tasks or external analytics engines.
 2. **Plug-in ecosystem** – Publish reusable Node-RED subflows for IO-Link normalization, making the pipeline extensible to other factories.
 3. **Edge-to-cloud sync** – Explore replicating key metrics to a central cloud tenancy while preserving edge autonomy and offline durability.
