@@ -34,6 +34,15 @@ the sanitized dictionaries under `examples/config/v1.2/` which mirror the live s
    [`docs/developer/examples/sample_configs/`](docs/developer/examples/sample_configs/) to visualize pipeline health and gateway inventory.
 4. **Monitor context** – In Node-RED, ensure `global.errorMap` and `flow.cfg` are populated and updating when config files change.
 
+The following visual checklist reinforces how observability data flows between these checkpoints so teams can quickly orient themselves before diving into the tooling specifics.
+
+```mermaid
+flowchart LR
+    A[InfluxDB writes\n<small>Flux query</small>] --> B[Structured logs\n<small>Log directory</small>]
+    B --> C[Grafana dashboards\n<small>Dashboard JSON import</small>]
+    C --> D[Context monitor\n<small>Node-RED Context Data</small>]
+```
+
 ## 5. Routine Operations
 - **Scaling gateways** – Edit the `ranges` array in the `generate IPs` function node to add or remove gateway addresses.
 - **Changing poll cadence** – Update the HTTP `trigger` inject repeat interval to tune load vs. freshness.
