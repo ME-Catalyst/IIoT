@@ -10,6 +10,24 @@ This guide documents the runtime configuration objects and how to customize them
 | `global.errorMap` | Resolves numeric gateway error codes to human-readable descriptions. | Loaded from `config/errorCodes.json`. |
 | `global.gatewayTargets` | List of gateway IP addresses or hostnames to poll. | Populated by the `Poll cadence` inject node. |
 
+The relationship diagram below shows how the configuration files feed each context variable and which flow groups consume them. Use it to verify that changes to a file or flow are reflected in every dependent context before deploying to production.
+
+```mermaid
+flowchart LR
+    classDef file fill:#fff6d5,stroke:#f4aa41,stroke-width:2px,color:#5a3d1e
+    classDef context fill:#e0f7fa,stroke:#00acc1,stroke-width:2px,color:#004d60
+    classDef flow fill:#e8f5e9,stroke:#43a047,stroke-width:2px,color:#1b5e20
+
+    masterMap["📄 config/masterMap.json"]:::file --> flowCfg["🧠 flow.cfg"]:::context
+    errorCodes["📄 config/errorCodes.json"]:::file --> errorMap["🧠 global.errorMap"]:::context
+    pollInject["⚙️ Poll cadence inject"]:::flow --> gatewayTargets["🧠 global.gatewayTargets"]:::context
+
+    flowCfg --> httpParser["🔧 HTTP parser"]:::flow
+    flowCfg --> mqttRouter["🔧 MQTT router"]:::flow
+    errorMap --> httpParser
+    gatewayTargets --> ipGenerator["🔧 IP generator"]:::flow
+```
+
 ## Configuration Files
 
 ### `config/masterMap.json`
