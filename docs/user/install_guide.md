@@ -42,6 +42,37 @@ Follow these steps to import and run the Industrial IoT Node-RED flow on a fresh
 3. Verify that data arrives in the `A01`, `iot_events`, and `gateway_identification` buckets within InfluxDB.
 4. Load the Grafana dashboards located under `docs/developer/examples/sample_configs/` to validate visualization bindings.
 
+```mermaid
+gantt
+    title Installation Phases Aligned to Steps 2–5
+    dateFormat  YYYY-MM-DD
+    axisFormat  %m/%d
+
+    section Preparation (Step 2)
+    Copy configs into project directory      :prep, 2024-01-01, 1d
+    Validate schemas with ajv-cli            :after prep, 1d
+
+    section Import (Step 3)
+    Import production flow JSON              :import, 2024-01-03, 1d
+
+    section Configuration (Step 4)
+    Update InfluxDB + MQTT credentials       :config, 2024-01-04, 1d
+    Adjust file node paths                   :after config, 0.5d
+
+    section Verification (Step 5)
+    Deploy Node-RED changes                  :verify, 2024-01-05, 0.5d
+    Validate context data and dashboards     :after verify, 1d
+
+    classDef prep fill:#fff6d5,stroke:#f4aa41,stroke-width:2px,color:#5a3d1e
+    classDef import fill:#e0f7fa,stroke:#00acc1,stroke-width:2px,color:#004d60
+    classDef config fill:#e8f5e9,stroke:#43a047,stroke-width:2px,color:#1b5e20
+    classDef verify fill:#ede7f6,stroke:#7e57c2,stroke-width:2px,color:#4527a0
+    class prep prep
+    class import import
+    class config config
+    class verify verify
+```
+
 ## 6. Post-Installation Tasks
 
 * Schedule periodic backups of `config/` and the structured log directory.
