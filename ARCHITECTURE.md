@@ -40,23 +40,17 @@ masterMap.json · errorCodes.json"]
 Visualize metrics, events, inventory"]
     end
 
-    Gateways -->|HTTP REST
-(Field ➜ Edge firewall)| HTTP
-    Gateways -->|MQTT publish
-(Field ➜ Edge firewall)| MQTT
-    HTTP -->|iot_events
-Edge LAN ➜ Observability DMZ| Influx
-    HTTP -->|gateway_identification
-Edge LAN ➜ Observability DMZ| Influx
-    MQTT -->|A01 bucket
-Edge LAN ➜ Observability DMZ| Influx
+    Gateways -->|HTTP REST<br/>(Field ➜ Edge firewall)| HTTP
+    Gateways -->|MQTT publish<br/>(Field ➜ Edge firewall)| MQTT
+    HTTP -->|iot_events<br/>Edge LAN ➜ Observability DMZ| Influx
+    HTTP -->|gateway_identification<br/>Edge LAN ➜ Observability DMZ| Influx
+    MQTT -->|A01 bucket<br/>Edge LAN ➜ Observability DMZ| Influx
     Config --> HTTP
     Config --> MQTT
     HTTP -.->|Structured logs| Logs
     MQTT -.->|Structured logs| Logs
     Config --> Logs
-    Influx -->|Flux queries
-Observability DMZ ➜ Grafana tier| Grafana
+    Influx -->|Flux queries<br/>Observability DMZ ➜ Grafana tier| Grafana
 ```
 
 ## 1. System Overview
